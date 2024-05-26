@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyxedgayalsi8"]
+[gd_scene load_steps=11 format=3 uid="uid://cyxedgayalsi8"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_fvidi"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_ug5nq"]
@@ -9,6 +9,7 @@
 [ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="6_b15kj"]
 [ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="6_ck4m6"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_q3n6a"]
+[ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="9_pech5"]
 
 [node name="shortCutLvl" type="Node2D"]
 
@@ -150,6 +151,13 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("5_htu6j")
 theme_override_font_sizes/font_size = 41
 text = "00:00"
+
+[node name="Settings" parent="Belichtet" instance=ExtResource("9_pech5")]
+offset_left = 364.0
+offset_top = 59.0
+offset_right = -574.0
+offset_bottom = -326.0
+scale = Vector2(2, 2)
 
 [node name="visual_timer" type="Node" parent="."]
 script = ExtResource("6_0ynme")

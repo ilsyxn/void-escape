@@ -3,6 +3,7 @@ extends TileMap
 @onready var light_out = $"../Belichtet/light_out"
 @onready var light_out_in = $"../Belichtet/light_out_in"
 @onready var light_timer = $"../visual_timer/Timer"
+@onready var settings = $"../Belichtet/Settings"
 
 var tile_size = 32
 var allowed_tile_ids = [2,3,4,8,9]  # ID der Tiles, auf denen sich der Spieler bewegen darf
@@ -15,6 +16,7 @@ var early_start = false
 @onready var star = $"../Belichtet/Star"
 @onready var save_Game = preload("res://save/saveGame.tres")
 @onready var player = 1
+
 
 
 @export var id : int
@@ -52,6 +54,9 @@ func _ready():
 
 func _process(_delta):
 	light.position = to_global(map_to_local(player_tile_pos))
+	if settings.enabled == false:
+		stoppuhr.process_mode = Node.PROCESS_MODE_ALWAYS
+		light_timer.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _unhandled_input(event):
 		if event.is_action_pressed("right"):
@@ -68,6 +73,13 @@ func _unhandled_input(event):
 			execute_timeout_actions()
 		elif event.is_action_pressed("reset"):  # New functionality for reset button
 			restartLevel()
+		elif event.is_action_pressed("settings"):  # New functionality for reset button
+			if settings.enabled == false:
+				settings.enabled = true
+				stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED
+				light_timer.process_mode = Node.PROCESS_MODE_DISABLED
+			elif settings.enabled:
+				settings.enabled = false
 
 
 func restartLevel():

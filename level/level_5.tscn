@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvhvtvy45003y"]
+[gd_scene load_steps=11 format=3 uid="uid://cvhvtvy45003y"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_4hkgn"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_0etw1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="7_7ysq6"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_7c1ue"]
 [ext_resource type="Script" path="res://level/visual_timer.gd" id="8_go7qp"]
+[ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="9_8vrw0"]
 
 [node name="Level5" type="Node2D"]
 
@@ -150,6 +151,13 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("4_awddh")
 theme_override_font_sizes/font_size = 41
 text = "00:00"
+
+[node name="Settings" parent="Belichtet" instance=ExtResource("9_8vrw0")]
+offset_left = 364.0
+offset_top = 59.0
+offset_right = -574.0
+offset_bottom = -326.0
+scale = Vector2(2, 2)
 
 [node name="visual_timer" type="Node" parent="."]
 script = ExtResource("8_go7qp")

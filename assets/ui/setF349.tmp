@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://h2dqw4dt0jx3"]
+
+[ext_resource type="Script" path="res://assets/ui/settings.gd" id="1_nua2a"]
+[ext_resource type="Texture2D" uid="uid://dkn51dwc6j38p" path="res://assets/resume.png" id="2_4knev"]
+[ext_resource type="Texture2D" uid="uid://dvpwx70jr2i8v" path="res://assets/resume-pressed.png" id="3_cftmw"]
+[ext_resource type="Texture2D" uid="uid://c3ecflbs0lvmb" path="res://assets/quit.png" id="4_au28f"]
+[ext_resource type="Texture2D" uid="uid://e1qrudmcu568" path="res://assets/quit-pressed.png" id="5_ll4ar"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nua2a")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 88.0
+scale = Vector2(3, 3)
+color = Color(0.0980392, 0.0980392, 0.0980392, 0.858824)
+
+[node name="Resume" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 40.0
+offset_right = 168.0
+offset_bottom = 86.0
+texture_normal = ExtResource("2_4knev")
+texture_pressed = ExtResource("3_cftmw")
+
+[node name="Quit" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 98.0
+offset_right = 167.0
+offset_bottom = 144.0
+texture_normal = ExtResource("4_au28f")
+texture_pressed = ExtResource("5_ll4ar")
