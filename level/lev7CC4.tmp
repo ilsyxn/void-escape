@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://dlvd0bsb51vlg"]
+
+[ext_resource type="Texture2D" uid="uid://duvnpgn7bj6nw" path="res://assets/background.png" id="1_mxq4i"]
+[ext_resource type="Texture2D" uid="uid://bybe141iet7t5" path="res://assets/walls.png" id="2_2lxnw"]
+[ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/character.png" id="3_0b5qi"]
+[ext_resource type="Texture2D" uid="uid://bojeo7jn1oj78" path="res://assets/walkable.png" id="3_hgc1p"]
+[ext_resource type="Script" path="res://level/lvl1.gd" id="5_wv0dx"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qi2ax"]
+texture = ExtResource("2_2lxnw")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n0rnd"]
+texture = ExtResource("3_0b5qi")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t4btb"]
+texture = ExtResource("3_hgc1p")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_nkfy5"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_qi2ax")
+sources/2 = SubResource("TileSetAtlasSource_t4btb")
+sources/1 = SubResource("TileSetAtlasSource_n0rnd")
+
+[node name="Level1" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(610, 368)
+texture = ExtResource("1_mxq4i")
+
+[node name="lvl1" type="TileMap" parent="."]
+scale = Vector2(1.8, 1.8)
+tile_set = SubResource("TileSet_nkfy5")
+rendering_quadrant_size = 32
+format = 2
+layer_0/name = "base"
+layer_0/tile_data = PackedInt32Array(65537, 0, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 0, 327681, 0, 0, 393217, 0, 0, 458753, 0, 0, 524289, 0, 0, 589825, 0, 0, 65538, 0, 0, 131074, 2, 0, 196610, 2, 0, 262146, 2, 0, 327682, 2, 0, 393218, 2, 0, 458754, 2, 0, 524290, 2, 0, 589826, 2, 0, 65539, 0, 0, 131075, 2, 0, 196611, 2, 0, 262147, 2, 0, 327683, 2, 0, 393219, 2, 0, 458755, 2, 0, 524291, 2, 0, 589827, 2, 0, 65540, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 2, 0, 327684, 2, 0, 393220, 0, 0, 458756, 2, 0, 524292, 0, 0, 589828, 2, 0, 65541, 2, 0, 131077, 2, 0, 196613, 0, 0, 262149, 2, 0, 327685, 2, 0, 393221, 0, 0, 458757, 2, 0, 524293, 0, 0, 589829, 2, 0, 65542, 0, 0, 131078, 2, 0, 196614, 0, 0, 262150, 0, 0, 327686, 0, 0, 393222, 0, 0, 458758, 2, 0, 524294, 0, 0, 589830, 2, 0, 65543, 0, 0, 131079, 2, 0, 196615, 2, 0, 262151, 2, 0, 327687, 2, 0, 393223, 2, 0, 458759, 2, 0, 524295, 0, 0, 589831, 2, 0, 65544, 0, 0, 131080, 2, 0, 196616, 0, 0, 262152, 0, 0, 327688, 0, 0, 393224, 0, 0, 458760, 0, 0, 524296, 0, 0, 589832, 0, 0, 65545, 0, 0, 131081, 2, 0, 196617, 2, 0, 262153, 2, 0, 327689, 2, 0, 393225, 2, 0, 458761, 2, 0, 524297, 2, 0, 589833, 2, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 2, 0, 655368, 0, 0, 655369, 0, 0, 65546, 0, 0, 131082, 0, 0, 196618, 0, 0, 262154, 0, 0, 327690, 0, 0, 393226, 0, 0, 458762, 0, 0, 524298, 0, 0, 589834, 0, 0, 655370, 0, 0)
+layer_1/name = "player"
+layer_1/tile_data = PackedInt32Array(65541, 1, 0)
+script = ExtResource("5_wv0dx")

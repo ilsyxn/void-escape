@@ -1,0 +1,108 @@
+[gd_resource type="TileSet" load_steps=22 format=3 uid="uid://ofabqlexnqyd"]
+
+[ext_resource type="Texture2D" uid="uid://bybe141iet7t5" path="res://assets/walls.png" id="1_ikhc6"]
+[ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/character.png" id="2_mulo0"]
+[ext_resource type="Texture2D" uid="uid://dhcsyklmgc7vw" path="res://assets/reward.png" id="3_0qi2v"]
+[ext_resource type="Texture2D" uid="uid://bojeo7jn1oj78" path="res://assets/walkable.png" id="3_ischc"]
+[ext_resource type="Texture2D" uid="uid://kt6566k2kt3p" path="res://assets/vent.png" id="4_hscha"]
+[ext_resource type="Texture2D" uid="uid://cuk4drn5j60k" path="res://assets/goal1.png" id="5_1smix"]
+[ext_resource type="Texture2D" uid="uid://bsmnixmpoewd8" path="res://assets/border.png" id="7_b5kjd"]
+[ext_resource type="Texture2D" uid="uid://5ji5cp3arid8" path="res://assets/star.png" id="7_klur0"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_o2pyr"]
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qi2ax"]
+texture = ExtResource("1_ikhc6")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_o2pyr")
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n0rnd"]
+texture = ExtResource("2_mulo0")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/z_index = 2
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rdgem"]
+texture = ExtResource("7_klur0")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u07oa"]
+texture = ExtResource("3_0qi2v")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t4btb"]
+texture = ExtResource("3_ischc")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f8nyu"]
+texture = ExtResource("4_hscha")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y7pec"]
+texture = ExtResource("5_1smix")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lavs1"]
+texture = ExtResource("7_b5kjd")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/z_index = 1
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5qqbt"]
+load_path = "res://.godot/imported/spikes_inactive.png-bca699f4febab79dc18b3d07c611f613.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_drmgh"]
+texture = SubResource("CompressedTexture2D_5qqbt")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x888v"]
+load_path = "res://.godot/imported/spikes.png-1f8241945bc2a7958c347c3ba257461d.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yr6bd"]
+texture = SubResource("CompressedTexture2D_x888v")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[resource]
+tile_size = Vector2i(32, 32)
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_qi2ax")
+sources/2 = SubResource("TileSetAtlasSource_t4btb")
+sources/1 = SubResource("TileSetAtlasSource_n0rnd")
+sources/3 = SubResource("TileSetAtlasSource_f8nyu")
+sources/4 = SubResource("TileSetAtlasSource_y7pec")
+sources/6 = SubResource("TileSetAtlasSource_lavs1")
+sources/8 = SubResource("TileSetAtlasSource_drmgh")
+sources/9 = SubResource("TileSetAtlasSource_yr6bd")
+sources/11 = SubResource("TileSetAtlasSource_rdgem")
+sources/12 = SubResource("TileSetAtlasSource_u07oa")

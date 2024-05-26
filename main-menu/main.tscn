@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://80l42hnronsq"]
+
+[ext_resource type="Script" path="res://main-menu/main.gd" id="1_lwrof"]
+[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="2_73ey8"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/gomarice_mix_bit_font.ttf" id="3_iqkhg"]
+[ext_resource type="Texture2D" uid="uid://cbpacxkbolutw" path="res://assets/play.png" id="4_sy6vp"]
+[ext_resource type="Texture2D" uid="uid://cod2mt545cusy" path="res://assets/credits.png" id="5_5p3ea"]
+[ext_resource type="Texture2D" uid="uid://btcywrpalqh3" path="res://assets/play-pressed.png" id="5_j8xf5"]
+[ext_resource type="Texture2D" uid="uid://bsxiytx56pjc0" path="res://assets/credits-pressed.png" id="7_l1t1k"]
+[ext_resource type="Texture2D" uid="uid://cr76rfr8ihm61" path="res://assets/help.png" id="8_klbfv"]
+[ext_resource type="Texture2D" uid="uid://1prwvn67u1cy" path="res://assets/help-pressed.png" id="9_qr0ql"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_lwrof")
+
+[node name="Background" parent="." instance=ExtResource("2_73ey8")]
+
+[node name="Titel" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 349.0
+offset_top = 70.0
+offset_right = 778.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_iqkhg")
+theme_override_font_sizes/font_size = 80
+text = "Void Escape"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 418.0
+offset_top = 201.0
+offset_right = 539.0
+offset_bottom = 329.0
+scale = Vector2(2.5, 2.5)
+
+[node name="Play" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_sy6vp")
+texture_pressed = ExtResource("5_j8xf5")
+
+[node name="Credits" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_5p3ea")
+texture_pressed = ExtResource("7_l1t1k")
+
+[node name="Help" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_klbfv")
+texture_pressed = ExtResource("9_qr0ql")
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]

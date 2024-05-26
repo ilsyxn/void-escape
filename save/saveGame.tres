@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="saveGame" load_steps=2 format=3 uid="uid://c08yiffbd748h"]
+
+[ext_resource type="Script" path="res://saveGame.gd" id="1_scb8s"]
+
+[resource]
+script = ExtResource("1_scb8s")
+bonusItems = Array[int]([0])
+finishedLevels = Array[int]([0])
+time = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]

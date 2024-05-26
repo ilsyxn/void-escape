@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bbmxyrtducw50"]
+
+[node name="Partikel" type="CPUParticles2D"]
+texture_filter = 1
+texture_repeat = 2
+amount = 100
+speed_scale = 0.5
+emission_shape = 1
+emission_sphere_radius = 19.0
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+radial_accel_max = 28.42
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color = Color(0.0745098, 0.0666667, 0.12549, 1)
+hue_variation_min = 1.0
+hue_variation_max = 1.0
