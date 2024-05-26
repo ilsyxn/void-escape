@@ -10,4 +10,8 @@ func _on_play_pressed():
 
 
 func _on_credits_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://main-menu/credits.tscn")
+
+
+func _on_help_pressed():
+	get_tree().change_scene_to_file("res://main-menu/help_menu.tscn")

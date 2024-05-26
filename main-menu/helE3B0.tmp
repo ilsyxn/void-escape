@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://chjflxlgybq76"]
+
+[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_jspr5"]
+[ext_resource type="Script" path="res://main-menu/help_menu.gd" id="1_ncy7x"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/gomarice_mix_bit_font.ttf" id="2_73uvv"]
+[ext_resource type="Texture2D" uid="uid://dty1aww7qgakx" path="res://assets/back.png" id="4_24glb"]
+[ext_resource type="Texture2D" uid="uid://cugvh1jqn8dng" path="res://assets/back-pressed.png" id="5_jw5kh"]
+
+[node name="HelpMenu" type="Node2D"]
+script = ExtResource("1_ncy7x")
+
+[node name="Background" parent="." instance=ExtResource("1_jspr5")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = -103.0
+offset_top = 24.0
+offset_right = 1127.0
+offset_bottom = 569.0
+
+[node name="Titel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.732246, 0.825112, 1, 1)
+theme_override_fonts/font = ExtResource("2_73uvv")
+theme_override_font_sizes/font_size = 80
+text = "          Controls:"
+
+[node name="Controls" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.922615, 0.948788, 1, 1)
+theme_override_fonts/font = ExtResource("2_73uvv")
+theme_override_font_sizes/font_size = 25
+text = "                                                                                 move upwards: W/UP
+                                                                                  move Down: S/DOWN
+                                                                                   move LEFT: a/LEFT
+                                                                                  move Right: D/RIGHT
+                                                                                       RESET STAGE: R
+"
+
+[node name="HowTo" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.732246, 0.825112, 1, 1)
+theme_override_fonts/font = ExtResource("2_73uvv")
+theme_override_font_sizes/font_size = 80
+text = "            how to play:"
+
+[node name="Explaination" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.922615, 0.948788, 1, 1)
+theme_override_fonts/font = ExtResource("2_73uvv")
+theme_override_font_sizes/font_size = 25
+text = "                                                      You are playing an astronaut that needs to
+                                                                       find his way out of the maze.
+                                                    but be careful, you cant step back since the
+                                                                         void is always behind you!
+                                                 Also: try collecting all blue stars, maybe there
+                                                                     will be a reward if you do so..."
+
+[node name="Back" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("4_24glb")
+texture_pressed = ExtResource("5_jw5kh")
+
+[connection signal="pressed" from="Back" to="." method="_on_texture_button_pressed"]

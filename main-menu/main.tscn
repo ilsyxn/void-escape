@@ -19,23 +19,23 @@ script = ExtResource("1_lwrof")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 349.0
-offset_top = 70.0
-offset_right = 778.0
-offset_bottom = 131.0
+offset_left = 225.0
+offset_top = 57.0
+offset_right = 944.0
+offset_bottom = 158.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_iqkhg")
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 110
 text = "Void Escape"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 418.0
+offset_left = 429.0
 offset_top = 201.0
-offset_right = 539.0
-offset_bottom = 329.0
+offset_right = 550.0
+offset_bottom = 347.0
 scale = Vector2(2.5, 2.5)
 
 [node name="Play" type="TextureButton" parent="VBoxContainer"]
@@ -55,3 +55,4 @@ texture_pressed = ExtResource("9_qr0ql")
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/Help" to="." method="_on_help_pressed"]
