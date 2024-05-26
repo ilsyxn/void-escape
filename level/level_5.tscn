@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_4hkgn"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_0etw1"]
 [ext_resource type="Script" path="res://level/level.gd" id="3_n2ais"]
-[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/gomarice_mix_bit_font.ttf" id="4_awddh"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="4_awddh"]
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="4_p7smw"]
 [ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="6_nt1e6"]
 [ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="7_7ysq6"]
@@ -153,6 +153,7 @@ theme_override_font_sizes/font_size = 41
 text = "00:00"
 
 [node name="Settings" parent="Belichtet" instance=ExtResource("9_8vrw0")]
+visible = false
 offset_left = 364.0
 offset_top = 59.0
 offset_right = -574.0

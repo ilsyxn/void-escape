@@ -128,10 +128,11 @@ func add_particle(pos: Vector2i):
 	var particle = preload("res://level/void.tscn").instantiate()
 	particle.global_position = map_to_local(pos)
 	particle.z_index = 1
-	await get_tree().create_timer(0.5).timeout
-	add_child(particle)
-	await get_tree().create_timer(3.0).timeout
-	betreten.append(player_tile_pos)
+	await get_tree().create_timer(1).timeout
+	if Vector2i(player_tile_pos.x, player_tile_pos.y) != pos:
+		add_child(particle)
+		#await get_tree().create_timer(3.0).timeout
+		betreten.append(player_tile_pos)
 
 func execute_timeout_actions():
 	if !timer_done:

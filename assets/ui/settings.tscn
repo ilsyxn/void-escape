@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://h2dqw4dt0jx3"]
 
 [ext_resource type="Script" path="res://assets/ui/settings.gd" id="1_nua2a"]
-[ext_resource type="Texture2D" uid="uid://dkn51dwc6j38p" path="res://assets/resume.png" id="2_4knev"]
-[ext_resource type="Texture2D" uid="uid://dvpwx70jr2i8v" path="res://assets/resume-pressed.png" id="3_cftmw"]
-[ext_resource type="Texture2D" uid="uid://c3ecflbs0lvmb" path="res://assets/quit.png" id="4_au28f"]
-[ext_resource type="Texture2D" uid="uid://e1qrudmcu568" path="res://assets/quit-pressed.png" id="5_ll4ar"]
+[ext_resource type="Texture2D" uid="uid://dkn51dwc6j38p" path="res://assets/buttons/resume.png" id="2_4knev"]
+[ext_resource type="Texture2D" uid="uid://dvpwx70jr2i8v" path="res://assets/buttons/resume-pressed.png" id="3_cftmw"]
+[ext_resource type="Texture2D" uid="uid://c3ecflbs0lvmb" path="res://assets/buttons/quit.png" id="4_au28f"]
+[ext_resource type="Texture2D" uid="uid://e1qrudmcu568" path="res://assets/buttons/quit-pressed.png" id="5_ll4ar"]
 [ext_resource type="Script" path="res://assets/ui/hslider.gd" id="6_81kvu"]
-[ext_resource type="Texture2D" uid="uid://cv72b170m5u2n" path="res://assets/volume.png" id="7_3k6cn"]
+[ext_resource type="Texture2D" uid="uid://cv72b170m5u2n" path="res://assets/ui/volume.png" id="7_3k6cn"]
 
 [node name="Settings" type="Control"]
 texture_filter = 1

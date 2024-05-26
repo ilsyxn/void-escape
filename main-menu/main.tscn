@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://main-menu/main.gd" id="1_lwrof"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="2_73ey8"]
-[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/gomarice_mix_bit_font.ttf" id="3_iqkhg"]
-[ext_resource type="Texture2D" uid="uid://cbpacxkbolutw" path="res://assets/play.png" id="4_sy6vp"]
-[ext_resource type="Texture2D" uid="uid://cod2mt545cusy" path="res://assets/credits.png" id="5_5p3ea"]
-[ext_resource type="Texture2D" uid="uid://btcywrpalqh3" path="res://assets/play-pressed.png" id="5_j8xf5"]
-[ext_resource type="Texture2D" uid="uid://bsxiytx56pjc0" path="res://assets/credits-pressed.png" id="7_l1t1k"]
-[ext_resource type="Texture2D" uid="uid://cr76rfr8ihm61" path="res://assets/help.png" id="8_klbfv"]
-[ext_resource type="Texture2D" uid="uid://1prwvn67u1cy" path="res://assets/help-pressed.png" id="9_qr0ql"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="3_iqkhg"]
+[ext_resource type="Texture2D" uid="uid://cbpacxkbolutw" path="res://assets/buttons/play.png" id="4_sy6vp"]
+[ext_resource type="Texture2D" uid="uid://cod2mt545cusy" path="res://assets/buttons/credits.png" id="5_5p3ea"]
+[ext_resource type="Texture2D" uid="uid://btcywrpalqh3" path="res://assets/buttons/play-pressed.png" id="5_j8xf5"]
+[ext_resource type="Texture2D" uid="uid://bsxiytx56pjc0" path="res://assets/buttons/credits-pressed.png" id="7_l1t1k"]
+[ext_resource type="Texture2D" uid="uid://cr76rfr8ihm61" path="res://assets/buttons/help.png" id="8_klbfv"]
+[ext_resource type="Texture2D" uid="uid://1prwvn67u1cy" path="res://assets/buttons/help-pressed.png" id="9_qr0ql"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_lwrof")

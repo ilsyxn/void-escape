@@ -2,7 +2,7 @@ extends Control
 @onready var resume = $VBoxContainer/Resume
 @onready var quit = $VBoxContainer/Quit
 
-var enabled = false
+@onready var enabled = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

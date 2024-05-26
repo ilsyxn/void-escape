@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cqf8gssb1vndr"]
 
-[ext_resource type="Texture2D" uid="uid://drxtxjxw2k3yr" path="res://assets/ui/buttons/lvlselect.png" id="1_sx7u6"]
+[ext_resource type="Texture2D" uid="uid://drxtxjxw2k3yr" path="res://assets/buttons/lvlselect.png" id="1_sx7u6"]
 [ext_resource type="Texture2D" uid="uid://b4pbwe57p2mea" path="res://assets/ui/lvllocked.png" id="2_3ijli"]
 [ext_resource type="Script" path="res://main-menu/levelbtn.gd" id="3_lr72x"]
 [ext_resource type="Texture2D" uid="uid://5ji5cp3arid8" path="res://assets/star.png" id="4_rx0nh"]

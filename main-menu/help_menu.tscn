@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_jspr5"]
 [ext_resource type="Script" path="res://main-menu/help_menu.gd" id="1_ncy7x"]
-[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/gomarice_mix_bit_font.ttf" id="2_73uvv"]
-[ext_resource type="Texture2D" uid="uid://dty1aww7qgakx" path="res://assets/back.png" id="4_24glb"]
-[ext_resource type="Texture2D" uid="uid://cugvh1jqn8dng" path="res://assets/back-pressed.png" id="5_jw5kh"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="2_73uvv"]
+[ext_resource type="Texture2D" uid="uid://dty1aww7qgakx" path="res://assets/buttons/back.png" id="4_24glb"]
+[ext_resource type="Texture2D" uid="uid://cugvh1jqn8dng" path="res://assets/buttons/back-pressed.png" id="5_jw5kh"]
 
 [node name="HelpMenu" type="Node2D"]
 script = ExtResource("1_ncy7x")
@@ -35,7 +35,8 @@ text = "                                                                        
                                                                                   move Down: S/DOWN
                                                                                    move LEFT: a/LEFT
                                                                                   move Right: D/RIGHT
-                                                                                       RESET STAGE: R
+                                                                                      settings: f1/p/t
+                                                                                       RESET STAGE: R              
 "
 
 [node name="HowTo" type="Label" parent="VBoxContainer"]
@@ -60,10 +61,10 @@ text = "                                                      You are playing an
                                                                      will be a reward if you do so..."
 
 [node name="Back" type="TextureButton" parent="."]
-offset_left = 498.0
-offset_top = 522.0
-offset_right = 619.0
-offset_bottom = 568.0
+offset_left = 492.0
+offset_top = 547.0
+offset_right = 613.0
+offset_bottom = 593.0
 scale = Vector2(2, 2)
 texture_normal = ExtResource("4_24glb")
 texture_pressed = ExtResource("5_jw5kh")

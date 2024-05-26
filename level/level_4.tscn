@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_0ketm"]
 [ext_resource type="Script" path="res://level/level.gd" id="3_wye0b"]
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="4_vtc7c"]
-[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/gomarice_mix_bit_font.ttf" id="5_7qowv"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="5_7qowv"]
 [ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="5_wyn15"]
 [ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="7_o3tdy"]
 [ext_resource type="Script" path="res://level/visual_timer.gd" id="8_1hvt6"]
@@ -150,6 +150,7 @@ theme_override_font_sizes/font_size = 41
 text = "00:00"
 
 [node name="Settings" parent="Belichtet" instance=ExtResource("9_x1cp4")]
+visible = false
 offset_left = 364.0
 offset_top = 59.0
 offset_right = -574.0
