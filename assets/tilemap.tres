@@ -73,7 +73,6 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5qqbt"]
-load_path = "res://.godot/imported/spikes_inactive.png-bca699f4febab79dc18b3d07c611f613.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_drmgh"]
 texture = SubResource("CompressedTexture2D_5qqbt")
@@ -83,7 +82,6 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x888v"]
-load_path = "res://.godot/imported/spikes.png-1f8241945bc2a7958c347c3ba257461d.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yr6bd"]
 texture = SubResource("CompressedTexture2D_x888v")

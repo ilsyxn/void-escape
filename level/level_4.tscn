@@ -150,12 +150,11 @@ theme_override_font_sizes/font_size = 41
 text = "00:00"
 
 [node name="Settings" parent="Belichtet" instance=ExtResource("9_x1cp4")]
-visible = false
-offset_left = 364.0
-offset_top = 59.0
-offset_right = -574.0
-offset_bottom = -326.0
-scale = Vector2(2, 2)
+offset_left = 144.0
+offset_top = 326.0
+offset_right = -794.0
+offset_bottom = -59.0
+scale = Vector2(0.3, 0.3)
 
 [node name="visual_timer" type="Node" parent="."]
 script = ExtResource("8_1hvt6")
