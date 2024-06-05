@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bp8hbjyuvg3kp"]
+
+[ext_resource type="Script" path="res://main-menu/level_selector.gd" id="1_g8sad"]
+[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_ul0u4"]
+[ext_resource type="Texture2D" uid="uid://dty1aww7qgakx" path="res://assets/buttons/back.png" id="2_65ogx"]
+[ext_resource type="Texture2D" uid="uid://cugvh1jqn8dng" path="res://assets/buttons/back-pressed.png" id="3_koijr"]
+[ext_resource type="PackedScene" uid="uid://dk3a6kuxav7qs" path="res://main-menu/world1.tscn" id="4_mfkt7"]
+[ext_resource type="Texture2D" uid="uid://d1612t2vc2633" path="res://icon.svg" id="4_tr6hj"]
+[ext_resource type="PackedScene" uid="uid://kgy0io7tw74u" path="res://main-menu/world2.tscn" id="5_1c0bw"]
+
+[node name="LevelSelector" type="Node2D"]
+script = ExtResource("1_g8sad")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(573, 329)
+
+[node name="Rechts" type="TextureButton" parent="."]
+offset_left = 1046.0
+offset_top = 294.0
+offset_right = 1174.0
+offset_bottom = 422.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("4_tr6hj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Back" type="TextureButton" parent="CanvasLayer"]
+offset_left = 457.0
+offset_top = 478.0
+offset_right = 578.0
+offset_bottom = 524.0
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("2_65ogx")
+texture_pressed = ExtResource("3_koijr")
+
+[node name="Background" parent="CanvasLayer" instance=ExtResource("1_ul0u4")]
+
+[node name="World1" parent="." instance=ExtResource("4_mfkt7")]
+
+[node name="World2" parent="." instance=ExtResource("5_1c0bw")]
+position = Vector2(1148, -1)
+
+[connection signal="pressed" from="Rechts" to="." method="_on_rechts_pressed"]
+[connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_back_pressed"]

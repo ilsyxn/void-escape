@@ -22,7 +22,7 @@ func _process(_delta):
 
 
 func _on_quit_pressed():
-	get_tree().change_scene_to_file("res://main-menu/lvlSelect.tscn")
+	get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
 
 
 func _on_resume_pressed():

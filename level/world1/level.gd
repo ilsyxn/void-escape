@@ -120,7 +120,7 @@ func move_player(target_tile_pos):
 		
 		# Secret Level
 		if target_tile_id == 3:
-			get_tree().change_scene_to_file("res://level/shortCutLvl.tscn")
+			get_tree().change_scene_to_file("res://level/world1/shortCutLvl.tscn")
 		
 		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
 		if target_tile_id == 4 or target_tile_id == 10:
@@ -140,7 +140,7 @@ func move_player(target_tile_pos):
 				if bonus: 
 					save_Game.bonusCollected(id)
 			
-			get_tree().change_scene_to_file("res://main-menu/lvlSelect.tscn")
+			get_tree().change_scene_to_file("res://main-menu/world1.tscn")
 
 # Zum hinzufügen der Void
 func add_particle(pos: Vector2i):

@@ -6,6 +6,7 @@
 [node name="Background" type="ParallaxBackground"]
 scale = Vector2(1.2, 1.2)
 transform = Transform2D(1.2, 0, 0, 1.2, 0, 0)
+scroll_ignore_camera_zoom = true
 script = ExtResource("1_dq5ml")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]

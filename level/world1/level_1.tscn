@@ -1,31 +1,31 @@
 [gd_scene load_steps=11 format=3 uid="uid://dlvd0bsb51vlg"]
 
-[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_wvjf7"]
-[ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_a01dy"]
-[ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="4_3ud05"]
-[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="5_0sie6"]
-[ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="5_v2f4w"]
-[ext_resource type="Script" path="res://level/level.gd" id="5_wv0dx"]
-[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="7_njgxn"]
-[ext_resource type="Script" path="res://level/visual_timer.gd" id="8_vaton"]
-[ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="9_6lr6s"]
-[ext_resource type="Script" path="res://level/stoppuhr.gd" id="9_qypal"]
+[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_pda38"]
+[ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_mpqlu"]
+[ext_resource type="Script" path="res://level/world1/level.gd" id="3_g3q71"]
+[ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="4_02ujw"]
+[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="5_1py18"]
+[ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="6_usvsv"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="7_viqtn"]
+[ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_u803n"]
+[ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="9_i0ps3"]
+[ext_resource type="Script" path="res://level/visual_timer.gd" id="10_216da"]
 
 [node name="Level1" type="Node2D"]
 
-[node name="Background" parent="." instance=ExtResource("1_wvjf7")]
+[node name="Background" parent="." instance=ExtResource("1_pda38")]
 
 [node name="lvl1" type="TileMap" parent="."]
 position = Vector2(238, -20)
 scale = Vector2(1.8, 1.8)
-tile_set = ExtResource("2_a01dy")
+tile_set = ExtResource("2_mpqlu")
 rendering_quadrant_size = 32
 format = 2
 layer_0/name = "base"
 layer_0/tile_data = PackedInt32Array(65537, 0, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 0, 327681, 0, 0, 393217, 0, 0, 458753, 0, 0, 524289, 0, 0, 589825, 0, 0, 655361, 0, 0, 65538, 0, 0, 131074, 3, 0, 196610, 2, 0, 262146, 2, 0, 327682, 2, 0, 393218, 2, 0, 458754, 2, 0, 524290, 2, 0, 589826, 2, 0, 655362, 0, 0, 65539, 0, 0, 131075, 2, 0, 196611, 2, 0, 262147, 2, 0, 327683, 2, 0, 393219, 2, 0, 458755, 2, 0, 524291, 2, 0, 589827, 2, 0, 655363, 0, 0, 65540, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 2, 0, 327684, 2, 0, 393220, 0, 0, 458756, 2, 0, 524292, 0, 0, 589828, 2, 0, 655364, 0, 0, 65541, 2, 0, 131077, 2, 0, 196613, 0, 0, 262149, 2, 0, 327685, 2, 0, 393221, 0, 0, 458757, 2, 0, 524293, 0, 0, 589829, 2, 0, 655365, 0, 0, 65542, 0, 0, 131078, 2, 0, 196614, 0, 0, 262150, 0, 0, 327686, 0, 0, 393222, 0, 0, 458758, 2, 0, 524294, 0, 0, 589830, 2, 0, 655366, 0, 0, 65543, 0, 0, 196615, 2, 0, 262151, 2, 0, 327687, 2, 0, 393223, 2, 0, 458759, 2, 0, 524295, 0, 0, 589831, 2, 0, 655367, 4, 0, 65544, 0, 0, 131080, 2, 0, 196616, 0, 0, 262152, 0, 0, 327688, 0, 0, 393224, 0, 0, 458760, 0, 0, 524296, 0, 0, 589832, 0, 0, 655368, 0, 0, 65545, 0, 0, 131081, 2, 0, 196617, 2, 0, 262153, 2, 0, 327689, 2, 0, 393225, 2, 0, 458761, 2, 0, 524297, 2, 0, 589833, 2, 0, 655369, 0, 0, 65546, 0, 0, 131082, 0, 0, 196618, 0, 0, 262154, 0, 0, 327690, 0, 0, 393226, 0, 0, 458762, 0, 0, 524298, 0, 0, 589834, 0, 0, 655370, 0, 0, 131079, 2, 0)
 layer_1/name = "player"
 layer_1/tile_data = PackedInt32Array()
-script = ExtResource("5_wv0dx")
+script = ExtResource("3_g3q71")
 id = 1
 starPos = Vector2(5, 4)
 startPos = Vector2i(5, 1)
@@ -38,19 +38,19 @@ color = Color(0, 0, 0, 1)
 position = Vector2(1547, 191)
 scale = Vector2(1.76172, 1.6725)
 shadow_enabled = true
-texture = ExtResource("4_3ud05")
+texture = ExtResource("4_02ujw")
 
 [node name="Belichtet" type="CanvasLayer" parent="."]
 
 [node name="Star" type="Sprite2D" parent="Belichtet"]
 position = Vector2(1004, 546)
 scale = Vector2(4, 4)
-texture = ExtResource("7_njgxn")
+texture = ExtResource("5_1py18")
 
 [node name="Border" type="TileMap" parent="Belichtet"]
 position = Vector2(237, -20)
 scale = Vector2(1.8, 1.8)
-tile_set = ExtResource("5_v2f4w")
+tile_set = ExtResource("6_usvsv")
 rendering_quadrant_size = 32
 format = 2
 layer_0/tile_data = PackedInt32Array(131083, 0, 0, 196619, 0, 0, 65547, 0, 0, 10, 0, 1610612736, 1, 0, 1610612736, 2, 0, 1610612736, 3, 0, 1610612736, 4, 0, 1610612736, 9, 0, 1610612736, 8, 0, 1610612736, 7, 0, 1610612736, 6, 0, 1610612736, 65536, 0, 805306368, 131072, 0, 805306368, 196608, 0, 805306368, 262144, 0, 805306368, 327680, 0, 805306368, 393216, 0, 805306368, 458752, 0, 805306368, 524288, 0, 805306368, 589824, 0, 805306368, 655360, 0, 805306368, 720897, 0, 1342177280, 720898, 0, 1342177280, 720899, 0, 1342177280, 720900, 0, 1342177280, 720901, 0, 1342177280, 720902, 0, 1342177280, 720904, 0, 1342177280, 720905, 0, 1342177280, 720906, 0, 1342177280, 655371, 0, 0, 589835, 0, 0, 524299, 0, 0, 458763, 0, 0, 393227, 0, 0, 327691, 0, 0, 262155, 0, 0)
@@ -67,7 +67,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("5_0sie6")
+theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 80
 text = "Lights out!"
 
@@ -84,7 +84,7 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("5_0sie6")
+theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 50
 text = "Lights out in :"
 
@@ -101,12 +101,12 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("5_0sie6")
+theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 50
 text = "required Time:"
 
 [node name="stoppuhr" type="Node" parent="Belichtet"]
-script = ExtResource("9_qypal")
+script = ExtResource("8_u803n")
 
 [node name="label" type="Label" parent="Belichtet/stoppuhr"]
 anchors_preset = 15
@@ -120,7 +120,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("5_0sie6")
+theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 41
 text = "00:00"
 
@@ -137,7 +137,7 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("5_0sie6")
+theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 50
 text = "    Highscore"
 
@@ -153,11 +153,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("5_0sie6")
+theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 41
 text = "00:00"
 
-[node name="Settings" parent="Belichtet" instance=ExtResource("9_6lr6s")]
+[node name="Settings" parent="Belichtet" instance=ExtResource("9_i0ps3")]
 offset_left = 150.0
 offset_top = 340.0
 offset_right = -788.0
@@ -165,7 +165,7 @@ offset_bottom = -45.0
 scale = Vector2(0.3, 0.3)
 
 [node name="visual_timer" type="Node" parent="."]
-script = ExtResource("8_vaton")
+script = ExtResource("10_216da")
 
 [node name="time" type="Label" parent="visual_timer"]
 anchors_preset = 15
@@ -179,7 +179,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("5_0sie6")
+theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 41
 text = "00:00"
 

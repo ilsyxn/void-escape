@@ -1,0 +1,89 @@
+[gd_scene load_steps=14 format=3 uid="uid://dk3a6kuxav7qs"]
+
+[ext_resource type="Script" path="res://main-menu/lvlSelect.gd" id="1_48bro"]
+[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="2_0fhfd"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="3_ff8uo"]
+[ext_resource type="PackedScene" uid="uid://cqf8gssb1vndr" path="res://main-menu/button.tscn" id="4_ongrk"]
+[ext_resource type="Texture2D" uid="uid://cycdwu6fvqdo8" path="res://assets/buttons/pressed/lvl1pressed.png" id="5_uudgr"]
+[ext_resource type="Texture2D" uid="uid://dd00rlolajdxg" path="res://assets/buttons/lvlselect2.png" id="6_oa3of"]
+[ext_resource type="Texture2D" uid="uid://dcoyu5jlhvu5b" path="res://assets/buttons/pressed/lvl2pressed.png" id="7_0oxc2"]
+[ext_resource type="Texture2D" uid="uid://4pe0tdk5tojc" path="res://assets/buttons/lvlselect3.png" id="8_iarnk"]
+[ext_resource type="Texture2D" uid="uid://pqs1d7mil0xf" path="res://assets/buttons/pressed/lvl3pressed.png" id="9_5ycd5"]
+[ext_resource type="Texture2D" uid="uid://86k1gkb31vpw" path="res://assets/buttons/lvlselect4.png" id="10_0mmyi"]
+[ext_resource type="Texture2D" uid="uid://b81ttrq1771ow" path="res://assets/buttons/pressed/lvl4pressed.png" id="11_ys75r"]
+[ext_resource type="Texture2D" uid="uid://xbej48fecfua" path="res://assets/buttons/lvlselect5.png" id="12_5tu1v"]
+[ext_resource type="Texture2D" uid="uid://dib3fwv7yukyt" path="res://assets/buttons/pressed/lvl5pressed.png" id="13_0fl03"]
+
+[node name="lvlSelect" type="Node2D"]
+script = ExtResource("1_48bro")
+
+[node name="Background" parent="." instance=ExtResource("2_0fhfd")]
+
+[node name="Titel" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 211.0
+offset_top = 147.0
+offset_right = 871.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_ff8uo")
+theme_override_font_sizes/font_size = 80
+text = "Space Station"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+offset_left = 248.0
+offset_top = 272.0
+offset_right = 424.0
+offset_bottom = 312.0
+scale = Vector2(4, 4)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="lvl1" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ongrk")]
+layout_mode = 2
+texture_pressed = ExtResource("5_uudgr")
+id = 1
+welt = 1
+
+[node name="lvl2" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ongrk")]
+layout_mode = 2
+texture_normal = ExtResource("6_oa3of")
+texture_pressed = ExtResource("7_0oxc2")
+id = 2
+welt = 1
+
+[node name="lvl3" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ongrk")]
+layout_mode = 2
+texture_normal = ExtResource("8_iarnk")
+texture_pressed = ExtResource("9_5ycd5")
+id = 3
+welt = 1
+
+[node name="lvl4" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ongrk")]
+layout_mode = 2
+texture_normal = ExtResource("10_0mmyi")
+texture_pressed = ExtResource("11_ys75r")
+id = 4
+welt = 1
+
+[node name="lvl5" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ongrk")]
+layout_mode = 2
+texture_normal = ExtResource("12_5tu1v")
+texture_pressed = ExtResource("13_0fl03")
+id = 5
+welt = 1
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/lvl1" to="." method="_on_lvl_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/lvl2" to="." method="_on_lvl_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/lvl3" to="." method="_on_lvl_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/lvl4" to="." method="_on_lvl_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/lvl5" to="." method="_on_lvl_5_pressed"]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://kgy0io7tw74u"]
+
+[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_jheg0"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="2_lmhbb"]
+[ext_resource type="PackedScene" uid="uid://cqf8gssb1vndr" path="res://main-menu/button.tscn" id="3_2p40u"]
+[ext_resource type="Texture2D" uid="uid://bqkxc3gckc0me" path="res://assets/buttons/orange/orange1.png" id="4_g3ikr"]
+[ext_resource type="Texture2D" uid="uid://cp16l6yqph2q2" path="res://assets/buttons/orange/orange2.png" id="5_aw1p0"]
+[ext_resource type="Texture2D" uid="uid://cmj4a1vsjckai" path="res://assets/buttons/orange/orange3.png" id="6_ph37d"]
+[ext_resource type="Texture2D" uid="uid://dqfxipkarjiy4" path="res://assets/buttons/orange/orange4.png" id="7_dfa6d"]
+[ext_resource type="Texture2D" uid="uid://3arlrjroi2fb" path="res://assets/buttons/orange/orange5.png" id="8_uhiwm"]
+
+[node name="World2" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_jheg0")]
+
+[node name="Titel" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 211.0
+offset_top = 147.0
+offset_right = 871.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_lmhbb")
+theme_override_font_sizes/font_size = 80
+text = "         Mars"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+offset_left = 248.0
+offset_top = 272.0
+offset_right = 424.0
+offset_bottom = 312.0
+scale = Vector2(4, 4)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_2p40u")]
+layout_mode = 2
+texture_normal = ExtResource("4_g3ikr")
+id = 1
+welt = 2
+
+[node name="Button2" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_2p40u")]
+layout_mode = 2
+texture_normal = ExtResource("5_aw1p0")
+welt = 2
+
+[node name="Button3" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_2p40u")]
+layout_mode = 2
+texture_normal = ExtResource("6_ph37d")
+welt = 2
+
+[node name="Button4" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_2p40u")]
+layout_mode = 2
+texture_normal = ExtResource("7_dfa6d")
+welt = 2
+
+[node name="Button5" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_2p40u")]
+layout_mode = 2
+texture_normal = ExtResource("8_uhiwm")
+welt = 2

@@ -6,7 +6,7 @@ func _process(_delta):
 	pass
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://main-menu/lvlSelect.tscn")
+	get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
 
 
 func _on_credits_pressed():

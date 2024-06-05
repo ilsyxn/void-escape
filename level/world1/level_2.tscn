@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_nqx26"]
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="4_ws24x"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="5_5bab5"]
-[ext_resource type="Script" path="res://level/level.gd" id="5_jl34d"]
+[ext_resource type="Script" path="res://level/world1/level.gd" id="5_jl34d"]
 [ext_resource type="Texture2D" uid="uid://bsmnixmpoewd8" path="res://assets/border.png" id="6_165i1"]
 [ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="7_h4lgh"]
 [ext_resource type="Script" path="res://level/visual_timer.gd" id="8_hdrjm"]
