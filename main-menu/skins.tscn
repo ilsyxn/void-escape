@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dykkf6bnq4b8r"]
+
+[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_l78hx"]
+[ext_resource type="PackedScene" uid="uid://hsr2iv3c6g64" path="res://main-menu/shop_selection.tscn" id="2_txfsi"]
+
+[node name="Skins" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_l78hx")]
+
+[node name="ShopSelection" parent="." instance=ExtResource("2_txfsi")]
+position = Vector2(26, -75)

@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://hsr2iv3c6g64"]
+
+[ext_resource type="Script" path="res://main-menu/shop_selection.gd" id="1_0ulxv"]
+[ext_resource type="PackedScene" uid="uid://wmiwgf778der" path="res://main-menu/slot.tscn" id="1_fykkm"]
+[ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/skins/character.png" id="2_7l4gf"]
+[ext_resource type="Texture2D" uid="uid://bsjxm8pflp8ce" path="res://assets/skins/red.png" id="3_5vihs"]
+[ext_resource type="Texture2D" uid="uid://dx30hlwp278bj" path="res://assets/skins/green.png" id="5_d7wbe"]
+[ext_resource type="Texture2D" uid="uid://cmfakq4frgstt" path="res://assets/skins/yellow.png" id="6_316ue"]
+[ext_resource type="Texture2D" uid="uid://c0r5762xk2ejk" path="res://assets/skins/pink.png" id="7_mmdgw"]
+[ext_resource type="Texture2D" uid="uid://d08gfgxydpyc8" path="res://assets/skins/dino.png" id="8_iq5k5"]
+[ext_resource type="Texture2D" uid="uid://dieucui0ixeoq" path="res://assets/skins/black.png" id="9_1m4po"]
+[ext_resource type="Texture2D" uid="uid://dhcsyklmgc7vw" path="res://assets/skins/reward.png" id="10_jnjcq"]
+
+[node name="ShopSelection" type="Node2D"]
+script = ExtResource("1_0ulxv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 158.0
+offset_top = 193.0
+offset_right = 198.0
+offset_bottom = 233.0
+scale = Vector2(2, 2)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Slot" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_fykkm")]
+image = ExtResource("2_7l4gf")
+
+[node name="Slot2" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_fykkm")]
+position = Vector2(68.5, 0)
+image = ExtResource("3_5vihs")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Slot3" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("1_fykkm")]
+position = Vector2(0, 63)
+image = ExtResource("5_d7wbe")
+
+[node name="Slot4" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("1_fykkm")]
+position = Vector2(68.5, 63)
+image = ExtResource("6_316ue")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Slot5" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("1_fykkm")]
+position = Vector2(0, 126.5)
+image = ExtResource("7_mmdgw")
+
+[node name="Slot6" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("1_fykkm")]
+position = Vector2(68.5, 126.5)
+image = ExtResource("8_iq5k5")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Slot7" parent="VBoxContainer/HBoxContainer4" instance=ExtResource("1_fykkm")]
+position = Vector2(0, 190)
+image = ExtResource("9_1m4po")
+
+[node name="Slot8" parent="VBoxContainer/HBoxContainer4" instance=ExtResource("1_fykkm")]
+position = Vector2(68.5, 190)
+image = ExtResource("10_jnjcq")

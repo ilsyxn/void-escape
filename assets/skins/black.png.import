@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhcsyklmgc7vw"
-path="res://.godot/imported/reward.png-d246b0a5294f38f4e2aaf83fe7e2949a.ctex"
+uid="uid://dieucui0ixeoq"
+path="res://.godot/imported/black.png-aa2914ce30792a6c77b3bb06da6ff3c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/reward.png"
-dest_files=["res://.godot/imported/reward.png-d246b0a5294f38f4e2aaf83fe7e2949a.ctex"]
+source_file="res://assets/skins/black.png"
+dest_files=["res://.godot/imported/black.png-aa2914ce30792a6c77b3bb06da6ff3c9.ctex"]
 
 [params]
 

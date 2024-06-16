@@ -1,6 +1,8 @@
 extends HSlider
 @export var bus_name : String
 var bus_index: int
+var muted = false
+@onready var staerke = value
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

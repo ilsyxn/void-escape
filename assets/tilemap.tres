@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" load_steps=22 format=3 uid="uid://ofabqlexnqyd"]
 
 [ext_resource type="Texture2D" uid="uid://bybe141iet7t5" path="res://assets/walls.png" id="1_ikhc6"]
-[ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/character.png" id="2_mulo0"]
-[ext_resource type="Texture2D" uid="uid://dhcsyklmgc7vw" path="res://assets/reward.png" id="3_0qi2v"]
+[ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/skins/character.png" id="2_mulo0"]
+[ext_resource type="Texture2D" uid="uid://dhcsyklmgc7vw" path="res://assets/skins/reward.png" id="3_0qi2v"]
 [ext_resource type="Texture2D" uid="uid://bojeo7jn1oj78" path="res://assets/walkable.png" id="3_ischc"]
 [ext_resource type="Texture2D" uid="uid://kt6566k2kt3p" path="res://assets/vent.png" id="4_hscha"]
 [ext_resource type="Texture2D" uid="uid://cuk4drn5j60k" path="res://assets/goal1.png" id="5_1smix"]

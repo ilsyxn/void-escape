@@ -15,3 +15,7 @@ func _on_credits_pressed():
 
 func _on_help_pressed():
 	get_tree().change_scene_to_file("res://main-menu/help_menu.tscn")
+
+
+func _on_skins_pressed():
+	get_tree().change_scene_to_file("res://main-menu/skins.tscn")

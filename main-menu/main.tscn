@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://80l42hnronsq"]
+[gd_scene load_steps=11 format=3 uid="uid://80l42hnronsq"]
 
 [ext_resource type="Script" path="res://main-menu/main.gd" id="1_lwrof"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="2_73ey8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cbpacxkbolutw" path="res://assets/buttons/play.png" id="4_sy6vp"]
 [ext_resource type="Texture2D" uid="uid://cod2mt545cusy" path="res://assets/buttons/credits.png" id="5_5p3ea"]
 [ext_resource type="Texture2D" uid="uid://btcywrpalqh3" path="res://assets/buttons/play-pressed.png" id="5_j8xf5"]
+[ext_resource type="Texture2D" uid="uid://byaocxy2qrubc" path="res://assets/skin-button.png" id="6_47tk5"]
 [ext_resource type="Texture2D" uid="uid://bsxiytx56pjc0" path="res://assets/buttons/credits-pressed.png" id="7_l1t1k"]
 [ext_resource type="Texture2D" uid="uid://cr76rfr8ihm61" path="res://assets/buttons/help.png" id="8_klbfv"]
 [ext_resource type="Texture2D" uid="uid://1prwvn67u1cy" path="res://assets/buttons/help-pressed.png" id="9_qr0ql"]
@@ -29,30 +30,41 @@ size_flags_horizontal = 4
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_iqkhg")
 theme_override_font_sizes/font_size = 110
-text = "Void Escape"
+text = "maze Escape"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 429.0
-offset_top = 201.0
-offset_right = 550.0
-offset_bottom = 347.0
-scale = Vector2(2.5, 2.5)
+offset_left = 362.0
+offset_top = 256.0
+offset_right = 608.0
+offset_bottom = 402.0
+scale = Vector2(2.1, 2.1)
 
-[node name="Play" type="TextureButton" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Play" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("4_sy6vp")
 texture_pressed = ExtResource("5_j8xf5")
 
-[node name="Credits" type="TextureButton" parent="VBoxContainer"]
+[node name="Skins" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_47tk5")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Credits" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("5_5p3ea")
 texture_pressed = ExtResource("7_l1t1k")
 
-[node name="Help" type="TextureButton" parent="VBoxContainer"]
+[node name="Help" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("8_klbfv")
 texture_pressed = ExtResource("9_qr0ql")
 
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="VBoxContainer/Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Skins" to="." method="_on_skins_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Help" to="." method="_on_help_pressed"]
