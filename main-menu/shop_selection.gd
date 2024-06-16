@@ -5,16 +5,31 @@ extends Node2D
  $VBoxContainer/HBoxContainer4/Slot7, $VBoxContainer/HBoxContainer4/Slot8]
 @onready var counter = 0
 @onready var selectedSlot = slots[0]
+@onready var selection = $Selection
+@onready var background = $Selection/Background
+@onready var skin = $Selection/Skin
+@onready var selectedSkin = selectedSlot.skin.texture
+@onready var buttonSpot = $ButtonSpot
+@onready var equip = $Equip
+@onready var buy = $Buy
+@onready var hiddenSpot = $HiddenSpot
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	selectedSlot.selected = true
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
+	skin.texture = selectedSlot.skin.texture
+	
+	if selectedSlot.isOwned:
+		buy.global_position = hiddenSpot.global_position
+		equip.global_position = buttonSpot.global_position
+	elif !selectedSlot.isOwned:
+		equip.global_position = hiddenSpot.global_position
+		buy.global_position = buttonSpot.global_position
 func _unhandled_input(event):
 		if event.is_action_pressed("right"):
 			switchSlot(false)

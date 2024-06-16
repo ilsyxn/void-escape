@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://wmiwgf778der"]
+[gd_scene load_steps=5 format=3 uid="uid://wmiwgf778der"]
 
 [ext_resource type="Script" path="res://main-menu/slot.gd" id="1_8dq2g"]
 [ext_resource type="Texture2D" uid="uid://chpdsnyfc7vms" path="res://assets/skins/slot.png" id="1_s3yat"]
 [ext_resource type="Texture2D" uid="uid://f68xcnilhq47" path="res://assets/skins/background.png" id="2_ksli3"]
+[ext_resource type="Texture2D" uid="uid://dhu1eyfmd32w3" path="res://assets/skins/owned.png" id="4_qpp01"]
 
 [node name="Slot" type="Node2D"]
 script = ExtResource("1_8dq2g")
@@ -16,3 +17,8 @@ texture = ExtResource("2_ksli3")
 
 [node name="Skin" type="Sprite2D" parent="Img"]
 scale = Vector2(1.2, 1.2)
+
+[node name="Owned" type="Sprite2D" parent="Img"]
+position = Vector2(14, 16)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_qpp01")
