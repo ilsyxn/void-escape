@@ -77,9 +77,9 @@ func _ready():
 	enemy_positions = [enemy01_tile_pos, enemy02_tile_pos, enemy03_tile_pos, enemy04_tile_pos]
 	enemy_ids = [enemy1_id, enemy2_id, enemy3_id, enemy4_id]
 			
-#	for i in range(100):
-#		change_monster()
-#		await get_tree().create_timer(0.8).timeout
+	while(true):
+		monster_animation()
+		await get_tree().create_timer(0.8).timeout
 			
 	
 		
@@ -200,7 +200,7 @@ func fade_fog():
 	fog_red = false
 	
 #Animation
-func change_monster():
+func monster_animation():
 	for i in range(4):
 		if enemy_positions[i] != null:
 			var enemy_id = get_cell_source_id(1, enemy_positions[i])
