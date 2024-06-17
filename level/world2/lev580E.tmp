@@ -1,0 +1,195 @@
+[gd_scene load_steps=11 format=3 uid="uid://bsf2jbhio0wqj"]
+
+[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_3p66f"]
+[ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_xsegl"]
+[ext_resource type="Script" path="res://level/world2/level2.gd" id="3_od5ri"]
+[ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="4_6s0q6"]
+[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/ui/star_locked.png" id="5_xq2i0"]
+[ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="6_22qxv"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="7_8m75s"]
+[ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_j7uh6"]
+[ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="9_rchls"]
+[ext_resource type="Script" path="res://level/visual_timer.gd" id="10_te35r"]
+
+[node name="Level2-1" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_3p66f")]
+
+[node name="lvl2_1" type="TileMap" parent="."]
+position = Vector2(326, 50)
+scale = Vector2(0.9, 0.9)
+tile_set = ExtResource("2_xsegl")
+rendering_quadrant_size = 32
+format = 2
+layer_0/name = "base"
+layer_0/tile_data = PackedInt32Array(196609, 7, 0, 589825, 7, 0, 131074, 10, 0, 655362, 7, 0, 65539, 7, 0, 65540, 7, 0, 65541, 7, 0, 65542, 7, 0, 65543, 7, 0, 65544, 7, 0, 131081, 10, 0, 655369, 7, 0, 196618, 7, 0, 589834, 10, 0, 262144, 10, 0, 327680, 7, 0, 393216, 7, 0, 458752, 7, 0, 524288, 7, 0, 720899, 10, 0, 720900, 10, 0, 720902, 10, 0, 720901, 7, 0, 720903, 10, 0, 720904, 10, 0, 524299, 7, 0, 458763, 7, 0, 393227, 7, 0, 327691, 10, 0, 262155, 7, 0, 131075, 10, 0, 196611, 7, 0, 262147, 10, 0, 327683, 10, 0, 393220, 7, 0, 458756, 10, 0, 524292, 7, 0, 589828, 10, 0, 589827, 7, 0, 655363, 7, 0, 524291, 7, 0, 458755, 10, 0, 393219, 10, 0, 524290, 10, 0, 589826, 10, 0, 458754, 10, 0, 393218, 7, 0, 327682, 7, 0, 262146, 7, 0, 196610, 7, 0, 262145, 10, 0, 327681, 10, 0, 393217, 7, 0, 458753, 10, 0, 524289, 7, 0, 655364, 10, 0, 655365, 7, 0, 655366, 10, 0, 655367, 7, 0, 655368, 7, 0, 589833, 10, 0, 262154, 10, 0, 196617, 7, 0, 262153, 7, 0, 327690, 10, 0, 393226, 7, 0, 458762, 10, 0, 524297, 7, 0, 458761, 10, 0, 393225, 7, 0, 327689, 10, 0, 196616, 7, 0, 131080, 7, 0, 131079, 10, 0, 131078, 7, 0, 131077, 10, 0, 131076, 10, 0, 196612, 7, 0, 262148, 10, 0, 327684, 7, 0, 393221, 10, 0, 327685, 7, 0, 327686, 7, 0, 262150, 10, 0, 196614, 7, 0, 196613, 7, 0, 262149, 10, 0, 393222, 7, 0, 458757, 10, 0, 524293, 7, 0, 524294, 10, 0, 458758, 10, 0, 589829, 7, 0, 589830, 10, 0, 589831, 7, 0, 524295, 7, 0, 589832, 10, 0, 524296, 7, 0, 458760, 10, 0, 458759, 7, 0, 393224, 7, 0, 327687, 7, 0, 327688, 7, 0, 262151, 10, 0, 393223, 7, 0, 196615, 10, 0, 262152, 7, 0, 720898, 10, 0, 655361, 7, 0, 589824, 10, 0, 524287, 10, 0, 458751, 10, 0, 393215, 10, 0, 327679, 10, 0, 196608, 10, 0, 131073, 10, 0, 65538, 10, 0, 3, 10, 0, 5, 10, 0, 6, 10, 0, 7, 10, 0, 8, 10, 0, 65545, 7, 0, 131082, 10, 0, 196619, 7, 0, 262156, 7, 0, 327692, 7, 0, 393228, 7, 0, 524300, 10, 0, 589835, 7, 0, 655370, 10, 0, 720905, 10, 0, 786440, 7, 0, 786439, 7, 0, 786438, 7, 0, 786437, 7, 0, 786436, 7, 0, 9, 10, 0, 10, 10, 0, 11, 10, 0, 720895, 10, 0, 655360, 7, 0, 786433, 7, 0, 720897, 10, 0, 851970, 10, 0, 851971, 7, 0, 786434, 7, 0, 917507, 10, 0, 983043, 10, 0, 983044, 10, 0, 917508, 7, 0, 851972, 7, 0, 851973, 10, 0, 917509, 7, 0, 983045, 7, 0, 917510, 10, 0, 851974, 10, 0, 983046, 10, 0, 983047, 7, 0, 983048, 7, 0, 983049, 7, 0, 983050, 7, 0, 983051, 7, 0, 917515, 7, 0, 851979, 10, 0, 851980, 10, 0, 917516, 7, 0, 786445, 10, 0, 720910, 7, 0, 655374, 10, 0, 589838, 7, 0, 327694, 10, 0, 262157, 10, 0, 196620, 10, 0, 196621, 10, 0, 131083, 10, 0, 131084, 10, 0, 65546, 7, 0, 65547, 7, 0, 720906, 10, 0, 786442, 7, 0, 720907, 7, 0, 655371, 7, 0, 589836, 10, 0, 458765, 10, 0, 524301, 10, 0, 393229, 10, 0, 655372, 10, 0, 720908, 7, 0, 786444, 7, 0, 720909, 7, 0, 655373, 10, 0, 589837, 7, 0, 786443, 7, 0, 851978, 10, 0, 851977, 7, 0, 917513, 7, 0, 917514, 10, 0, 851976, 10, 0, 786441, 7, 0, 851975, 10, 0, 917511, 7, 0, 917512, 10, 0, 786432, 7, 0, 655359, 10, 0, 720896, 7, 0, 589823, 10, 0, 851967, 10, 0, 786431, 10, 0, 12, 10, 0, 13, 10, 0, 917503, 10, 0, 983039, 10, 0, 983040, 10, 0, 1048577, 10, 0, 1114114, 10, 0, 1179651, 10, 0, 1179652, 10, 0, 1179653, 10, 0, 1179654, 5, 0, 1179655, 10, 0, 1179656, 10, 0, 1179657, 10, 0, 1179658, 10, 0, 1179659, 10, 0, 1179660, 10, 0, 1179661, 10, 0, 1114126, 10, 0, 1048591, 10, 0, 983056, 10, 0, 917521, 10, 0, 851985, 10, 0, 786449, 10, 0, 720913, 10, 0, 655377, 10, 0, 589841, 10, 0, 524305, 10, 0, 458769, 10, 0, 393233, 10, 0, 327697, 10, 0, 262161, 10, 0, 65550, 10, 0, 131087, 10, 0, 196624, 10, 0, 851968, 10, 0, 917504, 7, 0, 917505, 7, 0, 851969, 10, 0, 917506, 10, 0, 983042, 7, 0, 983041, 7, 0, 1048578, 7, 0, 1048579, 7, 0, 1114115, 7, 0, 1114116, 7, 0, 1048580, 10, 0, 1048581, 10, 0, 1114117, 7, 0, 1114118, 7, 0, 1114119, 7, 0, 1048583, 10, 0, 1048582, 10, 0, 1048584, 7, 0, 1114120, 7, 0, 1048585, 10, 0, 1114121, 10, 0, 1114122, 7, 0, 1048586, 10, 0, 1048587, 10, 0, 1114123, 7, 0, 1114124, 7, 0, 1048588, 10, 0, 1048589, 7, 0, 1114125, 7, 0, 983053, 10, 0, 983052, 10, 0, 1048590, 7, 0, 983054, 7, 0, 983055, 7, 0, 917519, 7, 0, 917520, 7, 0, 851984, 7, 0, 851983, 10, 0, 917518, 7, 0, 917517, 7, 0, 851981, 10, 0, 720911, 10, 0, 720912, 7, 0, 655376, 7, 0, 786448, 7, 0, 786447, 10, 0, 655375, 10, 0, 589839, 7, 0, 589840, 7, 0, 524304, 7, 0, 458768, 7, 0, 393232, 10, 0, 327696, 7, 0, 262160, 7, 0, 327695, 10, 0, 393231, 10, 0, 458767, 10, 0, 524303, 10, 0, 262159, 7, 0, 196623, 7, 0, 196622, 7, 0, 131086, 7, 0, 65549, 7, 0, 65548, 7, 0, 851982, 7, 0, 786446, 7, 0, 786435, 7, 0, 524298, 7, 0, 4, 7, 0, 327693, 10, 0, 262158, 10, 0, 131085, 7, 0, 393230, 7, 0, 458766, 7, 0, 524302, 7, 0, 458764, 7, 0)
+layer_1/name = "player"
+layer_1/tile_data = PackedInt32Array(4, 1, 0)
+script = ExtResource("3_od5ri")
+
+[node name="Fog" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(1547, 191)
+scale = Vector2(1.76172, 1.6725)
+shadow_enabled = true
+texture = ExtResource("4_6s0q6")
+
+[node name="Belichtet" type="CanvasLayer" parent="."]
+
+[node name="Star" type="Sprite2D" parent="Belichtet"]
+position = Vector2(1004, 546)
+scale = Vector2(4, 4)
+texture = ExtResource("5_xq2i0")
+
+[node name="Border" type="TileMap" parent="Belichtet"]
+position = Vector2(240, 51)
+scale = Vector2(0.9, 0.9)
+tile_set = ExtResource("6_22qxv")
+rendering_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(-65528, 0, 1610612736, -65527, 0, 1610612736, -65526, 0, 1610612736, -65525, 0, 1610612736, -65524, 0, 1610612736, -65523, 0, 1610612736, -65522, 0, 1610612736, -65521, 0, 1610612736, -65520, 0, 1610612736, -65530, 0, 1610612736, 17, 1, 1610612736, 65554, 1, 1610612736, 131091, 1, 1610612736, 196628, 1, 1610612736, 5, 1, 805306368, 65540, 1, 805306368, 131075, 1, 805306368, 196610, 1, 805306368, 262165, 0, 0, 327701, 0, 0, 393237, 0, 0, 458773, 0, 0, 524309, 0, 0, 589845, 0, 0, 655381, 0, 0, 720917, 0, 0, 786453, 0, 0, 851989, 0, 0, 917525, 0, 0, 983060, 1, 0, 1048595, 1, 0, 1114130, 1, 0, 1179665, 1, 0, 1245200, 0, 1342177280, 1245199, 0, 1342177280, 1245198, 0, 1342177280, 1245197, 0, 1342177280, 1245196, 0, 1342177280, 1245195, 0, 1342177280, 1245194, 0, 1342177280, 1245192, 0, 1342177280, 1245191, 0, 1342177280, 1245190, 0, 1342177280, 917505, 0, 805306368, 851969, 0, 805306368, 786433, 0, 805306368, 720897, 0, 805306368, 655361, 0, 805306368, 589825, 0, 805306368, 524289, 0, 805306368, 458753, 0, 805306368, 393217, 0, 805306368, 327681, 0, 805306368, 262145, 0, 805306368, 1179653, 1, 1342177280, 1114116, 1, 1342177280, 1048579, 1, 1342177280, 983042, 1, 1342177280)
+
+[node name="light_out" type="Label" parent="Belichtet"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 306.0
+offset_top = 266.0
+offset_right = -294.0
+offset_bottom = -301.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_8m75s")
+theme_override_font_sizes/font_size = 80
+text = "Lights out!"
+metadata/_edit_use_anchors_ = true
+
+[node name="light_out_in" type="Label" parent="Belichtet"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 902.0
+offset_top = 206.0
+offset_right = 173.0
+offset_bottom = -391.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_8m75s")
+theme_override_font_sizes/font_size = 50
+text = "Lights out in :"
+metadata/_edit_use_anchors_ = true
+
+[node name="gebrauchte_zeit" type="Label" parent="Belichtet"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 897.0
+offset_top = 35.0
+offset_right = 182.0
+offset_bottom = -562.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_8m75s")
+theme_override_font_sizes/font_size = 50
+text = "required Time:"
+metadata/_edit_use_anchors_ = true
+
+[node name="stoppuhr" type="Node" parent="Belichtet"]
+script = ExtResource("8_j7uh6")
+
+[node name="label" type="Label" parent="Belichtet/stoppuhr"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 942.5
+offset_top = 64.5
+offset_right = -78.5
+offset_bottom = -541.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_8m75s")
+theme_override_font_sizes/font_size = 41
+text = "00:00"
+metadata/_edit_use_anchors_ = true
+
+[node name="Highscore" type="Label" parent="Belichtet"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 896.0
+offset_top = 121.0
+offset_right = 181.0
+offset_bottom = -476.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_8m75s")
+theme_override_font_sizes/font_size = 50
+text = "    Highscore"
+metadata/_edit_use_anchors_ = true
+
+[node name="HighScoreTime" type="Label" parent="Belichtet"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 943.0
+offset_top = 144.0
+offset_right = -75.0
+offset_bottom = -459.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_8m75s")
+theme_override_font_sizes/font_size = 41
+text = "00:00"
+metadata/_edit_use_anchors_ = true
+
+[node name="Settings" parent="Belichtet" instance=ExtResource("9_rchls")]
+visible = false
+offset_left = 150.0
+offset_top = 340.0
+offset_right = -788.0
+offset_bottom = -45.0
+scale = Vector2(0.3, 0.3)
+metadata/_edit_use_anchors_ = true
+
+[node name="visual_timer" type="Node" parent="."]
+script = ExtResource("10_te35r")
+
+[node name="time" type="Label" parent="visual_timer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 939.0
+offset_top = 234.5
+offset_right = -82.0
+offset_bottom = -371.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_8m75s")
+theme_override_font_sizes/font_size = 41
+text = "00:00"
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="visual_timer"]
+wait_time = 10.0
+one_shot = true
+autostart = true

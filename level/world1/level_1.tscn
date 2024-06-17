@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_mpqlu"]
 [ext_resource type="Script" path="res://level/world1/level.gd" id="3_g3q71"]
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="4_02ujw"]
-[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="5_1py18"]
+[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/ui/star_locked.png" id="5_1py18"]
 [ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="6_usvsv"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="7_viqtn"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_u803n"]
@@ -70,6 +70,7 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 80
 text = "Lights out!"
+metadata/_edit_use_anchors_ = true
 
 [node name="light_out_in" type="Label" parent="Belichtet"]
 anchors_preset = 15
@@ -87,6 +88,7 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 50
 text = "Lights out in :"
+metadata/_edit_use_anchors_ = true
 
 [node name="gebrauchte_zeit" type="Label" parent="Belichtet"]
 anchors_preset = 15
@@ -104,6 +106,7 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 50
 text = "required Time:"
+metadata/_edit_use_anchors_ = true
 
 [node name="stoppuhr" type="Node" parent="Belichtet"]
 script = ExtResource("8_u803n")
@@ -123,6 +126,7 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 41
 text = "00:00"
+metadata/_edit_use_anchors_ = true
 
 [node name="Highscore" type="Label" parent="Belichtet"]
 anchors_preset = 15
@@ -140,6 +144,7 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 50
 text = "    Highscore"
+metadata/_edit_use_anchors_ = true
 
 [node name="HighScoreTime" type="Label" parent="Belichtet"]
 anchors_preset = 15
@@ -156,6 +161,7 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 41
 text = "00:00"
+metadata/_edit_use_anchors_ = true
 
 [node name="Settings" parent="Belichtet" instance=ExtResource("9_i0ps3")]
 offset_left = 150.0
@@ -163,6 +169,7 @@ offset_top = 340.0
 offset_right = -788.0
 offset_bottom = -45.0
 scale = Vector2(0.3, 0.3)
+metadata/_edit_use_anchors_ = true
 
 [node name="visual_timer" type="Node" parent="."]
 script = ExtResource("10_216da")
@@ -182,6 +189,7 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 41
 text = "00:00"
+metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="visual_timer"]
 wait_time = 10.0
