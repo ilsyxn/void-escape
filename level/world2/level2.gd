@@ -4,6 +4,8 @@ extends TileMap
 @onready var light_timer = $"../Belichtet/visual_timer/Timer"
 @onready var settings = $"../Belichtet/Settings"
 
+var astagrid = AStarGrid2D.new()
+const is_solid = "is_solid"
 var tile_size = 32
 var allowed_tile_ids = [5,7]  # ID der Tiles, auf denen sich der Spieler bewegen darf
 var player_tile_pos  # Aktuelle Tile-Position des Spielers (Vector2)
@@ -20,6 +22,7 @@ var enemy4_id
 var timer_done = false
 var early_start = false
 var fog_red = false
+var move_in_two = false
 @onready var bonus = false 
 @onready var betreten: Array = []
 @onready var fog = $"../Fog"
@@ -36,6 +39,7 @@ var fog_red = false
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
 
 func _ready():
+	
 	# Damit sich die gegner bewegen können
 	randomize()
 	execute_timeout_actions()
@@ -53,7 +57,7 @@ func _ready():
 		set_cell(1, starPos, 11, Vector2i(0,0), 0)
 	else: 
 		star.texture = load("res://assets/star.png")
-	
+	setup_grid()
 # Player Position auf der Map finden
 	for tile_pos in get_used_cells(1):
 		if get_cell_source_id(1, tile_pos) == 1 :
@@ -82,7 +86,6 @@ func _ready():
 		monster_animation()
 		await get_tree().create_timer(0.8).timeout
 
-
 func _process(_delta):
 	if not fog_red:
 		fade_fog()
@@ -93,11 +96,6 @@ func _process(_delta):
 	if settings.enabled == false:
 		stoppuhr.process_mode = Node.PROCESS_MODE_ALWAYS
 		light_timer.process_mode = Node.PROCESS_MODE_ALWAYS
-	
-	# Wenn vom Monster gefressen, dann Game Over	
-	if enemy_positions.has(player_tile_pos):
-		await get_tree().create_timer(1.0).timeout
-		get_tree().change_scene_to_file("res://GameOver/Game_Over.tscn")
 
 func _unhandled_input(event):
 		if event.is_action_pressed("right"):
@@ -142,16 +140,17 @@ func move_player(target_tile_pos):
 			# Set the Player at the new position
 		set_cell(1, target_tile_pos, player, Vector2i(0,0),0)
 		player_tile_pos = target_tile_pos
-		move_monster_towards_player()
+		# Monster bewegen sich jeden 2ten schritt den der spieler macht
+		if move_in_two:
+			move_monster_towards_player()
+			move_in_two = false
+		elif not move_in_two:
+			move_in_two = true
 
 		# Stern einsammeln
 		if target_tile_pos == starPos:
 			bonus = true
 			star.texture = load("res://assets/star.png")
-		
-		# Secret Level
-		if target_tile_id == 3:
-			get_tree().change_scene_to_file("res://level/world1/shortCutLvl.tscn")
 		
 		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
 		if target_tile_id == 5:
@@ -182,15 +181,15 @@ func execute_timeout_actions():
 		light_out_in.visible = false
 		await get_tree().create_timer(0.8).timeout
 	
-	
 func _on_timer_timeout():
-	if !timer_done:	execute_timeout_actions()
+	if !timer_done: 
+		execute_timeout_actions()
 	
 func fade_fog():
 	var i = 0
 	var j = 1
 	fog_red = true
-	while i < 1:
+	while i < 0.8:
 		fog.color = Color(i,0,0,1)
 		i = i+0.01
 		await get_tree().create_timer(0.01).timeout
@@ -199,7 +198,8 @@ func fade_fog():
 		fog.color = Color(j,0,0,1)
 		j = j-0.01
 		await get_tree().create_timer(0.01).timeout
-		
+	# Monster bewegt sich um eins wenn es dunkel ist
+	move_monster_towards_player()
 	await get_tree().create_timer(1.8).timeout
 	fog_red = false
 	
@@ -219,70 +219,31 @@ func monster_animation():
 			set_cell(1, enemy_positions[i], enemy_ids[i], Vector2i(0,0),0)
 			
 func move_monster_towards_player():
-	var directions = [Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)]
-
 	for i in range(4):
 		if enemy_positions[i] != null:
-			var moved = false
-			var direction_to_player = player_tile_pos - enemy_positions[i]
-			var target_tile_pos
-			var primary_direction
-			var secondary_direction1
-			var secondary_direction2
+			var path_taken = astagrid.get_id_path(enemy_positions[i], player_tile_pos)
+			erase_cell(1, enemy_positions[i])
+			set_cell(1, path_taken[1], enemy_ids[i], Vector2i(0,0), 0)
+			enemy_positions[i] = path_taken[1]
+			# Wenn vom Monster gefressen, dann Game Over	
+			if path_taken[1] == Vector2i(player_tile_pos):
+				await get_tree().create_timer(0.5).timeout
+				get_tree().change_scene_to_file("res://GameOver/Game_Over.tscn")
 
-			# Entscheiden, ob sich das Monster horizontal oder vertikal bewegen soll
-			if abs(direction_to_player.y) > abs(direction_to_player.x):
-				# Bewegen Sie sich vertikal in Richtung des Spielers
-				primary_direction = Vector2(0, sign(direction_to_player.y))
-				secondary_direction1 = Vector2(sign(direction_to_player.x), 0)
-				secondary_direction2 = Vector2(-sign(direction_to_player.x), 0)
-			else:
-				# Bewegen Sie sich horizontal in Richtung des Spielers
-				primary_direction = Vector2(sign(direction_to_player.x), 0)
-				secondary_direction1 = Vector2(0, sign(direction_to_player.y))
-				secondary_direction2 = Vector2(0, -sign(direction_to_player.y))
+func setup_grid():
+	astagrid.region = Rect2i(0,0,100,100)
+	astagrid.cell_size = Vector2i(32,32)
+	astagrid.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	astagrid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	astagrid.update()
+	for cell in get_used_cells(0):
+		astagrid.set_point_solid(cell, is_spot_solid(cell))
 
-			# Bewegung in Hauptachse prüfen
-			target_tile_pos = enemy_positions[i] + primary_direction
-			var target_tile_id = get_cell_source_id(0, target_tile_pos)
+#func show_path(start: Vector2i, end: Vector2i):
+#	var path_taken = astagrid.get_id_path(start, end)
+#	for cell in path_taken:
+#		# Stern zum testen
+#		set_cell(1, cell, 11, Vector2i(0,0),0)
 
-			if allowed_tile_ids.has(target_tile_id):
-				erase_cell(1, enemy_positions[i])
-				set_cell(1, target_tile_pos, enemy_ids[i], Vector2i(0,0), 0)
-				enemy_positions[i] = target_tile_pos
-				moved = true
-
-			# Falls Hauptachse blockiert, Nebenasche 1 prüfen
-			if not moved:
-				target_tile_pos = enemy_positions[i] + secondary_direction1
-				target_tile_id = get_cell_source_id(0, target_tile_pos)
-
-				if allowed_tile_ids.has(target_tile_id):
-					erase_cell(1, enemy_positions[i])
-					set_cell(1, target_tile_pos, enemy_ids[i], Vector2i(0,0), 0)
-					enemy_positions[i] = target_tile_pos
-					moved = true
-
-			# Falls Hauptachse und Nebenachse 1 blockiert, Nebenasche 2 prüfen
-			if not moved:
-				target_tile_pos = enemy_positions[i] + secondary_direction2
-				target_tile_id = get_cell_source_id(0, target_tile_pos)
-
-				if allowed_tile_ids.has(target_tile_id):
-					erase_cell(1, enemy_positions[i])
-					set_cell(1, target_tile_pos, enemy_ids[i], Vector2i(0,0), 0)
-					enemy_positions[i] = target_tile_pos
-					moved = true
-
-			# Falls keine Bewegung gemacht wurde, zufällige Bewegung probieren
-			if not moved:
-				while not moved:
-					var random_dir = directions[randi() % directions.size()]
-					var random_target_tile_pos = enemy_positions[i] + random_dir
-					var random_target_tile_id = get_cell_source_id(0, random_target_tile_pos)
-
-					if allowed_tile_ids.has(random_target_tile_id):
-						erase_cell(1, enemy_positions[i])
-						set_cell(1, random_target_tile_pos, enemy_ids[i], Vector2i(0,0), 0)
-						enemy_positions[i] = random_target_tile_pos
-						moved = true
+func is_spot_solid(spot_to_check: Vector2i) -> bool:
+	return get_cell_tile_data(0, spot_to_check).get_custom_data(is_solid)
