@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw4x1v153edrn"]
+
+[ext_resource type="Script" path="res://level/world3/portal.gd" id="1_j08ok"]
+
+[node name="Portal" type="Node2D"]
+script = ExtResource("1_j08ok")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(0.698039, 0.576471, 0.901961, 1)
+self_modulate = Color(0.945098, 0.486275, 0.741176, 1)
+texture_filter = 1
+amount = 40
+speed_scale = 2.0
+explosiveness = 0.1
+randomness = 1.0
+emission_shape = 2
+emission_sphere_radius = 15.0
+direction = Vector2(1, 2.08165e-12)
+spread = 50.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 1.5
+initial_velocity_max = 2.0
+scale_amount_min = 2.5
+scale_amount_max = 5.0
