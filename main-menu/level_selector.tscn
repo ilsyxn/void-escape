@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bp8hbjyuvg3kp"]
+[gd_scene load_steps=26 format=3 uid="uid://bp8hbjyuvg3kp"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_ul0u4"]
 [ext_resource type="Texture2D" uid="uid://dty1aww7qgakx" path="res://assets/buttons/back.png" id="2_65ogx"]
@@ -19,6 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://dqfxipkarjiy4" path="res://assets/buttons/orange/orange4.png" id="17_6iehg"]
 [ext_resource type="Texture2D" uid="uid://3arlrjroi2fb" path="res://assets/buttons/orange/orange5.png" id="18_c2gx4"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="19_id1fd"]
+[ext_resource type="Texture2D" uid="uid://d0sf15la6bpnd" path="res://assets/buttons/gray/gray1.png" id="20_vlct7"]
+[ext_resource type="Texture2D" uid="uid://b844yn0xqbi68" path="res://assets/buttons/gray/gray2.png" id="21_xgr2d"]
+[ext_resource type="Texture2D" uid="uid://bggoqbs4lhm0s" path="res://assets/buttons/gray/gray3.png" id="22_7tmqu"]
+[ext_resource type="Texture2D" uid="uid://ij3hvk7ekaav" path="res://assets/buttons/gray/gray4.png" id="23_cwolu"]
+[ext_resource type="Texture2D" uid="uid://6p7adurf86lg" path="res://assets/buttons/gray/gray5.png" id="24_n76ow"]
 
 [sub_resource type="GDScript" id="GDScript_5ckpm"]
 script/source = "extends Node2D
@@ -73,21 +78,31 @@ script = SubResource("GDScript_5ckpm")
 
 [node name="Background" parent="." instance=ExtResource("1_ul0u4")]
 
+[node name="SelectLevel" type="Label" parent="."]
+offset_left = 242.0
+offset_top = 33.0
+offset_right = 1061.0
+offset_bottom = 134.0
+theme_override_fonts/font = ExtResource("19_id1fd")
+theme_override_font_sizes/font_size = 90
+text = "Select Level"
+
 [node name="Back" type="TextureButton" parent="."]
-offset_left = 451.0
-offset_top = 523.0
-offset_right = 572.0
-offset_bottom = 569.0
-scale = Vector2(2.5, 2.5)
+offset_left = 491.0
+offset_top = 536.0
+offset_right = 612.0
+offset_bottom = 582.0
+scale = Vector2(2, 2)
 texture_normal = ExtResource("2_65ogx")
 texture_pressed = ExtResource("3_koijr")
 
 [node name="Stages" type="VBoxContainer" parent="."]
-offset_left = 298.0
-offset_top = 168.0
-offset_right = 474.0
-offset_bottom = 236.0
+offset_left = 310.0
+offset_top = 129.0
+offset_right = 486.0
+offset_bottom = 239.0
 scale = Vector2(3.5, 3.5)
+theme_override_constants/separation = 7
 
 [node name="World1" type="HBoxContainer" parent="Stages"]
 layout_mode = 2
@@ -159,14 +174,38 @@ texture_normal = ExtResource("18_c2gx4")
 id = 25
 welt = 2
 
-[node name="SelectLevel" type="Label" parent="."]
-offset_left = 203.0
-offset_top = 49.0
-offset_right = 1022.0
-offset_bottom = 150.0
-theme_override_fonts/font = ExtResource("19_id1fd")
-theme_override_font_sizes/font_size = 100
-text = "Select Level"
+[node name="World3" type="HBoxContainer" parent="Stages"]
+layout_mode = 2
+
+[node name="Level3-1" parent="Stages/World3" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("20_vlct7")
+id = 31
+welt = 3
+
+[node name="Level3-2" parent="Stages/World3" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("21_xgr2d")
+id = 32
+welt = 3
+
+[node name="Level3-3" parent="Stages/World3" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("22_7tmqu")
+id = 33
+welt = 3
+
+[node name="Level3-4" parent="Stages/World3" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("23_cwolu")
+id = 34
+welt = 3
+
+[node name="Level3-5" parent="Stages/World3" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("24_n76ow")
+id = 35
+welt = 3
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Stages/World1/Level1" to="." method="_on_level_1_pressed"]

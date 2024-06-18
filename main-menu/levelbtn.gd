@@ -26,3 +26,4 @@ func get_star():
 	match welt:
 		1: return "res://assets/star.png"
 		2: return "res://assets/buttons/orange/starorgange.png"
+		3: return "res://assets/buttons/gray/stargray.png"

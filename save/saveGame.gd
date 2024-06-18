@@ -3,7 +3,7 @@ class_name saveGame
 
 @export var bonusItems : Array[int]
 @export var finishedLevels : Array[int]
-var unlockedLevels = [1,21,22]
+var unlockedLevels = [1,21,31]
 @export var time : Array
 
 var welt1_skins = [1, 21, 19, 22, 20, 18, 17, 12]
