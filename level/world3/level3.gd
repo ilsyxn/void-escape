@@ -6,6 +6,7 @@ extends TileMap
 @export var startPos : Vector2i
 @export var portals : Array[Vector2i]
 @export var connectors : Array[Vector2i]
+@export var spaces : Array[Vector2i]
 
 @onready var portal_nodesA = [$"../Portal"]
 @onready var portal_nodesB = [$"../Portal2"]
@@ -35,9 +36,10 @@ func move_player(target_tile_pos):
 	# Infos über das Target Tile bekommen
 	var target_tile_id = get_cell_source_id(0, target_tile_pos)
 	var _tile_data: TileData = get_cell_tile_data(0,player_tile_pos)
+	print(target_tile_id)
 
 	# Wenn wir das Teil betreten dürfen, dann bewegen
-	if (allowed_tile_ids.has(target_tile_id)) and !betreten.has(target_tile_pos):
+	if (allowed_tile_ids.has(target_tile_id)) and !betreten.has(target_tile_pos) and !spaces.has(target_tile_pos):
 		erase_cell(1,player_tile_pos)
 		
 		for i in portals.size():
@@ -50,6 +52,12 @@ func move_player(target_tile_pos):
 		set_cell(1, target_tile_pos, player, Vector2i(0,0),0)
 		player_tile_pos = target_tile_pos
 	
+	# Boden füllen lol
+	if target_tile_id == 12:
+		erase_cell(1, spaces.pop_front())
+
+
+		
 	if target_tile_id == 10:
 			if !save_Game.finishedLevels.has(id):
 				save_Game.levelFinished(id)	
