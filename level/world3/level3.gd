@@ -55,6 +55,7 @@ func move_player(target_tile_pos):
 	# Boden füllen lol
 	if target_tile_id == 12:
 		erase_cell(1, spaces.pop_front())
+		set_cell(0, target_tile_pos, 11, Vector2i(0,0),0)
 
 
 		
