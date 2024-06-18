@@ -78,12 +78,10 @@ func _ready():
 	enemy_positions = [enemy01_tile_pos, enemy02_tile_pos, enemy03_tile_pos, enemy04_tile_pos]
 	enemy_ids = [enemy1_id, enemy2_id, enemy3_id, enemy4_id]
 			
-	while(true):
+	while(true): #Monster Animation laufen lassen
 		monster_animation()
 		await get_tree().create_timer(0.8).timeout
-			
-	
-		
+
 
 func _process(_delta):
 	if not fog_red:
@@ -202,10 +200,10 @@ func fade_fog():
 		j = j-0.01
 		await get_tree().create_timer(0.01).timeout
 		
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.8).timeout
 	fog_red = false
 	
-#Animation
+#Animation der Monster
 func monster_animation():
 	for i in range(4):
 		if enemy_positions[i] != null:
@@ -221,26 +219,70 @@ func monster_animation():
 			set_cell(1, enemy_positions[i], enemy_ids[i], Vector2i(0,0),0)
 			
 func move_monster_towards_player():
+	var directions = [Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)]
+
 	for i in range(4):
 		if enemy_positions[i] != null:
+			var moved = false
 			var direction_to_player = player_tile_pos - enemy_positions[i]
 			var target_tile_pos
+			var primary_direction
+			var secondary_direction1
+			var secondary_direction2
 
 			# Entscheiden, ob sich das Monster horizontal oder vertikal bewegen soll
-			if abs(direction_to_player.x) > abs(direction_to_player.y):
-				# Bewegen Sie sich horizontal in Richtung des Spielers
-				target_tile_pos = enemy_positions[i] + Vector2(sign(direction_to_player.x), 0)
-			else:
+			if abs(direction_to_player.y) > abs(direction_to_player.x):
 				# Bewegen Sie sich vertikal in Richtung des Spielers
-				target_tile_pos = enemy_positions[i] + Vector2(0, sign(direction_to_player.y))
+				primary_direction = Vector2(0, sign(direction_to_player.y))
+				secondary_direction1 = Vector2(sign(direction_to_player.x), 0)
+				secondary_direction2 = Vector2(-sign(direction_to_player.x), 0)
+			else:
+				# Bewegen Sie sich horizontal in Richtung des Spielers
+				primary_direction = Vector2(sign(direction_to_player.x), 0)
+				secondary_direction1 = Vector2(0, sign(direction_to_player.y))
+				secondary_direction2 = Vector2(0, -sign(direction_to_player.y))
 
+			# Bewegung in Hauptachse prüfen
+			target_tile_pos = enemy_positions[i] + primary_direction
 			var target_tile_id = get_cell_source_id(0, target_tile_pos)
 
-			# Überprüfen Sie, ob das Ziel-Tile erlaubt ist
 			if allowed_tile_ids.has(target_tile_id):
 				erase_cell(1, enemy_positions[i])
-				set_cell(1, target_tile_pos, enemy_ids[i], Vector2i(0,0),0)
+				set_cell(1, target_tile_pos, enemy_ids[i], Vector2i(0,0), 0)
 				enemy_positions[i] = target_tile_pos
+				moved = true
 
+			# Falls Hauptachse blockiert, Nebenasche 1 prüfen
+			if not moved:
+				target_tile_pos = enemy_positions[i] + secondary_direction1
+				target_tile_id = get_cell_source_id(0, target_tile_pos)
 
+				if allowed_tile_ids.has(target_tile_id):
+					erase_cell(1, enemy_positions[i])
+					set_cell(1, target_tile_pos, enemy_ids[i], Vector2i(0,0), 0)
+					enemy_positions[i] = target_tile_pos
+					moved = true
 
+			# Falls Hauptachse und Nebenachse 1 blockiert, Nebenasche 2 prüfen
+			if not moved:
+				target_tile_pos = enemy_positions[i] + secondary_direction2
+				target_tile_id = get_cell_source_id(0, target_tile_pos)
+
+				if allowed_tile_ids.has(target_tile_id):
+					erase_cell(1, enemy_positions[i])
+					set_cell(1, target_tile_pos, enemy_ids[i], Vector2i(0,0), 0)
+					enemy_positions[i] = target_tile_pos
+					moved = true
+
+			# Falls keine Bewegung gemacht wurde, zufällige Bewegung probieren
+			if not moved:
+				while not moved:
+					var random_dir = directions[randi() % directions.size()]
+					var random_target_tile_pos = enemy_positions[i] + random_dir
+					var random_target_tile_id = get_cell_source_id(0, random_target_tile_pos)
+
+					if allowed_tile_ids.has(random_target_tile_id):
+						erase_cell(1, enemy_positions[i])
+						set_cell(1, random_target_tile_pos, enemy_ids[i], Vector2i(0,0), 0)
+						enemy_positions[i] = random_target_tile_pos
+						moved = true
