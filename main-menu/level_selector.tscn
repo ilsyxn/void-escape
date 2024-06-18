@@ -62,7 +62,7 @@ func _on_level_22_pressed():
 
 
 func _on_level_23_pressed():
-	pass # Replace with function body.
+	pass
 
 
 func _on_level_24_pressed():
@@ -70,6 +70,26 @@ func _on_level_24_pressed():
 
 
 func _on_level_25_pressed():
+	pass # Replace with function body.
+
+
+func _on_level_31_pressed():
+	get_tree().change_scene_to_file(\"res://level/world3/level_3_1.tscn\")
+
+
+func _on_level_32_pressed():
+	pass # Replace with function body.
+
+
+func _on_level_33_pressed():
+	pass # Replace with function body.
+
+
+func _on_level_34_pressed():
+	pass # Replace with function body.
+
+
+func _on_level_35_pressed():
 	pass # Replace with function body.
 "
 
@@ -218,3 +238,8 @@ welt = 3
 [connection signal="pressed" from="Stages/World2/Level2-3" to="." method="_on_level_23_pressed"]
 [connection signal="pressed" from="Stages/World2/Level2-4" to="." method="_on_level_24_pressed"]
 [connection signal="pressed" from="Stages/World2/Level2-5" to="." method="_on_level_25_pressed"]
+[connection signal="pressed" from="Stages/World3/Level3-1" to="." method="_on_level_31_pressed"]
+[connection signal="pressed" from="Stages/World3/Level3-2" to="." method="_on_level_32_pressed"]
+[connection signal="pressed" from="Stages/World3/Level3-3" to="." method="_on_level_33_pressed"]
+[connection signal="pressed" from="Stages/World3/Level3-4" to="." method="_on_level_34_pressed"]
+[connection signal="pressed" from="Stages/World3/Level3-5" to="." method="_on_level_35_pressed"]

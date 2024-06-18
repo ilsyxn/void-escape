@@ -163,14 +163,9 @@ func move_player(target_tile_pos):
 				save_Game.unlockedLevels.append(id+1)
 				if !save_Game.time[id]:
 					save_Game.time[id] = stoppuhr.time
-			else:
-				# Falls wir einen neuen Highscore haben
-				if save_Game.time[id] > stoppuhr.time:
-					save_Game.time[id] = stoppuhr.time
-				if bonus: 
-					save_Game.bonusCollected(id)
 			
-			get_tree().change_scene_to_file("res://main-menu/world1.tscn")
+			
+			get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
 
 # Licht ausschalten
 func execute_timeout_actions():

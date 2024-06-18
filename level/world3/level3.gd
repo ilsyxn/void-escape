@@ -53,7 +53,7 @@ func move_player(target_tile_pos):
 	if target_tile_id == 10:
 			if !save_Game.finishedLevels.has(id):
 				save_Game.levelFinished(id)	
-			get_tree().change_scene_to_file("res://main-menu/world1.tscn")
+			get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
 
 func remove_portals(portal_pos, connector_pos):
 	# Portal aus dem Level nehmen, wenn es benutzt wurde
