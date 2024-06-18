@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://8ux8w7nca844"]
+
+[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_llqjm"]
+[ext_resource type="TileSet" uid="uid://w5iet3ku1ekm" path="res://level/world3/tilemap-3.tres" id="2_54hdm"]
+[ext_resource type="PackedScene" uid="uid://dw4x1v153edrn" path="res://level/world3/portal.tscn" id="2_ps80e"]
+[ext_resource type="Script" path="res://level/world3/level3.gd" id="2_x4swm"]
+
+[node name="Level3-1" type="Node2D"]
+
+[node name="lvl3-1" type="TileMap" parent="."]
+tile_set = ExtResource("2_54hdm")
+rendering_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(655368, 0, 0, 720904, 0, 0, 786440, 0, 0, 589832, 0, 0, 524296, 0, 0, 458760, 0, 0, 393224, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 393232, 0, 0, 458768, 0, 0, 524304, 0, 0, 589840, 0, 0, 655376, 0, 0, 720912, 0, 0, 786448, 0, 0, 786447, 0, 0, 786446, 0, 0, 786445, 0, 0, 786444, 0, 0, 786443, 0, 0, 786442, 0, 0, 786441, 0, 0, 720905, 1, 0, 655370, 0, 0, 589835, 0, 0, 589836, 0, 0, 524301, 1, 0, 458766, 1, 0, 393231, 1, 0, 458767, 1, 0, 524303, 0, 0, 589839, 1, 0, 655375, 1, 0, 720911, 1, 0, 720906, 0, 0, 720907, 1, 0, 720908, 1, 0, 720909, 1, 0, 720910, 0, 0, 655374, 0, 0, 589838, 1, 0, 524302, 0, 0, 393230, 1, 0, 393229, 1, 0, 393228, 1, 0, 393227, 1, 0, 393226, 0, 0, 458762, 0, 0, 458761, 1, 0, 393225, 1, 0, 458763, 1, 0, 458764, 0, 0, 458765, 1, 0, 589834, 0, 0, 524298, 1, 0, 524299, 1, 0, 524300, 0, 0, 655371, 1, 0, 524297, 1, 0, 589833, 1, 0, 655369, 1, 0, 589837, 1, 0, 655373, 1, 0, 655372, 1, 0)
+layer_1/name = "Layer 1"
+layer_1/tile_data = PackedInt32Array(393227, 9, 0)
+script = ExtResource("2_x4swm")
+id = 31
+startPos = Vector2i(11, 6)
+
+[node name="Background" parent="." instance=ExtResource("1_llqjm")]
+
+[node name="Portal" parent="." instance=ExtResource("2_ps80e")]
+position = Vector2(496, 209)
+scale = Vector2(0.7, 0.7)
+map_position = Vector2i(9, 6)
+connected_portal = Vector2i(15, 6)
+
+[node name="Portal2" parent="." instance=ExtResource("2_ps80e")]
+position = Vector2(304, 209)
+scale = Vector2(0.7, 0.7)
+map_position = Vector2i(15, 6)
+connected_portal = Vector2i(9, 6)

@@ -15,7 +15,7 @@ var early_start = false
 @onready var fog = $"../Fog"
 @onready var star = $"../Belichtet/Star"
 @onready var save_Game = preload("res://save/saveGame.tres")
-@onready var player = 1
+@onready var player = save_Game.getWorld1Player()
 @onready var particles = 0
 
 
@@ -140,7 +140,7 @@ func move_player(target_tile_pos):
 				if bonus: 
 					save_Game.bonusCollected(id)
 			
-			get_tree().change_scene_to_file("res://main-menu/world1.tscn")
+			get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
 
 # Zum hinzufügen der Void
 func add_particle(pos: Vector2i):

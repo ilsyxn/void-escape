@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=37 format=3 uid="uid://ofabqlexnqyd"]
+[gd_resource type="TileSet" load_steps=49 format=3 uid="uid://ofabqlexnqyd"]
 
 [ext_resource type="Texture2D" uid="uid://bybe141iet7t5" path="res://assets/walls.png" id="1_ikhc6"]
 [ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/skins/character.png" id="2_mulo0"]
@@ -14,7 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://e6kxytwwx8ka" path="res://level/world2/mars_monster03.png" id="8_mx5xi"]
 [ext_resource type="Texture2D" uid="uid://7p7jh2uf05oi" path="res://level/world2/mars_monster04.png" id="9_c7a0h"]
 [ext_resource type="Texture2D" uid="uid://c4oyp72yo0jsg" path="res://assets/mars/goal1.png" id="9_p2clk"]
+[ext_resource type="Texture2D" uid="uid://dieucui0ixeoq" path="res://assets/skins/black.png" id="10_15djo"]
 [ext_resource type="Texture2D" uid="uid://b4w2jafb4g6r4" path="res://assets/mars/walkable.png" id="11_6xgjf"]
+[ext_resource type="Texture2D" uid="uid://d08gfgxydpyc8" path="res://assets/skins/dino.png" id="11_dlgkg"]
+[ext_resource type="Texture2D" uid="uid://dx30hlwp278bj" path="res://assets/skins/green.png" id="12_7u8t1"]
+[ext_resource type="Texture2D" uid="uid://c0r5762xk2ejk" path="res://assets/skins/pink.png" id="14_wp0qk"]
+[ext_resource type="Texture2D" uid="uid://bsjxm8pflp8ce" path="res://assets/skins/red.png" id="15_30iek"]
+[ext_resource type="Texture2D" uid="uid://cmfakq4frgstt" path="res://assets/skins/yellow.png" id="16_5nyap"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_o2pyr"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -90,8 +96,50 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1g5jn"]
+texture = ExtResource("10_15djo")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lhoun"]
+texture = ExtResource("11_dlgkg")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dyme1"]
+texture = ExtResource("12_7u8t1")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t4btb"]
 texture = ExtResource("3_ischc")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r3cx3"]
+texture = ExtResource("14_wp0qk")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s8085"]
+texture = ExtResource("15_30iek")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p1jfg"]
+texture = ExtResource("16_5nyap")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -173,3 +221,9 @@ sources/13 = SubResource("TileSetAtlasSource_amm8s")
 sources/14 = SubResource("TileSetAtlasSource_gta14")
 sources/15 = SubResource("TileSetAtlasSource_hsunq")
 sources/16 = SubResource("TileSetAtlasSource_r17ga")
+sources/17 = SubResource("TileSetAtlasSource_1g5jn")
+sources/18 = SubResource("TileSetAtlasSource_lhoun")
+sources/19 = SubResource("TileSetAtlasSource_dyme1")
+sources/20 = SubResource("TileSetAtlasSource_r3cx3")
+sources/21 = SubResource("TileSetAtlasSource_s8085")
+sources/22 = SubResource("TileSetAtlasSource_p1jfg")

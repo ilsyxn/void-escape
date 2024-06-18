@@ -1,44 +1,181 @@
-[gd_scene load_steps=8 format=3 uid="uid://bp8hbjyuvg3kp"]
+[gd_scene load_steps=21 format=3 uid="uid://bp8hbjyuvg3kp"]
 
-[ext_resource type="Script" path="res://main-menu/level_selector.gd" id="1_g8sad"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_ul0u4"]
 [ext_resource type="Texture2D" uid="uid://dty1aww7qgakx" path="res://assets/buttons/back.png" id="2_65ogx"]
 [ext_resource type="Texture2D" uid="uid://cugvh1jqn8dng" path="res://assets/buttons/back-pressed.png" id="3_koijr"]
-[ext_resource type="PackedScene" uid="uid://dk3a6kuxav7qs" path="res://main-menu/world1.tscn" id="4_mfkt7"]
-[ext_resource type="Texture2D" uid="uid://d1612t2vc2633" path="res://icon.svg" id="4_tr6hj"]
-[ext_resource type="PackedScene" uid="uid://kgy0io7tw74u" path="res://main-menu/world2.tscn" id="5_1c0bw"]
+[ext_resource type="PackedScene" uid="uid://cqf8gssb1vndr" path="res://main-menu/button.tscn" id="4_l3r1w"]
+[ext_resource type="Texture2D" uid="uid://cycdwu6fvqdo8" path="res://assets/buttons/pressed/lvl1pressed.png" id="5_jgvbv"]
+[ext_resource type="Texture2D" uid="uid://dd00rlolajdxg" path="res://assets/buttons/lvlselect2.png" id="6_4wi46"]
+[ext_resource type="Texture2D" uid="uid://dcoyu5jlhvu5b" path="res://assets/buttons/pressed/lvl2pressed.png" id="7_r8tsc"]
+[ext_resource type="Texture2D" uid="uid://4pe0tdk5tojc" path="res://assets/buttons/lvlselect3.png" id="8_3o48w"]
+[ext_resource type="Texture2D" uid="uid://pqs1d7mil0xf" path="res://assets/buttons/pressed/lvl3pressed.png" id="9_oawym"]
+[ext_resource type="Texture2D" uid="uid://86k1gkb31vpw" path="res://assets/buttons/lvlselect4.png" id="10_ncuv1"]
+[ext_resource type="Texture2D" uid="uid://b81ttrq1771ow" path="res://assets/buttons/pressed/lvl4pressed.png" id="11_10aqq"]
+[ext_resource type="Texture2D" uid="uid://xbej48fecfua" path="res://assets/buttons/lvlselect5.png" id="12_4n00t"]
+[ext_resource type="Texture2D" uid="uid://dib3fwv7yukyt" path="res://assets/buttons/pressed/lvl5pressed.png" id="13_pfaqo"]
+[ext_resource type="Texture2D" uid="uid://bqkxc3gckc0me" path="res://assets/buttons/orange/orange1.png" id="14_legh8"]
+[ext_resource type="Texture2D" uid="uid://cp16l6yqph2q2" path="res://assets/buttons/orange/orange2.png" id="15_nfbxx"]
+[ext_resource type="Texture2D" uid="uid://cmj4a1vsjckai" path="res://assets/buttons/orange/orange3.png" id="16_emdm5"]
+[ext_resource type="Texture2D" uid="uid://dqfxipkarjiy4" path="res://assets/buttons/orange/orange4.png" id="17_6iehg"]
+[ext_resource type="Texture2D" uid="uid://3arlrjroi2fb" path="res://assets/buttons/orange/orange5.png" id="18_c2gx4"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="19_id1fd"]
+
+[sub_resource type="GDScript" id="GDScript_5ckpm"]
+script/source = "extends Node2D
+
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file(\"res://main-menu/main.tscn\")
+
+
+func _on_level_1_pressed():
+	get_tree().change_scene_to_file(\"res://level/world1/level_1.tscn\")
+
+
+func _on_level_2_pressed():
+	get_tree().change_scene_to_file(\"res://level/world1/level_2.tscn\")
+
+
+func _on_level_3_pressed():
+	get_tree().change_scene_to_file(\"res://level/world1/level_3.tscn\")
+
+
+func _on_level_4_pressed():
+	get_tree().change_scene_to_file(\"res://level/world1/level_4.tscn\")
+
+
+func _on_level_5_pressed():
+	get_tree().change_scene_to_file(\"res://level/world1/level_5.tscn\")
+
+
+func _on_level_21_pressed():
+	get_tree().change_scene_to_file(\"res://level/world2/level_2_1.tscn\")
+
+
+func _on_level_22_pressed():
+	get_tree().change_scene_to_file(\"res://level/world2/level_2_2.tscn\")
+
+
+func _on_level_23_pressed():
+	pass # Replace with function body.
+
+
+func _on_level_24_pressed():
+	pass # Replace with function body.
+
+
+func _on_level_25_pressed():
+	pass # Replace with function body.
+"
 
 [node name="LevelSelector" type="Node2D"]
-script = ExtResource("1_g8sad")
+script = SubResource("GDScript_5ckpm")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(573, 329)
+[node name="Background" parent="." instance=ExtResource("1_ul0u4")]
 
-[node name="Rechts" type="TextureButton" parent="."]
-offset_left = 1046.0
-offset_top = 294.0
-offset_right = 1174.0
-offset_bottom = 422.0
-scale = Vector2(0.7, 0.7)
-texture_normal = ExtResource("4_tr6hj")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Back" type="TextureButton" parent="CanvasLayer"]
-offset_left = 457.0
-offset_top = 478.0
-offset_right = 578.0
-offset_bottom = 524.0
+[node name="Back" type="TextureButton" parent="."]
+offset_left = 451.0
+offset_top = 523.0
+offset_right = 572.0
+offset_bottom = 569.0
 scale = Vector2(2.5, 2.5)
 texture_normal = ExtResource("2_65ogx")
 texture_pressed = ExtResource("3_koijr")
 
-[node name="Background" parent="CanvasLayer" instance=ExtResource("1_ul0u4")]
+[node name="Stages" type="VBoxContainer" parent="."]
+offset_left = 298.0
+offset_top = 168.0
+offset_right = 474.0
+offset_bottom = 236.0
+scale = Vector2(3.5, 3.5)
 
-[node name="World1" parent="." instance=ExtResource("4_mfkt7")]
+[node name="World1" type="HBoxContainer" parent="Stages"]
+layout_mode = 2
 
-[node name="World2" parent="." instance=ExtResource("5_1c0bw")]
-position = Vector2(1148, -1)
+[node name="Level1" parent="Stages/World1" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_pressed = ExtResource("5_jgvbv")
+id = 1
+welt = 1
 
-[connection signal="pressed" from="Rechts" to="." method="_on_rechts_pressed"]
-[connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_back_pressed"]
+[node name="Level2" parent="Stages/World1" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("6_4wi46")
+texture_pressed = ExtResource("7_r8tsc")
+id = 2
+welt = 1
+
+[node name="Level3" parent="Stages/World1" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("8_3o48w")
+texture_pressed = ExtResource("9_oawym")
+id = 3
+welt = 1
+
+[node name="Level4" parent="Stages/World1" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("10_ncuv1")
+texture_pressed = ExtResource("11_10aqq")
+id = 4
+welt = 1
+
+[node name="Level5" parent="Stages/World1" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("12_4n00t")
+texture_pressed = ExtResource("13_pfaqo")
+id = 5
+welt = 1
+
+[node name="World2" type="HBoxContainer" parent="Stages"]
+layout_mode = 2
+
+[node name="Level2-1" parent="Stages/World2" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("14_legh8")
+id = 21
+welt = 2
+
+[node name="Level2-2" parent="Stages/World2" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("15_nfbxx")
+id = 22
+welt = 2
+
+[node name="Level2-3" parent="Stages/World2" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("16_emdm5")
+id = 23
+welt = 2
+
+[node name="Level2-4" parent="Stages/World2" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("17_6iehg")
+id = 24
+welt = 2
+
+[node name="Level2-5" parent="Stages/World2" instance=ExtResource("4_l3r1w")]
+layout_mode = 2
+texture_normal = ExtResource("18_c2gx4")
+id = 25
+welt = 2
+
+[node name="SelectLevel" type="Label" parent="."]
+offset_left = 203.0
+offset_top = 49.0
+offset_right = 1022.0
+offset_bottom = 150.0
+theme_override_fonts/font = ExtResource("19_id1fd")
+theme_override_font_sizes/font_size = 100
+text = "Select Level"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Stages/World1/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Stages/World1/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Stages/World1/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="Stages/World1/Level4" to="." method="_on_level_4_pressed"]
+[connection signal="pressed" from="Stages/World1/Level5" to="." method="_on_level_5_pressed"]
+[connection signal="pressed" from="Stages/World2/Level2-1" to="." method="_on_level_21_pressed"]
+[connection signal="pressed" from="Stages/World2/Level2-2" to="." method="_on_level_22_pressed"]
+[connection signal="pressed" from="Stages/World2/Level2-3" to="." method="_on_level_23_pressed"]
+[connection signal="pressed" from="Stages/World2/Level2-4" to="." method="_on_level_24_pressed"]
+[connection signal="pressed" from="Stages/World2/Level2-5" to="." method="_on_level_25_pressed"]

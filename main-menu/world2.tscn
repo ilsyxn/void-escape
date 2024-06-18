@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kgy0io7tw74u"]
+[gd_scene load_steps=9 format=3 uid="uid://l3bqwtobhovj"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_jheg0"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="2_lmhbb"]

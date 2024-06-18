@@ -13,16 +13,17 @@ extends Node2D
 @onready var equip = $Equip
 @onready var buy = $Buy
 @onready var hiddenSpot = $HiddenSpot
+@onready var save_Game = preload("res://save/saveGame.tres")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	skin.texture = save_Game.selectedSkinText
 	selectedSlot.selected = true
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	skin.texture = selectedSlot.skin.texture
 	
 	if selectedSlot.isOwned:
 		buy.global_position = hiddenSpot.global_position
@@ -50,3 +51,13 @@ func switchSlot(left: bool):
 			counter += 1
 	selectedSlot = slots[counter]
 	selectedSlot.selected = true
+
+
+func _on_equip_pressed():
+	skin.texture = selectedSlot.skin.texture
+	save_Game.setSkin(selectedSlot.id)
+	save_Game.selectedSkinText = selectedSlot.skin.texture
+
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file("res://main-menu/main.tscn")

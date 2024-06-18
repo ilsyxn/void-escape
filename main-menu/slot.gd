@@ -6,6 +6,7 @@ extends Node2D
 @onready var skin = $Img/Skin
 @onready var owned = $Img/Owned
 
+@export var id : int
 @export var isOwned : bool
 @export var image : Texture2D
 

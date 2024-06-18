@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dk3a6kuxav7qs"]
+[gd_scene load_steps=14 format=3 uid="uid://dh7l60s4yg56n"]
 
 [ext_resource type="Script" path="res://main-menu/lvlSelect.gd" id="1_48bro"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="2_0fhfd"]
@@ -34,7 +34,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_ff8uo")
 theme_override_font_sizes/font_size = 80
-text = "Space Station"
+text = "Select Level"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
