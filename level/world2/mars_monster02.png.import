@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://7jao7267bjpv"
-path="res://.godot/imported/mars_monster02.png-154109bf8cc2e323878c5153cc7e5970.ctex"
+path="res://.godot/imported/mars_monster02.png-3e07d502c9a216f0009ba9f64ce2869d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/mars_monster02.png"
-dest_files=["res://.godot/imported/mars_monster02.png-154109bf8cc2e323878c5153cc7e5970.ctex"]
+source_file="res://level/world2/mars_monster02.png"
+dest_files=["res://.godot/imported/mars_monster02.png-3e07d502c9a216f0009ba9f64ce2869d.ctex"]
 
 [params]
 

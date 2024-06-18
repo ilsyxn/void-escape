@@ -36,8 +36,9 @@ var fog_red = false
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
 
 func _ready():
+	# Damit sich die gegner bewegen können
 	randomize()
-
+	execute_timeout_actions()
 	# Falls ein Highscore besteht, anzeigen
 	if save_Game.time[id]:
 		high_score_time.text = stoppuhr.format_time(save_Game.time[id])
@@ -94,6 +95,11 @@ func _process(_delta):
 	if settings.enabled == false:
 		stoppuhr.process_mode = Node.PROCESS_MODE_ALWAYS
 		light_timer.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# Wenn vom Monster gefressen, dann Game Over	
+	if enemy_positions.has(player_tile_pos):
+		await get_tree().create_timer(1.0).timeout
+		get_tree().change_scene_to_file("res://GameOver/Game_Over.tscn")
 
 func _unhandled_input(event):
 		if event.is_action_pressed("right"):

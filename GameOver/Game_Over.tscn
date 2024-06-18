@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dj4emyeeic6bl"]
+
+[ext_resource type="Script" path="res://GameOver/Game_Over.gd" id="1_1y0l5"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="1_b6j4m"]
+[ext_resource type="Texture2D" uid="uid://cbpacxkbolutw" path="res://assets/buttons/play.png" id="2_1paq1"]
+[ext_resource type="Texture2D" uid="uid://btcywrpalqh3" path="res://assets/buttons/play-pressed.png" id="3_umum8"]
+[ext_resource type="Texture2D" uid="uid://dty1aww7qgakx" path="res://assets/buttons/back.png" id="5_ypnrt"]
+[ext_resource type="Texture2D" uid="uid://cugvh1jqn8dng" path="res://assets/buttons/back-pressed.png" id="6_16rkr"]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_1y0l5")
+
+[node name="TryAgain" type="TextureButton" parent="."]
+offset_left = 668.0
+offset_top = 403.0
+offset_right = 789.0
+offset_bottom = 449.0
+texture_normal = ExtResource("2_1paq1")
+texture_pressed = ExtResource("3_umum8")
+
+[node name="Titel" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 225.0
+offset_top = 57.0
+offset_right = 944.0
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_b6j4m")
+theme_override_font_sizes/font_size = 110
+text = "Game Over"
+
+[node name="Back" type="TextureButton" parent="."]
+offset_left = 425.0
+offset_top = 397.0
+offset_right = 546.0
+offset_bottom = 443.0
+texture_normal = ExtResource("5_ypnrt")
+texture_pressed = ExtResource("6_16rkr")
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
