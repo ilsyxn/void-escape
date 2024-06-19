@@ -138,15 +138,21 @@ func move_player(target_tile_pos):
 	if (allowed_tile_ids.has(target_tile_id)) and !betreten.has(target_tile_pos):
 		erase_cell(1,player_tile_pos)
 			# Set the Player at the new position
+		for enemy in enemy_ids:
+			if get_cell_source_id(1,target_tile_pos) == enemy:
+				player_tile_pos = target_tile_pos
+				move_in_two = false
+				
 		set_cell(1, target_tile_pos, player, Vector2i(0,0),0)
 		player_tile_pos = target_tile_pos
+
 		# Monster bewegen sich jeden 2ten schritt den der spieler macht
 		if move_in_two:
 			move_monster_towards_player()
 			move_in_two = false
 		elif not move_in_two:
 			move_in_two = true
-
+			
 		# Stern einsammeln
 		if target_tile_pos == starPos:
 			bonus = true
@@ -217,13 +223,14 @@ func move_monster_towards_player():
 	for i in range(4):
 		if enemy_positions[i] != null:
 			var path_taken = astagrid.get_id_path(enemy_positions[i], player_tile_pos)
-			erase_cell(1, enemy_positions[i])
-			set_cell(1, path_taken[1], enemy_ids[i], Vector2i(0,0), 0)
-			enemy_positions[i] = path_taken[1]
-			# Wenn vom Monster gefressen, dann Game Over	
-			if path_taken[1] == Vector2i(player_tile_pos):
-				await get_tree().create_timer(0.5).timeout
-				get_tree().change_scene_to_file("res://GameOver/Game_Over.tscn")
+			if get_cell_source_id(1,path_taken[1]) == -1 or player:
+				erase_cell(1, enemy_positions[i])
+				set_cell(1, path_taken[1], enemy_ids[i], Vector2i(0,0), 0)
+				enemy_positions[i] = path_taken[1]
+				# Wenn vom Monster gefressen, dann Game Over	
+				if path_taken[1] == Vector2i(player_tile_pos):
+					await get_tree().create_timer(0.5).timeout
+					get_tree().change_scene_to_file("res://GameOver/Game_Over.tscn")
 
 func setup_grid():
 	astagrid.region = Rect2i(0,0,100,100)
