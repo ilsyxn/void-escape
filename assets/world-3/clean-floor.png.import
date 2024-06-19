@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuoa4g8bw7kix"
-path="res://.godot/imported/goal.png-7af8f970db192f9d76333ce8a68df102.ctex"
+uid="uid://b0xs7jpg7fftv"
+path="res://.godot/imported/clean-floor.png-c9446cd0b875a74033e1b4bf0832ca79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/world-3/goal.png"
-dest_files=["res://.godot/imported/goal.png-7af8f970db192f9d76333ce8a68df102.ctex"]
+source_file="res://assets/world-3/clean-floor.png"
+dest_files=["res://.godot/imported/clean-floor.png-c9446cd0b875a74033e1b4bf0832ca79.ctex"]
 
 [params]
 

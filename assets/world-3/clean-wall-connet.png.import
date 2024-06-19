@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8tt4j1yirhcq"
-path="res://.godot/imported/boden-world3.png-c8a0a49ffce38e9330ef93dea5561913.ctex"
+uid="uid://b1iobplmc3foj"
+path="res://.godot/imported/clean-wall-connet.png-fdaec96f7849a90db7385689a7396501.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/world-3/boden-world3.png"
-dest_files=["res://.godot/imported/boden-world3.png-c8a0a49ffce38e9330ef93dea5561913.ctex"]
+source_file="res://assets/world-3/clean-wall-connet.png"
+dest_files=["res://.godot/imported/clean-wall-connet.png-fdaec96f7849a90db7385689a7396501.ctex"]
 
 [params]
 

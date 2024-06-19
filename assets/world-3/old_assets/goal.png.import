@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5obcxhcn0g0j"
-path="res://.godot/imported/button-pressed.png-a0070a52fb430d79f3c97b9e35f13fd4.ctex"
+uid="uid://cuoa4g8bw7kix"
+path="res://.godot/imported/goal.png-39a2ef8c37605c1a43764a47f9faf28f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/world-3/button-pressed.png"
-dest_files=["res://.godot/imported/button-pressed.png-a0070a52fb430d79f3c97b9e35f13fd4.ctex"]
+source_file="res://assets/world-3/old_assets/goal.png"
+dest_files=["res://.godot/imported/goal.png-39a2ef8c37605c1a43764a47f9faf28f.ctex"]
 
 [params]
 
