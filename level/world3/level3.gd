@@ -12,7 +12,7 @@ extends TileMap
 @onready var portal_nodesB = [$"../Portal2"]
 
 @onready var player_tile_pos : Vector2i = startPos
-@onready var allowed_tile_ids = [1, 10, 19]
+@onready var allowed_tile_ids = [1, 10, 19, 34]
 @onready var betreten: Array = []
 @onready var benutzte_portale = []
 @onready var save_Game = preload("res://save/saveGame.tres")

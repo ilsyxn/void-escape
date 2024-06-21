@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=49 format=3 uid="uid://ofabqlexnqyd"]
+[gd_resource type="TileSet" load_steps=62 format=3 uid="uid://ofabqlexnqyd"]
 
 [ext_resource type="Texture2D" uid="uid://bybe141iet7t5" path="res://assets/walls.png" id="1_ikhc6"]
 [ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/skins/character.png" id="2_mulo0"]
@@ -21,6 +21,12 @@
 [ext_resource type="Texture2D" uid="uid://c0r5762xk2ejk" path="res://assets/skins/pink.png" id="14_wp0qk"]
 [ext_resource type="Texture2D" uid="uid://bsjxm8pflp8ce" path="res://assets/skins/red.png" id="15_30iek"]
 [ext_resource type="Texture2D" uid="uid://cmfakq4frgstt" path="res://assets/skins/yellow.png" id="16_5nyap"]
+[ext_resource type="Texture2D" uid="uid://bjpvit811bpxj" path="res://assets/mars/mars-floor.png" id="17_qhlbl"]
+[ext_resource type="Texture2D" uid="uid://dfmv1pguow5h7" path="res://assets/mars/mars-ceiling-down.png" id="18_ub13e"]
+[ext_resource type="Texture2D" uid="uid://bcifkg0wn1xi2" path="res://assets/mars/mars-outer-wall-center.png" id="19_asx6g"]
+[ext_resource type="Texture2D" uid="uid://bhlb61ceq3if1" path="res://assets/mars/mars-outer-wall-corner.png" id="20_irmkl"]
+[ext_resource type="Texture2D" uid="uid://cnhuimvkpyq2" path="res://assets/mars/mars-wall.png" id="21_5re1w"]
+[ext_resource type="Texture2D" uid="uid://bbwpjenfcgfwe" path="res://assets/mars/mars-ceiling-top.png" id="22_kwf05"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_o2pyr"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -146,6 +152,55 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vkhm7"]
+texture = ExtResource("17_qhlbl")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0d81r"]
+texture = ExtResource("18_ub13e")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3fn5d"]
+texture = ExtResource("19_asx6g")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1iy4w"]
+texture = ExtResource("20_irmkl")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hynwp"]
+texture = ExtResource("21_5re1w")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4hkxb"]
+texture = ExtResource("21_5re1w")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mrpuj"]
+texture = ExtResource("22_kwf05")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f8nyu"]
 texture = ExtResource("4_hscha")
 texture_region_size = Vector2i(32, 32)
@@ -230,3 +285,10 @@ sources/19 = SubResource("TileSetAtlasSource_dyme1")
 sources/20 = SubResource("TileSetAtlasSource_r3cx3")
 sources/21 = SubResource("TileSetAtlasSource_s8085")
 sources/22 = SubResource("TileSetAtlasSource_p1jfg")
+sources/23 = SubResource("TileSetAtlasSource_vkhm7")
+sources/24 = SubResource("TileSetAtlasSource_0d81r")
+sources/25 = SubResource("TileSetAtlasSource_3fn5d")
+sources/26 = SubResource("TileSetAtlasSource_1iy4w")
+sources/27 = SubResource("TileSetAtlasSource_hynwp")
+sources/28 = SubResource("TileSetAtlasSource_4hkxb")
+sources/29 = SubResource("TileSetAtlasSource_mrpuj")
