@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://8ux8w7nca844"]
+[gd_scene load_steps=9 format=3 uid="uid://8ux8w7nca844"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_llqjm"]
 [ext_resource type="TileSet" uid="uid://w5iet3ku1ekm" path="res://level/world3/tilemap-3.tres" id="2_54hdm"]
 [ext_resource type="PackedScene" uid="uid://dw4x1v153edrn" path="res://level/world3/portal.tscn" id="2_ps80e"]
 [ext_resource type="Script" path="res://level/world3/level3.gd" id="2_x4swm"]
+
+[sub_resource type="Gradient" id="Gradient_gme5v"]
+colors = PackedColorArray(0.457459, 0.591356, 1, 1, 0.891337, 0.574939, 0.905464, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_44k5w"]
+gradient = SubResource("Gradient_gme5v")
+
+[sub_resource type="Gradient" id="Gradient_k5f7s"]
+colors = PackedColorArray(0.446065, 0.447641, 0.9605, 1, 1, 0.584314, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i8hfo"]
+gradient = SubResource("Gradient_k5f7s")
 
 [node name="Level3-1" type="Node2D"]
 
@@ -27,15 +39,15 @@ connectors = Array[Vector2i]([Vector2i(15, 6), Vector2i(9, 6)])
 [node name="Background" parent="." instance=ExtResource("1_llqjm")]
 
 [node name="Portal" parent="." instance=ExtResource("2_ps80e")]
-position = Vector2(435, 223)
+position = Vector2(434, 221)
 scale = Vector2(0.7, 0.7)
 map_position = Vector2i(9, 6)
 connected_portal = Vector2i(15, 6)
-color = Color(0.65805, 0.41815, 0.636466, 1)
+farbe = SubResource("GradientTexture1D_44k5w")
 
 [node name="Portal2" parent="." instance=ExtResource("2_ps80e")]
 position = Vector2(721, 222)
 scale = Vector2(0.7, 0.7)
 map_position = Vector2i(15, 6)
 connected_portal = Vector2i(9, 6)
-color = Color(0.658824, 0.419608, 0.635294, 1)
+farbe = SubResource("GradientTexture1D_i8hfo")

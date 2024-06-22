@@ -1,10 +1,11 @@
 extends Node2D
 @export var map_position : Vector2i
 @export var connected_portal: Vector2i
-@export var color : Color
-@onready var particles = $CPUParticles2D
+@export var farbe : GradientTexture1D
+@onready var particles = $GPUParticles2D
 
 func _ready():
-	particles.self_modulate = color
+	particles.process_material.color_ramp.gradient = farbe.gradient
+	
 
 
