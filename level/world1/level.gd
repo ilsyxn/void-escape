@@ -17,6 +17,7 @@ var early_start = false
 @onready var save_Game = preload("res://save/saveGame.tres")
 @onready var player = save_Game.getWorld1Player()
 @onready var particles = 0
+@onready var bewertung = $"../Belichtet/Bewertung"
 
 
 
@@ -28,6 +29,9 @@ var early_start = false
 
 @onready var stoppuhr = $"../Belichtet/stoppuhr"
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
+@export var three_stars : float
+@export var two_stars : float
+
 
 
 
@@ -52,7 +56,7 @@ func _ready():
 	if !save_Game.bonusItems.has(id):
 		set_cell(1, starPos, 11, Vector2i(0,0), 0)
 	else: 
-		star.texture = load("res://assets/star.png")
+		set_cell(1, starPos, 32, Vector2i(0,0), 0)
 	
 	# Player Position auf der Map finden
 	for tile_pos in get_used_cells(1):
@@ -139,8 +143,15 @@ func move_player(target_tile_pos):
 					save_Game.time[id] = stoppuhr.time
 				if bonus: 
 					save_Game.bonusCollected(id)
-			
-			get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
+			if stoppuhr.time < three_stars:
+				bewertung.three_stars(id)
+			elif stoppuhr.time < two_stars:
+				bewertung.two_stars(id)
+			else: 
+				bewertung.one_star(id)
+			bewertung.set_times(stoppuhr.time, save_Game.time[id])
+			hide_lvl_ui()
+			bewertung.bounce_in()
 
 # Zum hinzufügen der Void
 func add_particle(pos: Vector2i):
@@ -167,3 +178,12 @@ func execute_timeout_actions():
 	
 func _on_timer_timeout():
 	if !timer_done:	execute_timeout_actions()
+
+func hide_lvl_ui():
+	$"../Belichtet/light_out_in".hide()
+	$"../Belichtet/gebrauchte_zeit".hide()
+	$"../Belichtet/stoppuhr/label".hide()
+	$"../Belichtet/Highscore".hide()
+	$"../Belichtet/HighScoreTime".hide()
+	$"../visual_timer/time".hide()
+	$"../Belichtet/Border".hide()

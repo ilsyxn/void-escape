@@ -75,7 +75,7 @@ id = 6
 image = ExtResource("9_1m4po")
 
 [node name="Slot8" parent="VBoxContainer/HBoxContainer4" instance=ExtResource("1_fykkm")]
-position = Vector2(68.5, 190)
+position = Vector2(68.5, 189.5)
 id = 7
 image = ExtResource("10_jnjcq")
 

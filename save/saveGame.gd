@@ -12,6 +12,10 @@ var world1_player = welt1_skins[0]
 var world3_player = welt3_skins[0]
 var selectedSkinText = preload("res://assets/skins/character.png")
 
+var three_stars = []
+var two_stars = []
+var one_star = []
+
 func setSkin(id):
 	world1_player = welt1_skins[id]
 	world3_player = welt3_skins[id]

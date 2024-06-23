@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbefcdphgqnaf"]
+
+[ext_resource type="Texture2D" uid="uid://d3qioovkcfned" path="res://assets/ui/bewertung.png" id="1_puthg"]
+[ext_resource type="Script" path="res://main-menu/bewertung.gd" id="2_cxjvc"]
+[ext_resource type="Texture2D" uid="uid://bsl1cpsm5agac" path="res://assets/star_grau_big.png" id="2_msqsy"]
+[ext_resource type="Texture2D" uid="uid://bm2edo6obenhv" path="res://assets/buttons/continue.png" id="3_ljff0"]
+[ext_resource type="Texture2D" uid="uid://rcn4t7cyblx1" path="res://assets/buttons/continue-pressed.png" id="5_5nbw1"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="6_fd5a6"]
+
+[node name="Bewertung" type="Sprite2D"]
+texture = ExtResource("1_puthg")
+script = ExtResource("2_cxjvc")
+
+[node name="Stern3" type="Sprite2D" parent="."]
+position = Vector2(444, -219.6)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_msqsy")
+
+[node name="Stern2" type="Sprite2D" parent="."]
+position = Vector2(-1.19995, -403.6)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_msqsy")
+
+[node name="Stern1" type="Sprite2D" parent="."]
+position = Vector2(-456, -219.6)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_msqsy")
+
+[node name="Continue" type="TextureButton" parent="."]
+offset_left = -416.0
+offset_top = 405.0
+offset_right = -295.0
+offset_bottom = 451.0
+scale = Vector2(7, 7)
+texture_normal = ExtResource("3_ljff0")
+texture_pressed = ExtResource("5_5nbw1")
+
+[node name="Highscore" type="Label" parent="."]
+offset_left = -710.0
+offset_top = 17.0
+offset_right = 813.0
+offset_bottom = 168.0
+theme_override_fonts/font = ExtResource("6_fd5a6")
+theme_override_font_sizes/font_size = 145
+text = "Highscore: "
+
+[node name="Required" type="Label" parent="."]
+offset_left = -725.0
+offset_top = 166.0
+offset_right = 799.0
+offset_bottom = 367.0
+theme_override_fonts/font = ExtResource("6_fd5a6")
+theme_override_font_sizes/font_size = 145
+text = "clear time:  "
+
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]

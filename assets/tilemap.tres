@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=62 format=3 uid="uid://ofabqlexnqyd"]
+[gd_resource type="TileSet" load_steps=64 format=3 uid="uid://ofabqlexnqyd"]
 
 [ext_resource type="Texture2D" uid="uid://bybe141iet7t5" path="res://assets/walls.png" id="1_ikhc6"]
 [ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/skins/character.png" id="2_mulo0"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bhlb61ceq3if1" path="res://assets/mars/mars-outer-wall-corner.png" id="20_irmkl"]
 [ext_resource type="Texture2D" uid="uid://cnhuimvkpyq2" path="res://assets/mars/mars-wall.png" id="21_5re1w"]
 [ext_resource type="Texture2D" uid="uid://bbwpjenfcgfwe" path="res://assets/mars/mars-ceiling-top.png" id="22_kwf05"]
+[ext_resource type="Texture2D" uid="uid://c1k734np7arhu" path="res://assets/star_collected.png" id="24_mqgeg"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_o2pyr"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -208,6 +209,13 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3n3h"]
+texture = ExtResource("24_mqgeg")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y7pec"]
 texture = ExtResource("5_1smix")
 texture_region_size = Vector2i(32, 32)
@@ -292,3 +300,4 @@ sources/26 = SubResource("TileSetAtlasSource_1iy4w")
 sources/27 = SubResource("TileSetAtlasSource_hynwp")
 sources/28 = SubResource("TileSetAtlasSource_4hkxb")
 sources/29 = SubResource("TileSetAtlasSource_mrpuj")
+sources/32 = SubResource("TileSetAtlasSource_u3n3h")
