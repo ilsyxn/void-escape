@@ -10,7 +10,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_bb5c4"]
-_data = [Vector2(0.0210526, 0.0283242), 0.0, 0.0, 0, 0, Vector2(0.0968421, 1), 0.0, 0.0, 0, 0, Vector2(0.452632, 1), -0.971674, -0.971674, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.0210526, 0.0283242), 0.0, 0.0, 0, 0, Vector2(0.0968421, 1), 0.0, 0.0, 0, 0, Vector2(0.418947, 0.810779), -2.78907, -2.78907, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Gradient" id="Gradient_mjt3m"]
@@ -20,9 +20,9 @@ script = ExtResource("1_j08ok")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_t8cm0")
-amount = 30
+amount = 35
 lifetime = 0.8
-speed_scale = 0.65
+speed_scale = 0.35
 texture = ExtResource("2_1djm0")
 emission_shape = 1
 emission_sphere_radius = 25.0

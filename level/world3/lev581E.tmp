@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://8ux8w7nca844"]
+
+[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_llqjm"]
+[ext_resource type="TileSet" uid="uid://w5iet3ku1ekm" path="res://level/world3/tilemap-3.tres" id="2_54hdm"]
+[ext_resource type="PackedScene" uid="uid://dw4x1v153edrn" path="res://level/world3/portal.tscn" id="2_ps80e"]
+[ext_resource type="Script" path="res://level/world3/level3.gd" id="2_x4swm"]
+
+[sub_resource type="Gradient" id="Gradient_gme5v"]
+colors = PackedColorArray(0.457459, 0.591356, 1, 1, 0.891337, 0.574939, 0.905464, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_44k5w"]
+gradient = SubResource("Gradient_gme5v")
+
+[sub_resource type="Gradient" id="Gradient_w4aer"]
+colors = PackedColorArray(0.311124, 0.593109, 0.2321, 1, 0.805103, 0.349826, 0.00518792, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vk7me"]
+gradient = SubResource("Gradient_w4aer")
+
+[node name="Level3-1" type="Node2D"]
+
+[node name="lvl3-1" type="TileMap" parent="." node_paths=PackedStringArray("portal_nodesA", "portal_nodesB")]
+position = Vector2(-23, -91)
+scale = Vector2(1.5, 1.5)
+tile_set = ExtResource("2_54hdm")
+rendering_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(655368, 15, 268435456, 720904, 15, 268435456, 786440, 20, 0, 589832, 15, 268435456, 524296, 15, 268435456, 458760, 15, 268435456, 393224, 15, 268435456, 393232, 15, 0, 458768, 15, 0, 524304, 16, 0, 589840, 15, 0, 655376, 15, 0, 720912, 15, 0, 786448, 20, 0, 786447, 10, 0, 786446, 20, 0, 786445, 20, 0, 786444, 20, 0, 786443, 20, 0, 786442, 20, 0, 786441, 20, 0, 720905, 1, 0, 655370, 15, 0, 589835, 14, 0, 589836, 14, 0, 524301, 1, 0, 458766, 19, 0, 393231, 19, 0, 458767, 1, 0, 524303, 14, 0, 589839, 19, 0, 720911, 19, 0, 720906, 15, 0, 720907, 19, 0, 720908, 1, 0, 720909, 19, 0, 720910, 15, 0, 655374, 15, 0, 589838, 19, 0, 524302, 17, 0, 393230, 19, 0, 393229, 1, 0, 393228, 15, 0, 393227, 19, 0, 393226, 15, 0, 458762, 17, 0, 458761, 19, 0, 393225, 1, 0, 458763, 19, 0, 458764, 15, 0, 458765, 19, 0, 589834, 15, 0, 524298, 19, 0, 524299, 1, 0, 524300, 15, 0, 655371, 19, 0, 524297, 19, 0, 589833, 19, 0, 655369, 1, 0, 589837, 19, 0, 655373, 1, 0, 655372, 19, 0, 655375, 19, 0, 327688, 16, 268435456, 327689, 14, 0, 327690, 16, 0, 327691, 14, 0, 327692, 16, 0, 327693, 14, 0, 327694, 14, 0, 327695, 14, 0, 327696, 16, 0)
+layer_1/name = "elements"
+layer_1/tile_data = PackedInt32Array(786441, 20, 0, 786442, 20, 0, 786443, 20, 0, 786444, 20, 0, 786445, 20, 0, 786446, 20, 0, 786448, 20, 0, 786440, 20, 0, 786447, 21, 0, 327694, 23, 0, 327691, 22, 0, 327693, 24, 0, 655375, 25, 0)
+layer_2/name = "player"
+layer_2/tile_data = PackedInt32Array()
+script = ExtResource("2_x4swm")
+id = 31
+startPos = Vector2i(11, 6)
+portalsA = Array[Vector2i]([Vector2i(9, 6), Vector2i(9, 8)])
+portalsB = Array[Vector2i]([Vector2i(15, 6), Vector2i(11, 11)])
+portal_nodesA = [NodePath("../Portal"), NodePath("../Portal3")]
+portal_nodesB = [NodePath("../Portal2"), NodePath("../Portal4")]
+
+[node name="Background" parent="." instance=ExtResource("1_llqjm")]
+
+[node name="Portal" parent="." instance=ExtResource("2_ps80e")]
+position = Vector2(431, 223)
+scale = Vector2(0.7, 0.7)
+map_position = Vector2i(9, 6)
+connected_portal = Vector2i(15, 6)
+farbe = SubResource("GradientTexture1D_44k5w")
+
+[node name="Portal2" parent="." instance=ExtResource("2_ps80e")]
+position = Vector2(721, 222)
+scale = Vector2(0.7, 0.7)
+map_position = Vector2i(15, 6)
+connected_portal = Vector2i(9, 6)
+
+[node name="Portal3" parent="." instance=ExtResource("2_ps80e")]
+position = Vector2(431, 317)
+scale = Vector2(0.7, 0.7)
+map_position = Vector2i(9, 8)
+index = 1
+connected_portal = Vector2i(11, 11)
+farbe = SubResource("GradientTexture1D_vk7me")
+
+[node name="Portal4" parent="." instance=ExtResource("2_ps80e")]
+position = Vector2(529, 456)
+scale = Vector2(0.7, 0.7)
+map_position = Vector2i(11, 11)
+index = 1
+connected_portal = Vector2i(9, 8)
