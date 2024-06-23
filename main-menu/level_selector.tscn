@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bp8hbjyuvg3kp"]
+[gd_scene load_steps=36 format=3 uid="uid://bp8hbjyuvg3kp"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_ul0u4"]
 [ext_resource type="Texture2D" uid="uid://dty1aww7qgakx" path="res://assets/buttons/back.png" id="2_65ogx"]
@@ -6,24 +6,34 @@
 [ext_resource type="PackedScene" uid="uid://cqf8gssb1vndr" path="res://main-menu/button.tscn" id="4_l3r1w"]
 [ext_resource type="Texture2D" uid="uid://cycdwu6fvqdo8" path="res://assets/buttons/pressed/lvl1pressed.png" id="5_jgvbv"]
 [ext_resource type="Texture2D" uid="uid://dd00rlolajdxg" path="res://assets/buttons/lvlselect2.png" id="6_4wi46"]
+[ext_resource type="Texture2D" uid="uid://bc5gkeawk22om" path="res://assets/buttons/gray/pressed/gray1_pressed.png" id="6_hn6d5"]
 [ext_resource type="Texture2D" uid="uid://dcoyu5jlhvu5b" path="res://assets/buttons/pressed/lvl2pressed.png" id="7_r8tsc"]
 [ext_resource type="Texture2D" uid="uid://4pe0tdk5tojc" path="res://assets/buttons/lvlselect3.png" id="8_3o48w"]
+[ext_resource type="Texture2D" uid="uid://lgipuktkq8om" path="res://assets/buttons/gray/pressed/gray2_pressed.png" id="8_3rq0a"]
 [ext_resource type="Texture2D" uid="uid://pqs1d7mil0xf" path="res://assets/buttons/pressed/lvl3pressed.png" id="9_oawym"]
+[ext_resource type="Texture2D" uid="uid://ct5nlvo8pnyv0" path="res://assets/buttons/gray/pressed/gray3_pressed.png" id="10_5iwnt"]
 [ext_resource type="Texture2D" uid="uid://86k1gkb31vpw" path="res://assets/buttons/lvlselect4.png" id="10_ncuv1"]
 [ext_resource type="Texture2D" uid="uid://b81ttrq1771ow" path="res://assets/buttons/pressed/lvl4pressed.png" id="11_10aqq"]
 [ext_resource type="Texture2D" uid="uid://xbej48fecfua" path="res://assets/buttons/lvlselect5.png" id="12_4n00t"]
+[ext_resource type="Texture2D" uid="uid://bpal35eqeoeso" path="res://assets/buttons/gray/pressed/gray4_pressed.png" id="12_86mqy"]
 [ext_resource type="Texture2D" uid="uid://dib3fwv7yukyt" path="res://assets/buttons/pressed/lvl5pressed.png" id="13_pfaqo"]
 [ext_resource type="Texture2D" uid="uid://bqkxc3gckc0me" path="res://assets/buttons/orange/orange1.png" id="14_legh8"]
+[ext_resource type="Texture2D" uid="uid://cciu8jfx8v1jt" path="res://assets/buttons/gray/pressed/gray5_pressed.png" id="14_pwr3t"]
 [ext_resource type="Texture2D" uid="uid://cp16l6yqph2q2" path="res://assets/buttons/orange/orange2.png" id="15_nfbxx"]
 [ext_resource type="Texture2D" uid="uid://cmj4a1vsjckai" path="res://assets/buttons/orange/orange3.png" id="16_emdm5"]
+[ext_resource type="Texture2D" uid="uid://84n1cs6456te" path="res://assets/buttons/orange/pressed/orange1_pressed.png" id="16_vt40t"]
 [ext_resource type="Texture2D" uid="uid://dqfxipkarjiy4" path="res://assets/buttons/orange/orange4.png" id="17_6iehg"]
+[ext_resource type="Texture2D" uid="uid://ciev4yy23pro0" path="res://assets/buttons/orange/pressed/orange2_pressed.png" id="18_6jsrk"]
 [ext_resource type="Texture2D" uid="uid://3arlrjroi2fb" path="res://assets/buttons/orange/orange5.png" id="18_c2gx4"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="19_id1fd"]
+[ext_resource type="Texture2D" uid="uid://dxxacntxtw2wy" path="res://assets/buttons/orange/pressed/orange3_pressed.png" id="20_8lb3f"]
 [ext_resource type="Texture2D" uid="uid://d0sf15la6bpnd" path="res://assets/buttons/gray/gray1.png" id="20_vlct7"]
 [ext_resource type="Texture2D" uid="uid://b844yn0xqbi68" path="res://assets/buttons/gray/gray2.png" id="21_xgr2d"]
 [ext_resource type="Texture2D" uid="uid://bggoqbs4lhm0s" path="res://assets/buttons/gray/gray3.png" id="22_7tmqu"]
+[ext_resource type="Texture2D" uid="uid://dy4sni27x6imh" path="res://assets/buttons/orange/pressed/orange4_pressed.png" id="22_ddeyj"]
 [ext_resource type="Texture2D" uid="uid://ij3hvk7ekaav" path="res://assets/buttons/gray/gray4.png" id="23_cwolu"]
 [ext_resource type="Texture2D" uid="uid://6p7adurf86lg" path="res://assets/buttons/gray/gray5.png" id="24_n76ow"]
+[ext_resource type="Texture2D" uid="uid://dgte4qi3nm6e7" path="res://assets/buttons/orange/pressed/orange5_pressed.png" id="24_xs23r"]
 
 [sub_resource type="GDScript" id="GDScript_5ckpm"]
 script/source = "extends Node2D
@@ -167,30 +177,35 @@ layout_mode = 2
 [node name="Level2-1" parent="Stages/World2" instance=ExtResource("4_l3r1w")]
 layout_mode = 2
 texture_normal = ExtResource("14_legh8")
+texture_pressed = ExtResource("16_vt40t")
 id = 21
 welt = 2
 
 [node name="Level2-2" parent="Stages/World2" instance=ExtResource("4_l3r1w")]
 layout_mode = 2
 texture_normal = ExtResource("15_nfbxx")
+texture_pressed = ExtResource("18_6jsrk")
 id = 22
 welt = 2
 
 [node name="Level2-3" parent="Stages/World2" instance=ExtResource("4_l3r1w")]
 layout_mode = 2
 texture_normal = ExtResource("16_emdm5")
+texture_pressed = ExtResource("20_8lb3f")
 id = 23
 welt = 2
 
 [node name="Level2-4" parent="Stages/World2" instance=ExtResource("4_l3r1w")]
 layout_mode = 2
 texture_normal = ExtResource("17_6iehg")
+texture_pressed = ExtResource("22_ddeyj")
 id = 24
 welt = 2
 
 [node name="Level2-5" parent="Stages/World2" instance=ExtResource("4_l3r1w")]
 layout_mode = 2
 texture_normal = ExtResource("18_c2gx4")
+texture_pressed = ExtResource("24_xs23r")
 id = 25
 welt = 2
 
@@ -200,30 +215,35 @@ layout_mode = 2
 [node name="Level3-1" parent="Stages/World3" instance=ExtResource("4_l3r1w")]
 layout_mode = 2
 texture_normal = ExtResource("20_vlct7")
+texture_pressed = ExtResource("6_hn6d5")
 id = 31
 welt = 3
 
 [node name="Level3-2" parent="Stages/World3" instance=ExtResource("4_l3r1w")]
 layout_mode = 2
 texture_normal = ExtResource("21_xgr2d")
+texture_pressed = ExtResource("8_3rq0a")
 id = 32
 welt = 3
 
 [node name="Level3-3" parent="Stages/World3" instance=ExtResource("4_l3r1w")]
 layout_mode = 2
 texture_normal = ExtResource("22_7tmqu")
+texture_pressed = ExtResource("10_5iwnt")
 id = 33
 welt = 3
 
 [node name="Level3-4" parent="Stages/World3" instance=ExtResource("4_l3r1w")]
 layout_mode = 2
 texture_normal = ExtResource("23_cwolu")
+texture_pressed = ExtResource("12_86mqy")
 id = 34
 welt = 3
 
 [node name="Level3-5" parent="Stages/World3" instance=ExtResource("4_l3r1w")]
 layout_mode = 2
 texture_normal = ExtResource("24_n76ow")
+texture_pressed = ExtResource("14_pwr3t")
 id = 35
 welt = 3
 
