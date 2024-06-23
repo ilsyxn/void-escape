@@ -1,6 +1,6 @@
-[gd_resource type="TileSet" load_steps=57 format=3 uid="uid://w5iet3ku1ekm"]
+[gd_resource type="TileSet" load_steps=61 format=3 uid="uid://w5iet3ku1ekm"]
 
-[ext_resource type="Texture2D" uid="uid://b3jvxau326hir" path="res://assets/world-3/wand-world3.png" id="1_wvlcp"]
+[ext_resource type="Texture2D" uid="uid://dbd5004a7go25" path="res://assets/world-3/wand-world3.png" id="1_wvlcp"]
 [ext_resource type="Texture2D" uid="uid://dieucui0ixeoq" path="res://assets/skins/black.png" id="3_15e7k"]
 [ext_resource type="Texture2D" uid="uid://cuoa4g8bw7kix" path="res://assets/world-3/old_assets/goal.png" id="3_ay4yb"]
 [ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/skins/character.png" id="4_vi6rj"]
@@ -28,6 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://c4lur4xqg4pin" path="res://assets/world-3/laser.png" id="19_61wgh"]
 [ext_resource type="Texture2D" uid="uid://dbi0gfut4vekn" path="res://assets/world-3/outer-wall-corner.png" id="20_pvde8"]
 [ext_resource type="Texture2D" uid="uid://djhaxbfe08f58" path="res://assets/world-3/decke-licht.png" id="21_rxewh"]
+[ext_resource type="Texture2D" uid="uid://y61cwemdp05w" path="res://assets/world-3/ceiling-full.png" id="22_mnxba"]
+[ext_resource type="Texture2D" uid="uid://qpx5pt4k0nfs" path="res://assets/world-3/button.png" id="23_muh8x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_41ct4"]
 texture = ExtResource("1_wvlcp")
@@ -176,6 +178,17 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qlwk3"]
+texture = ExtResource("22_mnxba")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wxbtc"]
+texture = ExtResource("23_muh8x")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tnias"]
 texture = ExtResource("4_vi6rj")
 texture_region_size = Vector2i(32, 32)
@@ -256,3 +269,5 @@ sources/24 = SubResource("TileSetAtlasSource_xf8j2")
 sources/25 = SubResource("TileSetAtlasSource_jomji")
 sources/26 = SubResource("TileSetAtlasSource_875j8")
 sources/27 = SubResource("TileSetAtlasSource_0gwni")
+sources/28 = SubResource("TileSetAtlasSource_qlwk3")
+sources/29 = SubResource("TileSetAtlasSource_wxbtc")
