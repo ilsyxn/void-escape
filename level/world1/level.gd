@@ -187,3 +187,4 @@ func hide_lvl_ui():
 	$"../Belichtet/HighScoreTime".hide()
 	$"../visual_timer/time".hide()
 	$"../Belichtet/Border".hide()
+	$"../Belichtet/Star".hide()
