@@ -7,7 +7,7 @@ extends TileMap
 var astagrid = AStarGrid2D.new()
 const is_solid = "is_solid"
 var tile_size = 32
-var allowed_tile_ids = [5,7, 23]  # ID der Tiles, auf denen sich der Spieler bewegen darf
+var allowed_tile_ids = [5,7, 23, 41, 38]  # ID der Tiles, auf denen sich der Spieler bewegen darf
 var player_tile_pos  # Aktuelle Tile-Position des Spielers (Vector2)
 var enemy_positions = [enemy01_tile_pos, enemy02_tile_pos, enemy03_tile_pos, enemy04_tile_pos]
 var enemy_ids = [enemy1_id, enemy2_id, enemy3_id, enemy4_id]
@@ -157,7 +157,7 @@ func move_player(target_tile_pos):
 			star.texture = load("res://assets/buttons/orange/starorgange.png")
 		
 		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
-		if target_tile_id == 5:
+		if target_tile_id == 41:
 			if !save_Game.finishedLevels.has(id):
 				save_Game.levelFinished(id)
 				if bonus: 

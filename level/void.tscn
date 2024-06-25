@@ -1,19 +1,25 @@
-[gd_scene format=3 uid="uid://bbmxyrtducw50"]
+[gd_scene load_steps=4 format=3 uid="uid://bbmxyrtducw50"]
 
-[node name="Partikel" type="CPUParticles2D"]
-texture_filter = 1
-texture_repeat = 2
-amount = 100
-speed_scale = 0.5
+[ext_resource type="Texture2D" uid="uid://dodx84evlpuug" path="res://assets/world-3/particle.png" id="1_7hdss"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ux0tm"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_j7si0"]
+_data = [Vector2(0.0210526, 0.0283242), 0.0, 0.0, 0, 0, Vector2(0.0968421, 1), 0.0, 0.0, 0, 0, Vector2(0.418947, 0.810779), -2.78907, -2.78907, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_ux0tm")
+amount = 200
+lifetime = 0.8
+speed_scale = 0.35
+texture = ExtResource("1_7hdss")
 emission_shape = 1
-emission_sphere_radius = 19.0
-spread = 180.0
-gravity = Vector2(2.08165e-12, 2.08165e-12)
-radial_accel_max = 28.42
-damping_min = 100.0
-damping_max = 100.0
-scale_amount_min = 5.0
-scale_amount_max = 10.0
-color = Color(0.0745098, 0.0666667, 0.12549, 1)
-hue_variation_min = 1.0
-hue_variation_max = 1.0
+emission_sphere_radius = 20.0
+gravity = Vector2(0, -90)
+scale_amount_curve = SubResource("Curve_j7si0")
+color = Color(0.0666378, 0.00847829, 0.184105, 1)

@@ -4,9 +4,10 @@ extends TileMap
 @onready var light_out_in = $"../Belichtet/light_out_in"
 @onready var light_timer = $"../visual_timer/Timer"
 @onready var settings = $"../Belichtet/Settings"
+@onready var stern_player = $"../SternPlayer"
 
 var tile_size = 32
-var allowed_tile_ids = [30,2,3,4,8,9]  # ID der Tiles, auf denen sich der Spieler bewegen darf
+var allowed_tile_ids = [30,2,3,4,8,9,34,37]  # ID der Tiles, auf denen sich der Spieler bewegen darf
 var player_tile_pos  # Aktuelle Tile-Position des Spielers (Vector2)
 var timer_done = false
 var early_start = false
@@ -119,6 +120,7 @@ func move_player(target_tile_pos):
 
 		# Stern einsammeln
 		if target_tile_pos == starPos:
+			stern_player.play()
 			bonus = true
 			star.texture = load("res://assets/star.png")
 		
@@ -127,7 +129,7 @@ func move_player(target_tile_pos):
 			get_tree().change_scene_to_file("res://level/world1/shortCutLvl.tscn")
 		
 		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
-		if target_tile_id == 4 or target_tile_id == 10:
+		if target_tile_id == 4 or target_tile_id == 37:
 			if !save_Game.finishedLevels.has(id):
 				save_Game.levelFinished(id)
 				if bonus: 
