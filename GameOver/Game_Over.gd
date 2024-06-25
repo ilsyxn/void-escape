@@ -1,6 +1,5 @@
 extends Node2D
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -11,5 +10,18 @@ func _process(delta):
 	pass
 
 
-func _on_back_pressed():
+func bounce_in() -> void:
+	$".".set_physics_process(false)
+	var tween = create_tween()
+	
+	# Change position x to 512 over 2 seconds
+	# Also add a bounce at the end of the transition:
+	tween.tween_property(self, "position:y", 350, 2.0).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+
+
+func _on_menu_pressed():
 	get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
+
+
+func _on_restart_pressed():
+	$"../../lvl2_1".restartLevel()

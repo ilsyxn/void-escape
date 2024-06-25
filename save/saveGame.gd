@@ -5,12 +5,14 @@ class_name saveGame
 @export var finishedLevels : Array[int]
 var unlockedLevels = [1,21,31]
 @export var time : Array
+@export var stars_per_level : Array[int]
 
 var welt1_skins = [1, 21, 19, 22, 20, 18, 17, 12]
 var welt3_skins = [3, 7, 5, 9, 6, 4, 2, 8]
 var world1_player = welt1_skins[0]
 var world3_player = welt3_skins[0]
 var selectedSkinText = preload("res://assets/skins/character.png")
+var collected_stars = 0
 
 var three_stars = []
 var two_stars = []
@@ -27,7 +29,10 @@ func getWorld1Player():
 	return world1_player
 
 func bonusCollected(id : int):
-	bonusItems.append(id)
+	if !bonusItems.has(id):
+		bonusItems.append(id)
+		collected_stars += 1
+		print(collected_stars)
 
 func levelFinished(id : int):
 	finishedLevels.append(id)

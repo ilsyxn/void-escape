@@ -152,6 +152,7 @@ func move_player(target_tile_pos):
 			bewertung.set_times(stoppuhr.time, save_Game.time[id])
 			hide_lvl_ui()
 			bewertung.bounce_in()
+			print(save_Game.collected_stars)
 
 # Zum hinzufügen der Void
 func add_particle(pos: Vector2i):

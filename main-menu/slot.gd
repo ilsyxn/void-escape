@@ -1,34 +1,23 @@
 extends Node2D
-
-@onready var selected : bool = false
-@onready var img = $Img
-@onready var background = $Img/Background
-@onready var skin = $Img/Skin
-@onready var owned = $Img/Owned
-
-@export var id : int
 @export var isOwned : bool
-@export var image : Texture2D
+@export var id : int
+@export var bild : Texture2D
+@onready var knopf = $Knopf
+@onready var background = $Background
+@onready var skin = $Skin
+@onready var owned = $Owned
 
-# Called when the node enters the scene tree for the first time.
+signal select
 func _ready():
-
-	
-	skin.texture = image
-	if selected:
-		img.texture = preload("res://assets/skins/slot-selected.png")
-	elif !selected:
-		img.texture = preload("res://assets/skins/slot.png")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if selected:
-		img.texture = preload("res://assets/skins/slot-selected.png")
-	elif !selected:
-		img.texture = preload("res://assets/skins/slot.png")
-		
+	skin.texture = bild
+func _process(_delta):
 	if isOwned:
 		owned.visible = true
-	elif !isOwned:
+	else:
 		owned.visible = false
+
+
+
+func _on_knopf_pressed():
+	select.emit(id)
+	

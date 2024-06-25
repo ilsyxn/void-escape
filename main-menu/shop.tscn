@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6soj3hv42mmr"]
+
+[ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_635h5"]
+[ext_resource type="PackedScene" uid="uid://wmiwgf778der" path="res://main-menu/slot.tscn" id="2_a2vry"]
+
+[node name="Shop" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_635h5")]
+
+[node name="VBocContainer" type="VBoxContainer" parent="."]
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBocContainer"]
+layout_mode = 2
+
+[node name="Shop" parent="VBocContainer/HBoxContainer" instance=ExtResource("2_a2vry")]
+position = Vector2(157, 231)

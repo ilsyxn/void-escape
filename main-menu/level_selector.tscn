@@ -72,15 +72,15 @@ func _on_level_22_pressed():
 
 
 func _on_level_23_pressed():
-	pass
+	get_tree().change_scene_to_file(\"res://level/world2/level_2_3.tscn\")
 
 
 func _on_level_24_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file(\"res://level/world2/level_2_4.tscn\")
 
 
 func _on_level_25_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file(\"res://level/world2/level_2_5.tscn\")
 
 
 func _on_level_31_pressed():

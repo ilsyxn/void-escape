@@ -55,8 +55,9 @@ func _ready():
 	# Falls der Stern noch nicht eingesammelt wurde einen Stern spawnen
 	if !save_Game.bonusItems.has(id):
 		set_cell(1, starPos, 11, Vector2i(0,0), 0)
+		star.texture = load("res://assets/buttons/gray/stargray.png")
 	else: 
-		star.texture = load("res://assets/star.png")
+		star.texture = load("res://assets/buttons/orange/starorgange.png")
 	setup_grid()
 # Player Position auf der Map finden
 	for tile_pos in get_used_cells(1):
@@ -92,10 +93,7 @@ func _process(_delta):
 	# Licht soll Spieler verfolgen
 	light.position = to_global(map_to_local(player_tile_pos))
 	
-	# Timer wieder aktivieren wenn Pausemenü geschlossen wird
-	if settings.enabled == false:
-		stoppuhr.process_mode = Node.PROCESS_MODE_ALWAYS
-		light_timer.process_mode = Node.PROCESS_MODE_ALWAYS
+	
 
 func _unhandled_input(event):
 		if event.is_action_pressed("right"):
@@ -116,9 +114,9 @@ func _unhandled_input(event):
 			if settings.enabled == false:
 				settings.enabled = true
 				stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED
-				light_timer.process_mode = Node.PROCESS_MODE_DISABLED
 			elif settings.enabled:
 				settings.enabled = false
+				stoppuhr.process_mode = Node.PROCESS_MODE_ALWAYS
 		
 
 
@@ -156,7 +154,7 @@ func move_player(target_tile_pos):
 		# Stern einsammeln
 		if target_tile_pos == starPos:
 			bonus = true
-			star.texture = load("res://assets/star.png")
+			star.texture = load("res://assets/buttons/orange/starorgange.png")
 		
 		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
 		if target_tile_id == 5:
@@ -164,6 +162,7 @@ func move_player(target_tile_pos):
 				save_Game.levelFinished(id)
 				if bonus: 
 					save_Game.bonusCollected(id)
+					print(save_Game.bonusItems)
 					
 				# Nächstes Level im Menü freischalten
 				save_Game.unlockedLevels.append(id+1)
@@ -179,7 +178,6 @@ func execute_timeout_actions():
 		timer_done = true
 		light.visible = true
 		fog.visible = true
-		light_out_in.visible = false
 		await get_tree().create_timer(0.8).timeout
 	
 func _on_timer_timeout():
@@ -230,7 +228,9 @@ func move_monster_towards_player():
 				# Wenn vom Monster gefressen, dann Game Over	
 				if path_taken[1] == Vector2i(player_tile_pos):
 					await get_tree().create_timer(0.5).timeout
-					get_tree().change_scene_to_file("res://GameOver/Game_Over.tscn")
+					hide_lvl_ui()
+					$"../Belichtet/GameOver".bounce_in()
+					
 
 func setup_grid():
 	astagrid.region = Rect2i(0,0,100,100)
@@ -249,3 +249,13 @@ func setup_grid():
 
 func is_spot_solid(spot_to_check: Vector2i) -> bool:
 	return get_cell_tile_data(0, spot_to_check).get_custom_data(is_solid)
+
+func hide_lvl_ui():
+	$"../Belichtet/light_out_in".hide()
+	$"../Belichtet/gebrauchte_zeit".hide()
+	$"../Belichtet/stoppuhr/label".hide()
+	$"../Belichtet/Highscore".hide()
+	$"../Belichtet/HighScoreTime".hide()
+	$"../Belichtet/Border".hide()
+	$"../Belichtet/Star".hide()
+	$"../Belichtet/HighScoreTime".hide()

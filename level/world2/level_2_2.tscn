@@ -34,6 +34,9 @@ layer_0/tile_data = PackedInt32Array(589824, 10, 0, 655360, 10, 0, 720896, 10, 0
 layer_1/name = "player"
 layer_1/tile_data = PackedInt32Array(262148, 15, 0, 983052, 14, 0, 131085, 1, 0, 327702, 13, 0, 131095, 11, 0)
 script = ExtResource("4_cq4ac")
+id = 22
+starPos = Vector2(23, 2)
+startPos = Vector2i(13, 2)
 
 [node name="Fog" type="CanvasModulate" parent="."]
 visible = false

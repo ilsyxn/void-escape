@@ -1,26 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://wmiwgf778der"]
+[gd_scene load_steps=7 format=3 uid="uid://wmiwgf778der"]
 
 [ext_resource type="Script" path="res://main-menu/slot.gd" id="1_8dq2g"]
 [ext_resource type="Texture2D" uid="uid://chpdsnyfc7vms" path="res://assets/skins/slot.png" id="1_s3yat"]
+[ext_resource type="Texture2D" uid="uid://sey3e8riqju7" path="res://assets/skins/slot-selected.png" id="1_vg848"]
 [ext_resource type="Texture2D" uid="uid://f68xcnilhq47" path="res://assets/skins/background.png" id="2_ksli3"]
+[ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/skins/character.png" id="4_nqsxq"]
 [ext_resource type="Texture2D" uid="uid://dhu1eyfmd32w3" path="res://assets/skins/owned.png" id="4_qpp01"]
 
-[node name="Slot" type="Node2D"]
+[node name="Shop" type="Node2D"]
 script = ExtResource("1_8dq2g")
 
-[node name="Img" type="Sprite2D" parent="."]
-texture = ExtResource("1_s3yat")
+[node name="Knopf" type="TextureButton" parent="."]
+offset_right = 64.0
+offset_bottom = 65.0
+texture_normal = ExtResource("1_s3yat")
+texture_pressed = ExtResource("1_vg848")
 
-[node name="Background" type="Sprite2D" parent="Img"]
-position = Vector2(0.799999, -0.200001)
-scale = Vector2(1.3, 1.3)
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(32, 32.5)
+scale = Vector2(1.25, 1.28125)
 texture = ExtResource("2_ksli3")
 
-[node name="Skin" type="Sprite2D" parent="Img"]
-position = Vector2(0.6, -0.400003)
+[node name="Skin" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
 scale = Vector2(1.2, 1.2)
+texture = ExtResource("4_nqsxq")
 
-[node name="Owned" type="Sprite2D" parent="Img"]
-position = Vector2(14.6, 15.6)
-scale = Vector2(0.7, 0.7)
+[node name="Owned" type="Sprite2D" parent="."]
+position = Vector2(46, 47)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_qpp01")
+
+[connection signal="pressed" from="Knopf" to="." method="_on_knopf_pressed"]
