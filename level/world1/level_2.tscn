@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfoevclrtsuoo"]
+[gd_scene load_steps=15 format=3 uid="uid://dfoevclrtsuoo"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_lld83"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_nqx26"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_valib"]
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="9_37qmj"]
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="10_vlvyh"]
+[ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="12_tckbf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f3pfl"]
 texture = ExtResource("6_165i1")
@@ -200,6 +201,10 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("5_5bab5")
 theme_override_font_sizes/font_size = 41
 text = "00:00"
+
+[node name="SternPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_tckbf")
+volume_db = -10.0
 
 [connection signal="timeout" from="visual_timer/Timer" to="Background" method="_on_timer_timeout"]
 [connection signal="timeout" from="visual_timer/Timer" to="lvl2" method="_on_timer_timeout"]

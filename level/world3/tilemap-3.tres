@@ -1,6 +1,6 @@
-[gd_resource type="TileSet" load_steps=61 format=3 uid="uid://w5iet3ku1ekm"]
+[gd_resource type="TileSet" load_steps=73 format=3 uid="uid://w5iet3ku1ekm"]
 
-[ext_resource type="Texture2D" uid="uid://dbd5004a7go25" path="res://assets/world-3/wand-world3.png" id="1_wvlcp"]
+[ext_resource type="Texture2D" uid="uid://b3jvxau326hir" path="res://assets/world-3/wand-world3.png" id="1_wvlcp"]
 [ext_resource type="Texture2D" uid="uid://dieucui0ixeoq" path="res://assets/skins/black.png" id="3_15e7k"]
 [ext_resource type="Texture2D" uid="uid://cuoa4g8bw7kix" path="res://assets/world-3/old_assets/goal.png" id="3_ay4yb"]
 [ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/skins/character.png" id="4_vi6rj"]
@@ -30,6 +30,12 @@
 [ext_resource type="Texture2D" uid="uid://djhaxbfe08f58" path="res://assets/world-3/decke-licht.png" id="21_rxewh"]
 [ext_resource type="Texture2D" uid="uid://y61cwemdp05w" path="res://assets/world-3/ceiling-full.png" id="22_mnxba"]
 [ext_resource type="Texture2D" uid="uid://qpx5pt4k0nfs" path="res://assets/world-3/button.png" id="23_muh8x"]
+[ext_resource type="Texture2D" uid="uid://c7qnqj5qxk3v1" path="res://assets/labor/decke.png" id="25_nlxyr"]
+[ext_resource type="Texture2D" uid="uid://tfko01btkenv" path="res://assets/labor/finish.png" id="26_mbk4b"]
+[ext_resource type="Texture2D" uid="uid://dpkcltp6i1x34" path="res://assets/labor/wand-aussen.png" id="27_50ovm"]
+[ext_resource type="Texture2D" uid="uid://d1nfu0fryxh1v" path="res://assets/labor/wand.png" id="28_pxkwy"]
+[ext_resource type="Texture2D" uid="uid://bwhsf3v1ib0tt" path="res://assets/world-3/button-green.png" id="29_gt1o6"]
+[ext_resource type="Texture2D" uid="uid://by5fm3ygrutup" path="res://assets/buttons/gray/stargray.png" id="30_qg6gr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_41ct4"]
 texture = ExtResource("1_wvlcp")
@@ -199,6 +205,48 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_knnun"]
+texture = ExtResource("25_nlxyr")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rxu7v"]
+texture = ExtResource("26_mbk4b")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ngagv"]
+texture = ExtResource("27_50ovm")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gb1ce"]
+texture = ExtResource("28_pxkwy")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lrjim"]
+texture = ExtResource("29_gt1o6")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_85m5b"]
+texture = ExtResource("30_qg6gr")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xf8dv"]
 texture = ExtResource("5_ivgl4")
 texture_region_size = Vector2i(32, 32)
@@ -274,3 +322,9 @@ sources/26 = SubResource("TileSetAtlasSource_875j8")
 sources/27 = SubResource("TileSetAtlasSource_0gwni")
 sources/28 = SubResource("TileSetAtlasSource_qlwk3")
 sources/29 = SubResource("TileSetAtlasSource_wxbtc")
+sources/30 = SubResource("TileSetAtlasSource_knnun")
+sources/31 = SubResource("TileSetAtlasSource_rxu7v")
+sources/32 = SubResource("TileSetAtlasSource_ngagv")
+sources/34 = SubResource("TileSetAtlasSource_gb1ce")
+sources/35 = SubResource("TileSetAtlasSource_lrjim")
+sources/36 = SubResource("TileSetAtlasSource_85m5b")

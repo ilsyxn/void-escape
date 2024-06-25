@@ -9,16 +9,25 @@ extends TileMap
 @export var laser : Array[Vector2i]
 @export var portal_nodesA : Array[Node2D]
 @export var portal_nodesB : Array[Node2D]
+@export var buttons : Array [Vector2i]
+@onready var star = $"../Star"
 
 @onready var player_tile_pos : Vector2i = startPos
-@onready var allowed_tile_ids = [1, 10, 19, 34]
+@onready var allowed_tile_ids = [1, 10, 19, 31]
 @onready var betreten: Array = []
 @onready var benutzte_portale = []
 @onready var save_Game = preload("res://save/saveGame.tres")
 @onready var player = save_Game.getWorld3Player()
+@onready var used_buttons = []
 func _ready():
 	set_cell(1, startPos, player, Vector2i(0,0),0)
 	setup_connectors()
+	
+	# Falls der Stern noch nicht eingesammelt wurde einen Stern spawnen
+	if !save_Game.bonusItems.has(id):
+		set_cell(1, starPos, 36, Vector2i(0,0), 0)
+	else: 
+		set_cell(1, starPos, 32, Vector2i(0,0), 0)
 
 
 func _unhandled_input(event):
@@ -51,11 +60,20 @@ func move_player(target_tile_pos):
 		player_tile_pos = target_tile_pos
 	
 	# Boden füllen lol
-	if target_tile_id == 12:
+	if buttons.has(target_tile_pos) and !used_buttons.has(target_tile_pos):
 		erase_cell(1, laser.pop_front())
-		set_cell(0, target_tile_pos, 11, Vector2i(0,0),0)
+		used_buttons.append(target_tile_pos)
+		erase_cell(1, target_tile_pos)
+		set_cell(1, target_tile_pos, 35, Vector2i(0,0),0)
+	
+	if target_tile_pos == local_to_map(starPos):
+		print("hi")
+		if !save_Game.bonusItems.has(id):
+			save_Game.bonusCollected(id)
+			print("hi")
+			star.texture = preload("res://assets/buttons/gray/stargray.png")
 		
-	if target_tile_id == 10:
+	if target_tile_id == 31:
 			if !save_Game.finishedLevels.has(id):
 				save_Game.levelFinished(id)	
 			get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
