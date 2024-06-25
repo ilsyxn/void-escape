@@ -6,7 +6,7 @@ extends TileMap
 @onready var settings = $"../Belichtet/Settings"
 
 var tile_size = 32
-var allowed_tile_ids = [2,3,4,8,9]  # ID der Tiles, auf denen sich der Spieler bewegen darf
+var allowed_tile_ids = [30,2,3,4,8,9]  # ID der Tiles, auf denen sich der Spieler bewegen darf
 var player_tile_pos  # Aktuelle Tile-Position des Spielers (Vector2)
 var timer_done = false
 var early_start = false
@@ -74,19 +74,19 @@ func _process(_delta):
 		light_timer.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _unhandled_input(event):
-		if event.is_action_pressed("right"):
+		if event.is_action_pressed("right") and !settings.enabled:
 			move_player(player_tile_pos + Vector2.RIGHT)
 			execute_timeout_actions()
-		elif event.is_action_pressed("left"):
+		elif event.is_action_pressed("left") and !settings.enabled:
 			move_player(player_tile_pos + Vector2.LEFT)
 			execute_timeout_actions()
-		elif event.is_action_pressed("up"):
+		elif event.is_action_pressed("up") and !settings.enabled:
 			move_player(player_tile_pos + Vector2.UP)
 			execute_timeout_actions()
-		elif event.is_action_pressed("down"):
+		elif event.is_action_pressed("down") and !settings.enabled:
 			move_player(player_tile_pos + Vector2.DOWN)
 			execute_timeout_actions()
-		elif event.is_action_pressed("reset"):  
+		elif event.is_action_pressed("reset") and !settings.enabled:  
 			restartLevel()
 		elif event.is_action_pressed("settings"):  
 			if settings.enabled == false:

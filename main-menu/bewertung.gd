@@ -8,6 +8,11 @@ var tween : Tween
 @onready var highscore = $Highscore
 @onready var required = $Required
 @onready var save_Game = preload("res://save/saveGame.tres")
+@onready var bounced = false
+
+func _process(_delta):
+	if bounced and Input.is_action_just_pressed("controller_accept"):
+		get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
 
 func three_stars(id):
 	stern_1.texture = preload("res://main-menu/star_gelb_big.png")
@@ -42,14 +47,11 @@ func set_times(req, high):
 	required.text += str(round_place(req, 2)) 
 	highscore.text += str(round_place(high, 2)) 
 	
-	
 
 func bounce_in() -> void:
 	tween = create_tween()
-	
-	# Change position x to 512 over 2 seconds
-	# Also add a bounce at the end of the transition:
 	tween.tween_property(self, "position:y", 350, 2.0).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	bounced = true
 	
 func round_place(num,places):
 	return (round(num*pow(10,places))/pow(10,places))

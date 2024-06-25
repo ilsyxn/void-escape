@@ -1,17 +1,111 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6soj3hv42mmr"]
+[gd_scene load_steps=15 format=3 uid="uid://b6soj3hv42mmr"]
 
+[ext_resource type="Script" path="res://main-menu/shop.gd" id="1_2g3xm"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_635h5"]
 [ext_resource type="PackedScene" uid="uid://wmiwgf778der" path="res://main-menu/slot.tscn" id="2_a2vry"]
+[ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/skins/character.png" id="3_nmab7"]
+[ext_resource type="Texture2D" uid="uid://bsjxm8pflp8ce" path="res://assets/skins/red.png" id="4_5v1eg"]
+[ext_resource type="Texture2D" uid="uid://dx30hlwp278bj" path="res://assets/skins/green.png" id="5_8stcl"]
+[ext_resource type="Texture2D" uid="uid://cmfakq4frgstt" path="res://assets/skins/yellow.png" id="6_e3urt"]
+[ext_resource type="Texture2D" uid="uid://c0r5762xk2ejk" path="res://assets/skins/pink.png" id="7_v61pv"]
+[ext_resource type="Texture2D" uid="uid://d08gfgxydpyc8" path="res://assets/skins/dino.png" id="8_4ubpu"]
+[ext_resource type="Texture2D" uid="uid://dieucui0ixeoq" path="res://assets/skins/black.png" id="9_1ighr"]
+[ext_resource type="Texture2D" uid="uid://dhcsyklmgc7vw" path="res://assets/skins/reward.png" id="10_ykmxs"]
+[ext_resource type="Texture2D" uid="uid://csu247nqowvou" path="res://assets/ui/item_shop.png" id="12_p2pa4"]
+[ext_resource type="Texture2D" uid="uid://54hy54xe0ver" path="res://main-menu/star_gelb_big.png" id="13_mtvvu"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="14_v8pxh"]
 
 [node name="Shop" type="Node2D"]
+script = ExtResource("1_2g3xm")
 
 [node name="Background" parent="." instance=ExtResource("1_635h5")]
 
-[node name="VBocContainer" type="VBoxContainer" parent="."]
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = -168.0
+offset_top = -384.0
+offset_right = -168.0
+offset_bottom = -344.0
+scale = Vector2(1.8, 1.8)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBocContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Shop" parent="VBocContainer/HBoxContainer" instance=ExtResource("2_a2vry")]
-position = Vector2(157, 231)
+[node name="Slot0" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_a2vry")]
+position = Vector2(152, 232)
+bild = ExtResource("3_nmab7")
+
+[node name="Slot1" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_a2vry")]
+position = Vector2(232, 232)
+id = 1
+bild = ExtResource("4_5v1eg")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Slot2" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("2_a2vry")]
+position = Vector2(152, 316)
+id = 2
+bild = ExtResource("5_8stcl")
+
+[node name="Slot3" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("2_a2vry")]
+position = Vector2(232, 316)
+id = 3
+bild = ExtResource("6_e3urt")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Slot4" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("2_a2vry")]
+position = Vector2(152, 400)
+id = 4
+bild = ExtResource("7_v61pv")
+
+[node name="Slot5" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("2_a2vry")]
+position = Vector2(232, 400)
+id = 5
+bild = ExtResource("8_4ubpu")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Slot6" parent="VBoxContainer/HBoxContainer4" instance=ExtResource("2_a2vry")]
+position = Vector2(152, 484)
+id = 6
+bild = ExtResource("9_1ighr")
+
+[node name="Slot7" parent="VBoxContainer/HBoxContainer4" instance=ExtResource("2_a2vry")]
+position = Vector2(232, 484)
+id = 7
+bild = ExtResource("10_ykmxs")
+
+[node name="ItemShop" type="Sprite2D" parent="."]
+position = Vector2(778, 328)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_p2pa4")
+
+[node name="SelectedSkin" type="Sprite2D" parent="ItemShop"]
+position = Vector2(-20, 103.333)
+scale = Vector2(22, 22)
+texture = ExtResource("3_nmab7")
+
+[node name="Star" type="Sprite2D" parent="ItemShop"]
+position = Vector2(-175.333, -462)
+texture = ExtResource("13_mtvvu")
+
+[node name="Label" type="Label" parent="ItemShop"]
+offset_left = 38.0001
+offset_top = -568.667
+offset_right = 298.0
+offset_bottom = -387.667
+theme_override_fonts/font = ExtResource("14_v8pxh")
+theme_override_font_sizes/font_size = 180
+text = "11"
+
+[connection signal="select" from="VBoxContainer/HBoxContainer/Slot0" to="." method="_on_slot_0_select"]
+[connection signal="select" from="VBoxContainer/HBoxContainer/Slot1" to="." method="_on_slot_1_select"]
+[connection signal="select" from="VBoxContainer/HBoxContainer2/Slot2" to="." method="_on_slot_2_select"]
+[connection signal="select" from="VBoxContainer/HBoxContainer2/Slot3" to="." method="_on_slot_3_select"]
+[connection signal="select" from="VBoxContainer/HBoxContainer3/Slot4" to="." method="_on_slot_4_select"]
+[connection signal="select" from="VBoxContainer/HBoxContainer3/Slot5" to="." method="_on_slot_5_select"]
+[connection signal="select" from="VBoxContainer/HBoxContainer4/Slot6" to="." method="_on_slot_6_select"]
+[connection signal="select" from="VBoxContainer/HBoxContainer4/Slot7" to="." method="_on_slot_7_select"]
