@@ -24,8 +24,8 @@ texture = ExtResource("1_kctda")
 [node name="Background" parent="." instance=ExtResource("2_clnjs")]
 
 [node name="lvl2_1" type="TileMap" parent="."]
-position = Vector2(101, 25)
-scale = Vector2(0.57, 0.57)
+position = Vector2(103, 35)
+scale = Vector2(0.56, 0.56)
 tile_set = ExtResource("3_ctrp2")
 rendering_quadrant_size = 32
 navigation_visibility_mode = 1
