@@ -1,7 +1,5 @@
 extends TileMap
 @onready var light = $"../Light"
-@onready var light_out_in = $"../Belichtet/light_out_in"
-@onready var light_timer = $"../Belichtet/visual_timer/Timer"
 @onready var settings = $"../Belichtet/Settings"
 
 var astagrid = AStarGrid2D.new()
@@ -39,6 +37,14 @@ var move_in_two = false
 
 @onready var stoppuhr = $"../Belichtet/stoppuhr"
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
+
+@export var highscore_input_scene = "res://Scoreboard/HighscoreInput.tscn"
+@export var highscore_global: float
+
+@onready var new_highscore = $"../Belichtet/NewHighscore"
+@onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
+@onready var high_score = $"../Belichtet/Highscore2"
+
 
 func _ready():
 	intro.play()
@@ -170,7 +176,7 @@ func move_player(target_tile_pos):
 				save_Game.unlockedLevels.append(id+1)
 				if !save_Game.time[id]:
 					save_Game.time[id] = stoppuhr.time
-			
+					highscore_global = save_Game.time[id]
 			
 			get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
 
@@ -262,3 +268,10 @@ func hide_lvl_ui():
 	$"../Belichtet/Border".hide()
 	$"../Belichtet/Star".hide()
 	$"../Belichtet/HighScoreTime".hide()
+
+func _on_save_highscore_button_pressed(_new_text=""):
+	var new_name = new_name_edit.text.strip_edges()
+	if not len(new_name):
+		new_name = "Unknown"
+	high_score.add_entry({"name": new_name, "score": highscore_global, "kills": 1})	
+	new_highscore.visible = false

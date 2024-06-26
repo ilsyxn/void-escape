@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://c70fi6qty726v"]
+
+[ext_resource type="Script" path="res://Scoreboard/start.gd" id="1_fcatt"]
+[ext_resource type="PackedScene" path="res://Scoreboard/highscore.tscn" id="2_f64gv"]
+[ext_resource type="PackedScene" path="res://Scoreboard/snake_selector.tscn" id="4_5uquu"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_0pfsl"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_223n4"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_jnklp"]
+events = [SubResource("InputEventKey_0pfsl"), SubResource("InputEventKey_223n4")]
+
+[node name="Control" type="CanvasLayer"]
+script = ExtResource("1_fcatt")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 100
+text = "Snakes 360"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScore" parent="VBoxContainer2" instance=ExtResource("2_f64gv")]
+layout_mode = 2
+sort_by = "food"
+column_names = ["name", "food", "kills"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="SnakeSelector" parent="VBoxContainer2/HBoxContainer" instance=ExtResource("4_5uquu")]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+shortcut = SubResource("Shortcut_jnklp")
+text = "New Game"
+
+[node name="NewHighscore" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(600, 250)
+offset_left = 339.0
+offset_top = 194.0
+offset_right = 939.0
+offset_bottom = 444.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NewHighscore"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewHighscore/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "New Highscore!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NewHighscore/VBoxContainer"]
+layout_mode = 2
+
+[node name="NewNameEdit" type="LineEdit" parent="NewHighscore/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Your name"
+max_length = 20
+caret_blink = true
+
+[node name="SaveHighscoreButton" type="Button" parent="NewHighscore/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+text = "Save"
+
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="text_submitted" from="NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit" to="." method="_on_save_highscore_button_pressed"]
+[connection signal="pressed" from="NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton" to="." method="_on_save_highscore_button_pressed"]

@@ -29,6 +29,10 @@ var early_start = false
 @export var three_stars : float
 @export var two_stars : float
 @onready var intro = $"../Intro"
+@onready var new_highscore = $"../Belichtet/NewHighscore"
+@onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
+@onready var high_score = $"../Belichtet/Highscore2"
+var highscore_global
 
 
 
@@ -136,6 +140,7 @@ func move_player(target_tile_pos):
 				save_Game.unlockedLevels.append(id+1)
 				if !save_Game.time[id]:
 					save_Game.time[id] = stoppuhr.time
+					highscore_global = save_Game.time[id]
 			else:
 				# Falls wir einen neuen Highscore haben
 				if save_Game.time[id] > stoppuhr.time:
@@ -188,3 +193,10 @@ func hide_lvl_ui():
 	$"../visual_timer/time".hide()
 	$"../Belichtet/Border".hide()
 	$"../Belichtet/Star".hide()
+	
+func _on_save_highscore_button_pressed(_new_text=""):
+	var new_name = new_name_edit.text.strip_edges()
+	if not len(new_name):
+		new_name = "Unknown"
+	high_score.add_entry({"name": new_name, "score": highscore_global, "kills": 1})	
+	new_highscore.visible = false
