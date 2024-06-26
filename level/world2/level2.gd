@@ -31,6 +31,7 @@ var move_in_two = false
 @onready var player = 1
 @onready var particles = 0
 @onready var intro = $"../Intro"
+@onready var game_over = false
 
 @export var id : int
 @export var starPos : Vector2
@@ -220,7 +221,7 @@ func monster_animation():
 			
 func move_monster_towards_player():
 	for i in range(4):
-		if enemy_positions[i] != null:
+		if enemy_positions[i] != null and !game_over:
 			var path_taken = astagrid.get_id_path(enemy_positions[i], player_tile_pos)
 			if get_cell_source_id(1,path_taken[1]) == -1 or player:
 				erase_cell(1, enemy_positions[i])
@@ -231,6 +232,7 @@ func move_monster_towards_player():
 					await get_tree().create_timer(0.5).timeout
 					hide_lvl_ui()
 					$"../Belichtet/GameOver".bounce_in()
+					game_over = true
 					
 
 func setup_grid():
@@ -252,7 +254,7 @@ func is_spot_solid(spot_to_check: Vector2i) -> bool:
 	return get_cell_tile_data(0, spot_to_check).get_custom_data(is_solid)
 
 func hide_lvl_ui():
-	$"../Belichtet/light_out_in".hide()
+	
 	$"../Belichtet/gebrauchte_zeit".hide()
 	$"../Belichtet/stoppuhr/label".hide()
 	$"../Belichtet/Highscore".hide()

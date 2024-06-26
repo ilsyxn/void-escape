@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="2_3ibxd"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="3_fp4xt"]
 [ext_resource type="Script" path="res://level/world2/level2.gd" id="4_6a04k"]
-[ext_resource type="Script" path="res://level/visual_timer.gd" id="5_q2llm"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="6_8i1qd"]
 [ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="7_frkiq"]
 [ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="8_nu4va"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="9_5flna"]
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="10_7otap"]
 [ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="11_5sc7r"]
+[ext_resource type="PackedScene" uid="uid://dj4emyeeic6bl" path="res://GameOver/Game_Over.tscn" id="11_lcgff"]
 
 [node name="Level2-2" type="Node2D"]
 
@@ -45,31 +45,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="Belichtet" type="CanvasLayer" parent="."]
 
-[node name="visual_timer" type="Node" parent="Belichtet"]
-script = ExtResource("5_q2llm")
-
-[node name="time" type="Label" parent="Belichtet/visual_timer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 939.0
-offset_top = 234.5
-offset_right = -82.0
-offset_bottom = -371.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("6_8i1qd")
-theme_override_font_sizes/font_size = 41
-text = "00:00"
-metadata/_edit_use_anchors_ = true
-
-[node name="Timer" type="Timer" parent="Belichtet/visual_timer"]
-wait_time = 10.0
-one_shot = true
-autostart = true
-
 [node name="Star" type="Sprite2D" parent="Belichtet"]
 position = Vector2(1004, 546)
 scale = Vector2(4, 4)
@@ -83,24 +58,6 @@ tile_set = ExtResource("8_nu4va")
 rendering_quadrant_size = 32
 format = 2
 layer_0/tile_data = PackedInt32Array(1245191, 0, 1342177280, 1245192, 0, 1342177280, -65527, 0, 1610612736, -65526, 0, 1610612736, -65525, 0, 1610612736, 1245195, 0, 1342177280, -65524, 0, 1610612736, 1245196, 0, 1342177280, -65523, 0, 1610612736, 1245197, 0, 1342177280, -65522, 0, 1610612736, 1245198, 0, 1342177280, -65521, 0, 1610612736, 1245199, 0, 1342177280, -65520, 0, 1610612736, 1245200, 0, 1342177280, 262146, 0, 805306368, 327682, 0, 805306368, 393218, 0, 805306368, 458754, 0, 805306368, 524290, 0, 805306368, 589826, 0, 805306368, 655362, 0, 805306368, 720898, 0, 805306368, 786434, 0, 805306368, 851970, 0, 805306368, 917506, 0, 805306368, 196611, 1, 805306368, 983043, 1, 1342177280, 131076, 1, 805306368, 1048580, 1, 1342177280, 65541, 1, 805306368, 1114117, 1, 1342177280, 6, 1, 805306368, 1179654, 1, 1342177280, -65529, 0, 1610612736, 1245193, 0, 1342177280, -65519, 0, 1610612736, 1245201, 0, 1342177280, 18, 1, 1610612736, 1179666, 1, 0, 65555, 1, 1610612736, 1114131, 1, 0, 131092, 1, 1610612736, 1048596, 1, 0, 196629, 1, 1610612736, 983061, 1, 0, 262166, 0, 0, 327702, 0, 0, 393238, 0, 0, 458774, 0, 0, 524310, 0, 0, 589846, 0, 0, 655382, 0, 0, 720918, 0, 0, 786454, 0, 0, 851990, 0, 0, 917526, 0, 0)
-
-[node name="light_out_in" type="Label" parent="Belichtet"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 902.0
-offset_top = 206.0
-offset_right = 173.0
-offset_bottom = -391.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-size_flags_horizontal = 4
-size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("6_8i1qd")
-theme_override_font_sizes/font_size = 50
-text = "Lights out in :"
-metadata/_edit_use_anchors_ = true
 
 [node name="gebrauchte_zeit" type="Label" parent="Belichtet"]
 anchors_preset = 15
@@ -183,6 +140,10 @@ offset_right = -788.0
 offset_bottom = -45.0
 scale = Vector2(0.3, 0.3)
 metadata/_edit_use_anchors_ = true
+
+[node name="GameOver" parent="Belichtet" instance=ExtResource("11_lcgff")]
+position = Vector2(581, -245)
+scale = Vector2(0.4, 0.365)
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_5sc7r")
