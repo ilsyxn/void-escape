@@ -16,10 +16,9 @@ var latest_name := ""
 func _ready():
 	_load()
 
-
 func get_minimum_score():
 	if len(highscore) < length:
-		return 0
+		return INF  # Return a very large number if the list is not full
 	return highscore[-1][sort_by]
 
 func add_entry(new_entry: Dictionary) -> int:
@@ -36,7 +35,7 @@ func add_entry(new_entry: Dictionary) -> int:
 	# Case 2: We improved on an existing place
 	for i in range(len(highscore)):
 		var entry = highscore[i]
-		if new_entry[sort_by] > entry[sort_by]:
+		if new_entry[sort_by] < entry[sort_by]:  # Smaller score is better
 			highscore.insert(i, new_entry)
 			result = i + 1
 			break
@@ -75,7 +74,7 @@ func _update_highscore():
 	for entry in highscore:
 		place += 1
 		if show_place_numbers:
-			add_child(_create_label(str(place, "."), 0.1))
+			add_child(_create_label(str(place) + ".", 0.1))
 		for col in column_names:
 			add_child(_create_label(entry[col]))
 
@@ -88,9 +87,27 @@ func _load():
 			latest_name = data["latest_name"]
 		_update_highscore()
 
-		
-
 func _save():
 	var highscore_file = FileAccess.open(file_name, FileAccess.WRITE)
 	var json_string = JSON.stringify({"list": highscore, "latest_name": latest_name})
 	highscore_file.store_line(json_string)
+	
+func _update_shown_scores(level):
+	columns = len(column_names)
+	if show_place_numbers:
+		columns += 1
+
+	# Clear existing labels
+	for label in get_children():
+		remove_child(label)
+		label.queue_free()
+
+	# Filter and display matching entries
+	var place = 0  
+	for entry in highscore:
+		if entry["level_id"] == level:  # Only show matching level
+			place += 1
+			if show_place_numbers:
+				add_child(_create_label(str(place) + ".", 0.1))
+			for col in column_names:
+				add_child(_create_label(entry[col]))

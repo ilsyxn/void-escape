@@ -1,7 +1,6 @@
 extends Node
 @onready var timer = $Timer
 @onready var time = $time
-@onready var light_out_in = $"../light_out_in"
 
 
 # Called when the node enters the scene tree for the first time.

@@ -1,4 +1,5 @@
 extends TileMap
+
 @onready var light = $"../Light"
 @onready var light_out = $"../Belichtet/light_out"
 @onready var light_out_in = $"../Belichtet/light_out_in"
@@ -7,11 +8,11 @@ extends TileMap
 @onready var stern_player = $"../SternPlayer"
 
 var tile_size = 32
-var allowed_tile_ids = [30,2,3,4,8,9,34,37]  # ID der Tiles, auf denen sich der Spieler bewegen darf
+var allowed_tile_ids = [30, 2, 3, 4, 8, 9, 34, 37]  # ID der Tiles, auf denen sich der Spieler bewegen darf
 var player_tile_pos  # Aktuelle Tile-Position des Spielers (Vector2)
 var timer_done = false
 var early_start = false
-@onready var bonus = false 
+@onready var bonus = false
 @onready var betreten: Array = []
 @onready var fog = $"../Fog"
 @onready var star = $"../Belichtet/Star"
@@ -20,46 +21,57 @@ var early_start = false
 @onready var particles = 0
 @onready var bewertung = $"../Belichtet/Bewertung"
 
-@export var id : int
-@export var starPos : Vector2
-@export var startPos : Vector2i
+@export var id: int
+@export var starPos: Vector2
+@export var startPos: Vector2i
 
 @onready var stoppuhr = $"../Belichtet/stoppuhr"
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
-@export var three_stars : float
-@export var two_stars : float
+@export var three_stars: float
+@export var two_stars: float
 @onready var intro = $"../Intro"
 @onready var new_highscore = $"../Belichtet/NewHighscore"
 @onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
 @onready var high_score = $"../Belichtet/Highscore2"
 var highscore_global
 
-
+var scores = {
+	"res://level/world1/level_1.tscn": {"score": 1.51, "level_id": 1.1},
+	"res://level/world1/level_2.tscn": {"score": 4.26, "level_id": 1.2},
+	"res://level/world1/level_3.tscn": {"score": 5.56, "level_id": 1.3},
+	"res://level/world1/level_4.tscn": {"score": 4.99, "level_id": 1.4},
+	"res://level/world1/level_5.tscn": {"score": 5.01, "level_id": 1.5}
+}
+var scene_path
+var current_level_id
+var level_data
 
 func _ready():
+	new_highscore.hide()
+	set_lvl_records()
 	intro.play()
 	# Licht soll am Anfang an sein
 	fog.visible = false
 	light.visible = false
 	light_out.visible = false
-	
+
 	# Falls ein Highscore besteht, anzeigen
-	if save_Game.time[id]:
+	if save_Game.time.has(id):
 		high_score_time.text = stoppuhr.format_time(save_Game.time[id])
 
 	# Belohnung für die 5 gesammelten Sterne
 	if save_Game.bonusUnlocked():
 		player = 12
-	
+
 	# Player spawnen
-	set_cell(1, startPos, player, Vector2i(0,0),0)
-	
+	set_cell(1, startPos, player, Vector2i(0, 0), 0)
+
 	# Falls der Stern noch nicht eingesammelt wurde einen Stern spawnen
-	if !save_Game.bonusItems.has(id):
-		set_cell(1, starPos, 11, Vector2i(0,0), 0)
-	else: 
-		set_cell(1, starPos, 32, Vector2i(0,0), 0)
-	
+	if not save_Game.bonusItems.has(id):
+		set_cell(1, starPos, 11, Vector2i(0, 0), 0)
+	else:
+		set_cell(1, starPos, 32, Vector2i(0, 0), 0)
+
 	# Player Position auf der Map finden
 	for tile_pos in get_used_cells(1):
 		player_tile_pos = Vector2(tile_pos)
@@ -67,55 +79,58 @@ func _ready():
 		break  
 
 func _process(_delta):
+	scene_path = get_tree().current_scene.scene_file_path
+	level_data = scores.get(scene_path, {})
+	# Access the level_id (with a default if it doesn't exist)
+	current_level_id = level_data.get("level_id", -1)
+	high_score._update_shown_scores(current_level_id)
 	# Licht soll Spieler verfolgen
 	light.position = to_global(map_to_local(player_tile_pos))
-	
+
 	# Timer wieder aktivieren wenn Pausemenü geschlossen wird
-	if settings.enabled == false:
+	if not settings.enabled:
 		stoppuhr.process_mode = Node.PROCESS_MODE_ALWAYS
 		light_timer.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _unhandled_input(event):
-		if event.is_action_pressed("right") and !settings.enabled:
-			move_player(player_tile_pos + Vector2.RIGHT)
-			execute_timeout_actions()
-		elif event.is_action_pressed("left") and !settings.enabled:
-			move_player(player_tile_pos + Vector2.LEFT)
-			execute_timeout_actions()
-		elif event.is_action_pressed("up") and !settings.enabled:
-			move_player(player_tile_pos + Vector2.UP)
-			execute_timeout_actions()
-		elif event.is_action_pressed("down") and !settings.enabled:
-			move_player(player_tile_pos + Vector2.DOWN)
-			execute_timeout_actions()
-		elif event.is_action_pressed("reset") and !settings.enabled:  
-			restartLevel()
-		elif event.is_action_pressed("settings"):  
-			if settings.enabled == false:
-				settings.enabled = true
-				stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED
-				light_timer.process_mode = Node.PROCESS_MODE_DISABLED
-			elif settings.enabled:
-				settings.enabled = false
-
+	if event.is_action_pressed("right") and not settings.enabled:
+		move_player(player_tile_pos + Vector2.RIGHT)
+		execute_timeout_actions()
+	elif event.is_action_pressed("left") and not settings.enabled:
+		move_player(player_tile_pos + Vector2.LEFT)
+		execute_timeout_actions()
+	elif event.is_action_pressed("up") and not settings.enabled:
+		move_player(player_tile_pos + Vector2.UP)
+		execute_timeout_actions()
+	elif event.is_action_pressed("down") and not settings.enabled:
+		move_player(player_tile_pos + Vector2.DOWN)
+		execute_timeout_actions()
+	elif event.is_action_pressed("reset") and not settings.enabled:  
+		restartLevel()
+	elif event.is_action_pressed("settings"):  
+		if not settings.enabled:
+			settings.enabled = true
+			stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED
+			light_timer.process_mode = Node.PROCESS_MODE_DISABLED
+		else:
+			settings.enabled = false
 
 func restartLevel():
 	# Bonus soll nach dem reset nicht gespeichert bleiben
-	if !save_Game.finishedLevels.has(id) and save_Game.bonusItems.has(id):
+	if not save_Game.finishedLevels.has(id) and save_Game.bonusItems.has(id):
 		save_Game.removeBonus(id)
 	get_tree().reload_current_scene()
 
 func move_player(target_tile_pos):
-	
 	# Infos über das Target Tile bekommen
 	var target_tile_id = get_cell_source_id(0, target_tile_pos)
-	var _tile_data: TileData = get_cell_tile_data(0,player_tile_pos)
+	var _tile_data: TileData = get_cell_tile_data(0, player_tile_pos)
 
 	# Wenn wir das Teil betreten dürfen, dann bewegen
-	if (allowed_tile_ids.has(target_tile_id)) and !betreten.has(target_tile_pos):
-		erase_cell(1,player_tile_pos)
-			# Set the Player at the new position
-		set_cell(1, target_tile_pos, player, Vector2i(0,0),0)
+	if allowed_tile_ids.has(target_tile_id) and not betreten.has(target_tile_pos):
+		erase_cell(1, player_tile_pos)
+		# Set the Player at the new position
+		set_cell(1, target_tile_pos, player, Vector2i(0, 0), 0)
 		add_particle(player_tile_pos)
 		player_tile_pos = target_tile_pos
 
@@ -124,34 +139,34 @@ func move_player(target_tile_pos):
 			stern_player.play()
 			bonus = true
 			star.texture = load("res://assets/star.png")
-		
+
 		# Secret Level
 		if target_tile_id == 3:
 			get_tree().change_scene_to_file("res://level/world1/shortCutLvl.tscn")
-		
+
 		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
 		if target_tile_id == 4 or target_tile_id == 37:
-			if !save_Game.finishedLevels.has(id):
+			if not save_Game.finishedLevels.has(id):
 				save_Game.levelFinished(id)
-				if bonus: 
+				if bonus:
 					save_Game.bonusCollected(id)
-					
+
 				# Nächstes Level im Menü freischalten
-				save_Game.unlockedLevels.append(id+1)
-				if !save_Game.time[id]:
+				save_Game.unlockedLevels.append(id + 1)
+				if not save_Game.time.has(id):
 					save_Game.time[id] = stoppuhr.time
 					highscore_global = save_Game.time[id]
 			else:
 				# Falls wir einen neuen Highscore haben
 				if save_Game.time[id] > stoppuhr.time:
 					save_Game.time[id] = stoppuhr.time
-				if bonus: 
+				if bonus:
 					save_Game.bonusCollected(id)
 			if stoppuhr.time < three_stars:
 				bewertung.three_stars(id)
 			elif stoppuhr.time < two_stars:
 				bewertung.two_stars(id)
-			else: 
+			else:
 				bewertung.one_star(id)
 			bewertung.set_times(stoppuhr.time, save_Game.time[id])
 			hide_lvl_ui()
@@ -171,7 +186,7 @@ func add_particle(pos: Vector2i):
 
 # Licht ausschalten
 func execute_timeout_actions():
-	if !timer_done:
+	if not timer_done:
 		timer_done = true
 		light.visible = true
 		fog.visible = true
@@ -179,10 +194,10 @@ func execute_timeout_actions():
 		light_out_in.visible = false
 		await get_tree().create_timer(0.8).timeout
 		light_out.visible = false
-	
-	
+
 func _on_timer_timeout():
-	if !timer_done:	execute_timeout_actions()
+	if not timer_done:
+		execute_timeout_actions()
 
 func hide_lvl_ui():
 	$"../Belichtet/light_out_in".hide()
@@ -193,10 +208,28 @@ func hide_lvl_ui():
 	$"../visual_timer/time".hide()
 	$"../Belichtet/Border".hide()
 	$"../Belichtet/Star".hide()
-	
-func _on_save_highscore_button_pressed(_new_text=""):
+	new_highscore.show()
+
+func _on_save_highscore_button_pressed(_new_text = ""):
 	var new_name = new_name_edit.text.strip_edges()
 	if not len(new_name):
 		new_name = "Unknown"
-	high_score.add_entry({"name": new_name, "score": highscore_global, "kills": 1})	
+	high_score.add_entry({"name": new_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
 	new_highscore.visible = false
+
+func set_lvl_records():
+	# Load highscore from file or initialize
+	var stored_scores = []
+	if FileAccess.file_exists(high_score.file_name):
+		var highscore_file = FileAccess.open(high_score.file_name, FileAccess.READ)
+		var data = JSON.parse_string(highscore_file.get_line())
+		stored_scores = data["list"]
+	if stored_scores:
+		for entry in stored_scores:
+			high_score.add_entry(entry)
+	else:
+		for scene_path in scores.keys():  # Get the keys (scene paths)
+			var level_data = scores[scene_path]  # Access the data directly
+			var temp_lvl_score = level_data["score"]
+			var temp_lvl_id = level_data["level_id"]
+			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})
