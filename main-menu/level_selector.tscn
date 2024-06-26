@@ -38,6 +38,7 @@
 [sub_resource type="GDScript" id="GDScript_5ckpm"]
 script/source = "extends Node2D
 
+@onready var sound = $Sound
 
 func _on_back_pressed():
 	get_tree().change_scene_to_file(\"res://main-menu/main.tscn\")

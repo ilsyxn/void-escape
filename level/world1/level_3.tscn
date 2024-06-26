@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dm6xblpa84hs6"]
+[gd_scene load_steps=14 format=3 uid="uid://dm6xblpa84hs6"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_uwtd1"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_e0ybr"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="9_as6kf"]
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="10_6y0ps"]
 [ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="12_qg67k"]
+[ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="13_xog57"]
 
 [node name="Level3" type="Node2D"]
 
@@ -194,5 +195,8 @@ text = "00:00"
 [node name="SternPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_qg67k")
 volume_db = -10.0
+
+[node name="Intro" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_xog57")
 
 [connection signal="timeout" from="visual_timer/Timer" to="lvl3" method="_on_timer_timeout"]

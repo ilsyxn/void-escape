@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfoevclrtsuoo"]
+[gd_scene load_steps=16 format=3 uid="uid://dfoevclrtsuoo"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_lld83"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_nqx26"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="9_37qmj"]
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="10_vlvyh"]
 [ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="12_tckbf"]
+[ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="13_mok1e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f3pfl"]
 texture = ExtResource("6_165i1")
@@ -37,7 +38,7 @@ layer_1/tile_data = PackedInt32Array()
 script = ExtResource("5_jl34d")
 id = 2
 starPos = Vector2(13, 4)
-startPos = Vector2i(7, 2)
+startPos = Vector2i(7, 1)
 three_stars = 12.0
 two_stars = 16.0
 
@@ -205,6 +206,9 @@ text = "00:00"
 [node name="SternPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_tckbf")
 volume_db = -10.0
+
+[node name="Intro" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_mok1e")
 
 [connection signal="timeout" from="visual_timer/Timer" to="Background" method="_on_timer_timeout"]
 [connection signal="timeout" from="visual_timer/Timer" to="lvl2" method="_on_timer_timeout"]

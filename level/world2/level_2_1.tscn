@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bsf2jbhio0wqj"]
+[gd_scene load_steps=12 format=3 uid="uid://bsf2jbhio0wqj"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_3p66f"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_xsegl"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="7_8m75s"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_j7uh6"]
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="9_rchls"]
+[ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="11_cwti4"]
 [ext_resource type="PackedScene" uid="uid://dj4emyeeic6bl" path="res://GameOver/Game_Over.tscn" id="11_sxb5m"]
 
 [node name="Level2-1" type="Node2D"]
@@ -142,3 +143,6 @@ metadata/_edit_use_anchors_ = true
 [node name="GameOver" parent="Belichtet" instance=ExtResource("11_sxb5m")]
 position = Vector2(581, -245)
 scale = Vector2(0.4, 0.365)
+
+[node name="Intro" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_cwti4")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlvd0bsb51vlg"]
+[gd_scene load_steps=14 format=3 uid="uid://dlvd0bsb51vlg"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_pda38"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_mpqlu"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://level/visual_timer.gd" id="10_216da"]
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="10_tiku2"]
 [ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="12_7esyw"]
+[ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="12_n7lpi"]
 
 [node name="Level1" type="Node2D"]
 
@@ -204,6 +205,9 @@ metadata/_edit_use_anchors_ = true
 wait_time = 10.0
 one_shot = true
 autostart = true
+
+[node name="Intro" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_n7lpi")
 
 [node name="SternPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_7esyw")

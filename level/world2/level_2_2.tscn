@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bggqe8pqxjkea"]
+[gd_scene load_steps=12 format=3 uid="uid://bggqe8pqxjkea"]
 
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="1_uvgur"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="2_i8dl4"]
@@ -10,6 +10,7 @@
 [ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="8_tnuya"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="9_63enf"]
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="10_03ot6"]
+[ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="11_lfuph"]
 
 [node name="Level2-2" type="Node2D"]
 
@@ -182,3 +183,6 @@ offset_right = -788.0
 offset_bottom = -45.0
 scale = Vector2(0.3, 0.3)
 metadata/_edit_use_anchors_ = true
+
+[node name="Intro" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_lfuph")

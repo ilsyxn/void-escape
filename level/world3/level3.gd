@@ -11,6 +11,10 @@ extends TileMap
 @export var portal_nodesB : Array[Node2D]
 @export var buttons : Array [Vector2i]
 @onready var star = $"../Star"
+@onready var intro = $"../Intro"
+@onready var bewertung = $"../Bewertung"
+@onready var settings = $"../Settings"
+
 
 @onready var player_tile_pos : Vector2i = startPos
 @onready var allowed_tile_ids = [1, 10, 19, 31]
@@ -20,6 +24,7 @@ extends TileMap
 @onready var player = save_Game.getWorld3Player()
 @onready var used_buttons = []
 func _ready():
+	intro.play()
 	set_cell(1, startPos, player, Vector2i(0,0),0)
 	setup_connectors()
 	
@@ -41,13 +46,20 @@ func _unhandled_input(event):
 			move_player(player_tile_pos + Vector2i.DOWN)
 		elif event.is_action_pressed("reset"):  
 			restartLevel()
+		elif event.is_action_pressed("settings"):  
+			if settings.enabled == false:
+				settings.enabled = true
+				# stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED
+				# light_timer.process_mode = Node.PROCESS_MODE_DISABLED
+			elif settings.enabled:
+				settings.enabled = false
 
 func move_player(target_tile_pos):
 	
 	# Infos über das Target Tile bekommen
 	var target_tile_id = get_cell_source_id(0, target_tile_pos)
 	var _tile_data: TileData = get_cell_tile_data(0,player_tile_pos)
-	print(target_tile_id)
+	print(target_tile_pos, starPos)
 
 	# Wenn wir das Teil betreten dürfen, dann bewegen
 	if (allowed_tile_ids.has(target_tile_id)) and !betreten.has(target_tile_pos) and !laser.has(target_tile_pos):
@@ -66,17 +78,16 @@ func move_player(target_tile_pos):
 		erase_cell(1, target_tile_pos)
 		set_cell(1, target_tile_pos, 35, Vector2i(0,0),0)
 	
-	if target_tile_pos == local_to_map(starPos):
-		print("hi")
+	if str(target_tile_pos) == str(starPos):
 		if !save_Game.bonusItems.has(id):
 			save_Game.bonusCollected(id)
-			print("hi")
 			star.texture = preload("res://assets/buttons/gray/stargray.png")
 		
 	if target_tile_id == 31:
 			if !save_Game.finishedLevels.has(id):
 				save_Game.levelFinished(id)	
-			get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
+				save_Game.unlockedLevels.append(id+1)
+			bewertung.bounce_in()
 
 # Benutzt das Portal und sorgt dafür, dass es nicht ein zweites mal benutzt werden kann.
 func use_portal(coord : Vector2i):

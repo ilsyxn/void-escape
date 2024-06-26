@@ -30,6 +30,7 @@ var move_in_two = false
 @onready var save_Game = preload("res://save/saveGame.tres")
 @onready var player = 1
 @onready var particles = 0
+@onready var intro = $"../Intro"
 
 @export var id : int
 @export var starPos : Vector2
@@ -39,7 +40,7 @@ var move_in_two = false
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
 
 func _ready():
-	
+	intro.play()
 	# Damit sich die gegner bewegen können
 	randomize()
 	execute_timeout_actions()

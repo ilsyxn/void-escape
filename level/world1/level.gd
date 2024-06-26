@@ -20,10 +20,6 @@ var early_start = false
 @onready var particles = 0
 @onready var bewertung = $"../Belichtet/Bewertung"
 
-
-
-
-
 @export var id : int
 @export var starPos : Vector2
 @export var startPos : Vector2i
@@ -32,11 +28,12 @@ var early_start = false
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
 @export var three_stars : float
 @export var two_stars : float
-
+@onready var intro = $"../Intro"
 
 
 
 func _ready():
+	intro.play()
 	# Licht soll am Anfang an sein
 	fog.visible = false
 	light.visible = false

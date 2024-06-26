@@ -3,6 +3,7 @@ extends TextureButton
 @onready var save_Game = preload("res://save/saveGame.tres")
 var star_texture
 
+
 @export var id : int
 @export var welt : int
 
