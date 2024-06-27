@@ -45,8 +45,20 @@ var move_in_two = false
 @onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
 @onready var high_score = $"../Belichtet/Highscore2"
 
+var scores = {
+	"res://level/world2/level_2_1.tscn": {"score": 1.51, "level_id": 2.1},
+	"res://level/world2/level_2_2.tscn": {"score": 4.26, "level_id": 2.2},
+	"res://level/world2/level_2_3.tscn": {"score": 5.56, "level_id": 2.3},
+	"res://level/world2/level_2_4.tscn": {"score": 4.99, "level_id": 2.4},
+	"res://level/world2/level_2_5.tscn": {"score": 5.01, "level_id": 2.5}
+}
+var scene_path
+var current_level_id
+var level_data
 
 func _ready():
+	new_highscore.hide()
+	set_lvl_records()
 	intro.play()
 	# Damit sich die gegner bewegen können
 	randomize()
@@ -96,6 +108,11 @@ func _ready():
 		await get_tree().create_timer(0.8).timeout
 
 func _process(_delta):
+	scene_path = get_tree().current_scene.scene_file_path
+	level_data = scores.get(scene_path, {})
+	# Access the level_id (with a default if it doesn't exist)
+	current_level_id = level_data.get("level_id", -1)
+	high_score._update_shown_scores(current_level_id)
 	if not fog_red:
 		fade_fog()
 	# Licht soll Spieler verfolgen
@@ -268,10 +285,28 @@ func hide_lvl_ui():
 	$"../Belichtet/Border".hide()
 	$"../Belichtet/Star".hide()
 	$"../Belichtet/HighScoreTime".hide()
+	new_highscore.show()
 
-func _on_save_highscore_button_pressed(_new_text=""):
+func _on_save_highscore_button_pressed(_new_text = ""):
 	var new_name = new_name_edit.text.strip_edges()
 	if not len(new_name):
 		new_name = "Unknown"
-	high_score.add_entry({"name": new_name, "score": highscore_global, "kills": 1})	
+	high_score.add_entry({"name": new_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
 	new_highscore.visible = false
+
+func set_lvl_records():
+	# Load highscore from file or initialize
+	var stored_scores = []
+	if FileAccess.file_exists(high_score.file_name):
+		var highscore_file = FileAccess.open(high_score.file_name, FileAccess.READ)
+		var data = JSON.parse_string(highscore_file.get_line())
+		stored_scores = data["list"]
+	if stored_scores:
+		for entry in stored_scores:
+			high_score.add_entry(entry)
+	else:
+		for scene_path in scores.keys():  # Get the keys (scene paths)
+			var level_data = scores[scene_path]  # Access the data directly
+			var temp_lvl_score = level_data["score"]
+			var temp_lvl_id = level_data["level_id"]
+			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})

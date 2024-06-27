@@ -8,8 +8,8 @@ extends TileMap
 @onready var stern_player = $"../SternPlayer"
 
 var tile_size = 32
-var allowed_tile_ids = [30, 2, 3, 4, 8, 9, 34, 37]  # ID der Tiles, auf denen sich der Spieler bewegen darf
-var player_tile_pos  # Aktuelle Tile-Position des Spielers (Vector2)
+var allowed_tile_ids = [30, 2, 3, 4, 8, 9, 34, 37]
+var player_tile_pos
 var timer_done = false
 var early_start = false
 @onready var bonus = false
@@ -48,31 +48,26 @@ var level_data
 
 func _ready():
 	new_highscore.hide()
+	high_score.hide()
 	set_lvl_records()
 	intro.play()
-	# Licht soll am Anfang an sein
 	fog.visible = false
 	light.visible = false
 	light_out.visible = false
 
-	# Falls ein Highscore besteht, anzeigen
 	if save_Game.time.has(id):
 		high_score_time.text = stoppuhr.format_time(save_Game.time[id])
 
-	# Belohnung für die 5 gesammelten Sterne
 	if save_Game.bonusUnlocked():
 		player = 12
 
-	# Player spawnen
 	set_cell(1, startPos, player, Vector2i(0, 0), 0)
 
-	# Falls der Stern noch nicht eingesammelt wurde einen Stern spawnen
 	if not save_Game.bonusItems.has(id):
 		set_cell(1, starPos, 11, Vector2i(0, 0), 0)
 	else:
 		set_cell(1, starPos, 32, Vector2i(0, 0), 0)
 
-	# Player Position auf der Map finden
 	for tile_pos in get_used_cells(1):
 		player_tile_pos = Vector2(tile_pos)
 		betreten.append(player_tile_pos)
@@ -81,13 +76,10 @@ func _ready():
 func _process(_delta):
 	scene_path = get_tree().current_scene.scene_file_path
 	level_data = scores.get(scene_path, {})
-	# Access the level_id (with a default if it doesn't exist)
 	current_level_id = level_data.get("level_id", -1)
 	high_score._update_shown_scores(current_level_id)
-	# Licht soll Spieler verfolgen
 	light.position = to_global(map_to_local(player_tile_pos))
 
-	# Timer wieder aktivieren wenn Pausemenü geschlossen wird
 	if not settings.enabled:
 		stoppuhr.process_mode = Node.PROCESS_MODE_ALWAYS
 		light_timer.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -116,48 +108,38 @@ func _unhandled_input(event):
 			settings.enabled = false
 
 func restartLevel():
-	# Bonus soll nach dem reset nicht gespeichert bleiben
 	if not save_Game.finishedLevels.has(id) and save_Game.bonusItems.has(id):
 		save_Game.removeBonus(id)
 	get_tree().reload_current_scene()
 
 func move_player(target_tile_pos):
-	# Infos über das Target Tile bekommen
 	var target_tile_id = get_cell_source_id(0, target_tile_pos)
 	var _tile_data: TileData = get_cell_tile_data(0, player_tile_pos)
 
-	# Wenn wir das Teil betreten dürfen, dann bewegen
 	if allowed_tile_ids.has(target_tile_id) and not betreten.has(target_tile_pos):
 		erase_cell(1, player_tile_pos)
-		# Set the Player at the new position
 		set_cell(1, target_tile_pos, player, Vector2i(0, 0), 0)
 		add_particle(player_tile_pos)
 		player_tile_pos = target_tile_pos
 
-		# Stern einsammeln
 		if target_tile_pos == starPos:
 			stern_player.play()
 			bonus = true
 			star.texture = load("res://assets/star.png")
 
-		# Secret Level
 		if target_tile_id == 3:
 			get_tree().change_scene_to_file("res://level/world1/shortCutLvl.tscn")
 
-		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
 		if target_tile_id == 4 or target_tile_id == 37:
+			highscore_global = stoppuhr.time
 			if not save_Game.finishedLevels.has(id):
 				save_Game.levelFinished(id)
 				if bonus:
 					save_Game.bonusCollected(id)
-
-				# Nächstes Level im Menü freischalten
 				save_Game.unlockedLevels.append(id + 1)
 				if not save_Game.time.has(id):
 					save_Game.time[id] = stoppuhr.time
-					highscore_global = save_Game.time[id]
 			else:
-				# Falls wir einen neuen Highscore haben
 				if save_Game.time[id] > stoppuhr.time:
 					save_Game.time[id] = stoppuhr.time
 				if bonus:
@@ -173,7 +155,6 @@ func move_player(target_tile_pos):
 			bewertung.bounce_in()
 			print(save_Game.collected_stars)
 
-# Zum hinzufügen der Void
 func add_particle(pos: Vector2i):
 	var particle = preload("res://level/void.tscn").instantiate()
 	particle.global_position = map_to_local(pos)
@@ -181,10 +162,8 @@ func add_particle(pos: Vector2i):
 	await get_tree().create_timer(0.5).timeout
 	if Vector2i(player_tile_pos.x, player_tile_pos.y) != pos:
 		add_child(particle)
-		#await get_tree().create_timer(3.0).timeout
 		betreten.append(player_tile_pos)
 
-# Licht ausschalten
 func execute_timeout_actions():
 	if not timer_done:
 		timer_done = true
@@ -209,27 +188,23 @@ func hide_lvl_ui():
 	$"../Belichtet/Border".hide()
 	$"../Belichtet/Star".hide()
 	new_highscore.show()
+	high_score.show()
 
 func _on_save_highscore_button_pressed(_new_text = ""):
 	var new_name = new_name_edit.text.strip_edges()
 	if not len(new_name):
 		new_name = "Unknown"
 	high_score.add_entry({"name": new_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
-	new_highscore.visible = false
+	high_score._save()  # Add this line to save the highscore
 
 func set_lvl_records():
-	# Load highscore from file or initialize
-	var stored_scores = []
 	if FileAccess.file_exists(high_score.file_name):
-		var highscore_file = FileAccess.open(high_score.file_name, FileAccess.READ)
-		var data = JSON.parse_string(highscore_file.get_line())
-		stored_scores = data["list"]
-	if stored_scores:
-		for entry in stored_scores:
-			high_score.add_entry(entry)
+		pass
 	else:
-		for scene_path in scores.keys():  # Get the keys (scene paths)
-			var level_data = scores[scene_path]  # Access the data directly
-			var temp_lvl_score = level_data["score"]
-			var temp_lvl_id = level_data["level_id"]
+		for scene_path in scores.keys():
+			var temp_level_data = scores[scene_path]
+			var temp_lvl_score = temp_level_data["score"]
+			var temp_lvl_id = temp_level_data["level_id"]
 			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})
+			print(temp_lvl_score)
+

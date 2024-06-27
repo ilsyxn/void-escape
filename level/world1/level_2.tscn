@@ -206,7 +206,7 @@ text = "Submit"
 
 [node name="Highscore2" parent="Belichtet" instance=ExtResource("11_6au2c")]
 offset_left = 363.0
-offset_top = -43.0
+offset_top = -271.0
 offset_right = 497.0
 offset_bottom = 94.0
 

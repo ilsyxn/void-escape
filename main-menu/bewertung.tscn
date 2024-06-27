@@ -35,20 +35,11 @@ scale = Vector2(7, 7)
 texture_normal = ExtResource("3_ljff0")
 texture_pressed = ExtResource("5_5nbw1")
 
-[node name="Highscore" type="Label" parent="."]
-offset_left = -710.0
-offset_top = 17.0
-offset_right = 813.0
-offset_bottom = 168.0
-theme_override_fonts/font = ExtResource("6_fd5a6")
-theme_override_font_sizes/font_size = 145
-text = "Highscore: "
-
 [node name="Required" type="Label" parent="."]
-offset_left = -725.0
-offset_top = 166.0
-offset_right = 799.0
-offset_bottom = 367.0
+offset_left = -717.0
+offset_top = 78.0
+offset_right = 807.0
+offset_bottom = 279.0
 theme_override_fonts/font = ExtResource("6_fd5a6")
 theme_override_font_sizes/font_size = 145
 text = "clear time:  "
