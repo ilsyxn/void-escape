@@ -49,11 +49,21 @@ var move_in_two = false
 @onready var high_score = $"../Belichtet/Highscore2"
 
 var scores = {
+	"res://level/world1/level_1.tscn": {"score": 1.51, "level_id": 1.1},
+	"res://level/world1/level_2.tscn": {"score": 4.26, "level_id": 1.2},
+	"res://level/world1/level_3.tscn": {"score": 5.56, "level_id": 1.3},
+	"res://level/world1/level_4.tscn": {"score": 4.99, "level_id": 1.4},
+	"res://level/world1/level_5.tscn": {"score": 5.01, "level_id": 1.5},
 	"res://level/world2/level_2_1.tscn": {"score": 1.51, "level_id": 2.1},
 	"res://level/world2/level_2_2.tscn": {"score": 4.26, "level_id": 2.2},
 	"res://level/world2/level_2_3.tscn": {"score": 5.56, "level_id": 2.3},
 	"res://level/world2/level_2_4.tscn": {"score": 4.99, "level_id": 2.4},
-	"res://level/world2/level_2_5.tscn": {"score": 5.01, "level_id": 2.5}
+	"res://level/world2/level_2_5.tscn": {"score": 5.01, "level_id": 2.5},
+	"res://level/world3/level_3_1.tscn": {"score": 1.51, "level_id": 3.1},
+	"res://level/world3/level_3_2.tscn": {"score": 4.26, "level_id": 3.2},
+	"res://level/world3/level_3_3.tscn": {"score": 5.56, "level_id": 3.3},
+	"res://level/world3/level_3_4.tscn": {"score": 4.99, "level_id": 3.4},
+	"res://level/world3/level_3_5.tscn": {"score": 5.01, "level_id": 3.5}
 }
 var scene_path
 var current_level_id
@@ -61,6 +71,7 @@ var level_data
 
 func _ready():
 	new_highscore.hide()
+	high_score.hide()
 	set_lvl_records()
 	intro.play()
 	# Damit sich die gegner bewegen können
@@ -186,6 +197,7 @@ func move_player(target_tile_pos):
 		
 		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
 		if target_tile_id == 41:
+			highscore_global = stoppuhr.time
 			if !save_Game.finishedLevels.has(id):
 				save_Game.levelFinished(id)
 				if bonus: 
@@ -297,27 +309,23 @@ func hide_lvl_ui():
 	$"../Belichtet/Star".hide()
 	$"../Belichtet/HighScoreTime".hide()
 	new_highscore.show()
+	high_score.show()
 
 func _on_save_highscore_button_pressed(_new_text = ""):
 	var new_name = new_name_edit.text.strip_edges()
 	if not len(new_name):
 		new_name = "Unknown"
 	high_score.add_entry({"name": new_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
-	new_highscore.visible = false
-
+	high_score._save()  # Add this line to save the highscore
+	$"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton".disabled = true
+	
 func set_lvl_records():
-	# Load highscore from file or initialize
-	var stored_scores = []
 	if FileAccess.file_exists(high_score.file_name):
-		var highscore_file = FileAccess.open(high_score.file_name, FileAccess.READ)
-		var data = JSON.parse_string(highscore_file.get_line())
-		stored_scores = data["list"]
-	if stored_scores:
-		for entry in stored_scores:
-			high_score.add_entry(entry)
+		pass
 	else:
-		for scene_path in scores.keys():  # Get the keys (scene paths)
-			var level_data = scores[scene_path]  # Access the data directly
-			var temp_lvl_score = level_data["score"]
-			var temp_lvl_id = level_data["level_id"]
+		for scene_path in scores.keys():
+			var temp_level_data = scores[scene_path]
+			var temp_lvl_score = temp_level_data["score"]
+			var temp_lvl_id = temp_level_data["level_id"]
 			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})
+			print(temp_lvl_score)

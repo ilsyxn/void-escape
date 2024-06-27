@@ -147,11 +147,15 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(581, -245)
 scale = Vector2(0.4, 0.365)
 
+[node name="Bewertung" parent="Belichtet" instance=ExtResource("12_xbowd")]
+position = Vector2(576, -280)
+scale = Vector2(0.3, 0.3)
+
 [node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
-offset_left = 991.0
-offset_top = 431.0
-offset_right = 1125.0
-offset_bottom = 489.0
+offset_left = 938.0
+offset_top = 459.0
+offset_right = 1072.0
+offset_bottom = 517.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Belichtet/NewHighscore"]
 layout_mode = 2
@@ -172,14 +176,11 @@ layout_mode = 2
 text = "Submit"
 
 [node name="Highscore2" parent="Belichtet" instance=ExtResource("13_82ulj")]
-offset_left = 420.0
-offset_top = -43.0
-offset_right = 421.0
-offset_bottom = -22.0
-
-[node name="Bewertung" parent="Belichtet" instance=ExtResource("12_xbowd")]
-position = Vector2(576, -280)
-scale = Vector2(0.3, 0.3)
+texture_filter = 1
+offset_left = 311.0
+offset_top = -193.0
+offset_right = 460.0
+offset_bottom = 144.0
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_dc04p")
