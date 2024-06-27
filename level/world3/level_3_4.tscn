@@ -53,6 +53,12 @@ position = Vector2(388.795, 308.538)
 scale = Vector2(0.28, 0.28)
 farbe = SubResource("GradientTexture1D_mxtol")
 
+[node name="Belichtet" type="CanvasLayer" parent="."]
+
+[node name="Bewertung" parent="Belichtet" instance=ExtResource("7_04twr")]
+position = Vector2(576, -280)
+scale = Vector2(0.3, 0.3)
+
 [node name="Background" parent="." instance=ExtResource("4_3fffs")]
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]

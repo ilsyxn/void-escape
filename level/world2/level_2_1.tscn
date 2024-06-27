@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsf2jbhio0wqj"]
+[gd_scene load_steps=14 format=3 uid="uid://bsf2jbhio0wqj"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_3p66f"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_xsegl"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="11_cwti4"]
 [ext_resource type="PackedScene" uid="uid://dj4emyeeic6bl" path="res://GameOver/Game_Over.tscn" id="11_sxb5m"]
 [ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="11_x4fed"]
+[ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="13_luqcv"]
 
 [node name="Level2-1" type="Node2D"]
 
@@ -174,6 +175,10 @@ offset_left = 363.0
 offset_top = -43.0
 offset_right = 497.0
 offset_bottom = 94.0
+
+[node name="Bewertung" parent="Belichtet" instance=ExtResource("13_luqcv")]
+position = Vector2(576, -280)
+scale = Vector2(0.3, 0.3)
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_cwti4")

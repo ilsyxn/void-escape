@@ -10,11 +10,13 @@ extends TileMap
 @export var portal_nodesA : Array[Node2D]
 @export var portal_nodesB : Array[Node2D]
 @export var buttons : Array [Vector2i]
+@export var three_stars: float
+@export var two_stars: float
+
 @onready var star = $"../Star"
 @onready var intro = $"../Intro"
 @onready var bewertung = $"../Bewertung"
 @onready var settings = $"../Settings"
-
 
 @onready var player_tile_pos : Vector2i = startPos
 @onready var allowed_tile_ids = [1, 10, 19, 31]
@@ -23,6 +25,8 @@ extends TileMap
 @onready var save_Game = preload("res://save/saveGame.tres")
 @onready var player = save_Game.getWorld3Player()
 @onready var used_buttons = []
+
+
 func _ready():
 	intro.play()
 	set_cell(1, startPos, player, Vector2i(0,0),0)
@@ -88,6 +92,16 @@ func move_player(target_tile_pos):
 				save_Game.levelFinished(id)	
 				save_Game.unlockedLevels.append(id+1)
 			bewertung.bounce_in()
+		if stoppuhr.time < three_stars:
+				bewertung.three_stars(id)
+			elif stoppuhr.time < two_stars:
+				bewertung.two_stars(id)
+			else:
+				bewertung.one_star(id)
+			bewertung.set_times(stoppuhr.time, save_Game.time[id])
+			hide_lvl_ui()
+			bewertung.bounce_in()
+			print(save_Game.collected_stars)
 
 # Benutzt das Portal und sorgt dafür, dass es nicht ein zweites mal benutzt werden kann.
 func use_portal(coord : Vector2i):

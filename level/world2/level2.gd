@@ -30,10 +30,13 @@ var move_in_two = false
 @onready var particles = 0
 @onready var intro = $"../Intro"
 @onready var game_over = false
+@onready var bewertung = $"../Belichtet/Bewertung"
 
 @export var id : int
 @export var starPos : Vector2
 @export var startPos : Vector2i
+@export var three_stars: float
+@export var two_stars: float
 
 @onready var stoppuhr = $"../Belichtet/stoppuhr"
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
@@ -194,8 +197,16 @@ func move_player(target_tile_pos):
 				if !save_Game.time[id]:
 					save_Game.time[id] = stoppuhr.time
 					highscore_global = save_Game.time[id]
-			
-			get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
+			if stoppuhr.time < three_stars:
+				bewertung.three_stars(id)
+			elif stoppuhr.time < two_stars:
+				bewertung.two_stars(id)
+			else:
+				bewertung.one_star(id)
+			bewertung.set_times(stoppuhr.time, save_Game.time[id])
+			hide_lvl_ui()
+			bewertung.bounce_in()
+			print(save_Game.collected_stars)
 
 # Licht ausschalten
 func execute_timeout_actions():
