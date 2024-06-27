@@ -196,7 +196,8 @@ func _on_save_highscore_button_pressed(_new_text = ""):
 		new_name = "Unknown"
 	high_score.add_entry({"name": new_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
 	high_score._save()  # Add this line to save the highscore
-
+	$"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton".disabled = true
+	
 func set_lvl_records():
 	if FileAccess.file_exists(high_score.file_name):
 		pass

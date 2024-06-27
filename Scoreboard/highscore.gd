@@ -8,10 +8,11 @@ class_name Highscore
 @export var file_name := "user://highscore.save"
 @export var column_names := ["name", "score"]
 @export var show_place_numbers := true
-@export var max_shown_scores := 10
+@export var max_shown_scores := 11
 
 var highscore := []
 var latest_name := ""
+var latest_data: Dictionary
 
 func _ready():
 	_load()
@@ -24,6 +25,7 @@ func get_minimum_score():
 
 func add_entry(new_entry: Dictionary) -> int:
 	latest_name = new_entry[name_column]
+	latest_data = new_entry
 	var result = -1
 	for i in range(len(highscore)):
 		var entry = highscore[i]
@@ -80,7 +82,7 @@ func _save():
 	highscore_file.close()
 
 func _update_shown_scores(level):
-	var columns = len(column_names)
+	columns = len(column_names)
 	if show_place_numbers:
 		columns += 1
 
@@ -90,34 +92,33 @@ func _update_shown_scores(level):
 
 	var place = 0
 	var shown_scores = 0
-	var latest_entry_index = -1
+	var latest_data_place = -1
 
-	# Find the index of the latest entry
+	# Find the place of the latest data
 	for i in range(len(highscore)):
-		if highscore[i][name_column] == latest_name:
-			latest_entry_index = i
+		if highscore[i] == latest_data:
+			latest_data_place = i + 1
 			break
 
-	var latest_entry_shown = false
-
-	for i in range(len(highscore)):
-		var entry = highscore[i]
+	for entry in highscore:
 		if entry["level_id"] == level:
 			place += 1
-			if shown_scores < max_shown_scores:
+			if shown_scores < max_shown_scores - 1:
 				if show_place_numbers:
 					add_child(_create_label(str(place) + ".", 0.1))
 				for col in column_names:
 					add_child(_create_label(entry[col]))
 				shown_scores += 1
-				if i == latest_entry_index:
-					latest_entry_shown = true
-			elif i == latest_entry_index:
+			elif shown_scores < max_shown_scores:
+				shown_scores += 1
 				add_child(_create_label("..."))
-				# Show the latest entry even if it's beyond max_shown_scores
-				if show_place_numbers:
-					add_child(_create_label(str(place) + ".", 0.1))
-				for col in column_names:
-					add_child(_create_label(entry[col]))
-				latest_entry_shown = true
+				add_child(_create_label("..."))
+				add_child(_create_label("..."))
+				
+				if latest_data != {} and latest_data_place > 0:
+					add_child(_create_label(str(latest_data_place) + ".", 0.1))
+					for col in column_names:
+						add_child(_create_label(latest_data[col]))
+			else:
+				break
 
