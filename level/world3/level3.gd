@@ -92,14 +92,14 @@ func move_player(target_tile_pos):
 				save_Game.levelFinished(id)	
 				save_Game.unlockedLevels.append(id+1)
 			bewertung.bounce_in()
-		if stoppuhr.time < three_stars:
-				bewertung.three_stars(id)
-			elif stoppuhr.time < two_stars:
-				bewertung.two_stars(id)
-			else:
-				bewertung.one_star(id)
-			bewertung.set_times(stoppuhr.time, save_Game.time[id])
-			hide_lvl_ui()
+		#if stoppuhr.time < three_stars:
+			#	bewertung.three_stars(id)
+			#elif stoppuhr.time < two_stars:
+			#	bewertung.two_stars(id)
+		#	else:
+				#bewertung.one_star(id)
+			#bewertung.set_times(stoppuhr.time, save_Game.time[id])
+			#hide_lvl_ui()
 			bewertung.bounce_in()
 			print(save_Game.collected_stars)
 

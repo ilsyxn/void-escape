@@ -12,7 +12,8 @@ var welt3_skins = [3, 7, 5, 9, 6, 4, 2, 8]
 var world1_player = welt1_skins[0]
 var world3_player = welt3_skins[0]
 var selectedSkinText = preload("res://assets/skins/character.png")
-var collected_stars = 0
+var owned_skins = [0]
+var collected_stars = 5
 var controller = false
 var three_stars = []
 var two_stars = []
@@ -53,5 +54,9 @@ func gameFinished() -> bool:
 		if !finishedLevels.has(n):
 			return false
 	return true
+	
+func equip_skin(id):
+	world1_player = welt1_skins[id]
+	world3_player = welt3_skins[id]
 
 

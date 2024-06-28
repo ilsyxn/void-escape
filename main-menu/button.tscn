@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqf8gssb1vndr"]
+[gd_scene load_steps=6 format=3 uid="uid://cqf8gssb1vndr"]
 
 [ext_resource type="Texture2D" uid="uid://drxtxjxw2k3yr" path="res://assets/buttons/lvlselect.png" id="1_sx7u6"]
 [ext_resource type="Texture2D" uid="uid://b4pbwe57p2mea" path="res://assets/ui/lvllocked.png" id="2_3ijli"]
 [ext_resource type="Script" path="res://main-menu/levelbtn.gd" id="3_lr72x"]
+[ext_resource type="Texture2D" uid="uid://bc783vkp05vms" path="res://assets/buttons/border_lvl.png" id="4_1b6j8"]
 [ext_resource type="Texture2D" uid="uid://5ji5cp3arid8" path="res://assets/star.png" id="4_rx0nh"]
 
 [node name="Button" type="TextureButton"]
@@ -12,6 +13,11 @@ offset_bottom = 34.0
 texture_normal = ExtResource("1_sx7u6")
 texture_disabled = ExtResource("2_3ijli")
 script = ExtResource("3_lr72x")
+
+[node name="BorderLvl" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(16, 16)
+texture = ExtResource("4_1b6j8")
 
 [node name="Star" type="Sprite2D" parent="."]
 position = Vector2(16, 31)

@@ -1,25 +1,26 @@
 extends Node2D
-@onready var buttons = [$VBoxContainer/HBoxContainer/Play, 
-$VBoxContainer/HBoxContainer/Skins, 
-$VBoxContainer/HBoxContainer2/Credits, 
-$VBoxContainer/HBoxContainer2/Help]
 @onready var save_Game = preload("res://save/saveGame.tres")
 @onready var index = 0
+@onready var buttons = [$Marker1, $Marker2, $Marker3, $Marker4]
+@onready var border = $Border
 func _ready():
 	pass
 func _process(_delta):
+	border.position = buttons[index].position
 	if Input.is_action_just_pressed("controller"): 
 		save_Game.controller = true
-	if Input.is_action_just_pressed("up") and save_Game.controller:
-		pass
-	if Input.is_action_just_pressed("down") and save_Game.controller:
-		pass
-	if Input.is_action_just_pressed("left") and save_Game.controller:
-		pass
-	if Input.is_action_just_pressed("right") and save_Game.controller:
-		pass
-	if Input.is_action_just_pressed("controller_accept") and save_Game.controller:
+	if Input.is_action_just_pressed("left"):
+		move_border(true)
+	if Input.is_action_just_pressed("right"):
+		move_border(false)
+	if Input.is_action_just_pressed("enter"):
 		press_button(index)
+
+func move_border(left :bool):
+	if left and index != 0:
+		index -= 1
+	elif !left and index != 3:
+		index += 1
 
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")

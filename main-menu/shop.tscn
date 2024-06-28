@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6soj3hv42mmr"]
+[gd_scene load_steps=16 format=3 uid="uid://b6soj3hv42mmr"]
 
 [ext_resource type="Script" path="res://main-menu/shop.gd" id="1_2g3xm"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_635h5"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://csu247nqowvou" path="res://assets/ui/item_shop.png" id="12_p2pa4"]
 [ext_resource type="Texture2D" uid="uid://54hy54xe0ver" path="res://main-menu/star_gelb_big.png" id="13_mtvvu"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="14_v8pxh"]
+[ext_resource type="Texture2D" uid="uid://d0j4pgqbc4jl6" path="res://assets/skins/border.png" id="15_lgfgn"]
 
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_2g3xm")
@@ -32,12 +33,14 @@ layout_mode = 2
 
 [node name="Slot0" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_a2vry")]
 position = Vector2(152, 232)
+isOwned = true
 bild = ExtResource("3_nmab7")
 
 [node name="Slot1" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_a2vry")]
 position = Vector2(232, 232)
 id = 1
 bild = ExtResource("4_5v1eg")
+preis = 5
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -46,11 +49,13 @@ layout_mode = 2
 position = Vector2(152, 316)
 id = 2
 bild = ExtResource("5_8stcl")
+preis = 5
 
 [node name="Slot3" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("2_a2vry")]
 position = Vector2(232, 316)
 id = 3
 bild = ExtResource("6_e3urt")
+preis = 5
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -59,11 +64,13 @@ layout_mode = 2
 position = Vector2(152, 400)
 id = 4
 bild = ExtResource("7_v61pv")
+preis = 15
 
 [node name="Slot5" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("2_a2vry")]
 position = Vector2(232, 400)
 id = 5
 bild = ExtResource("8_4ubpu")
+preis = 15
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -72,6 +79,7 @@ layout_mode = 2
 position = Vector2(152, 484)
 id = 6
 bild = ExtResource("9_1ighr")
+preis = 15
 
 [node name="Slot7" parent="VBoxContainer/HBoxContainer4" instance=ExtResource("2_a2vry")]
 position = Vector2(232, 484)
@@ -92,7 +100,12 @@ texture = ExtResource("3_nmab7")
 position = Vector2(-175.333, -462)
 texture = ExtResource("13_mtvvu")
 
-[node name="Label" type="Label" parent="ItemShop"]
+[node name="StarsOwned" type="Sprite2D" parent="ItemShop"]
+position = Vector2(846.667, -933.333)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_mtvvu")
+
+[node name="Preis" type="Label" parent="ItemShop"]
 offset_left = 38.0001
 offset_top = -568.667
 offset_right = 298.0
@@ -100,6 +113,71 @@ offset_bottom = -387.667
 theme_override_fonts/font = ExtResource("14_v8pxh")
 theme_override_font_sizes/font_size = 180
 text = "11"
+
+[node name="Owned" type="Label" parent="ItemShop"]
+offset_left = 953.333
+offset_top = -1013.33
+offset_right = 1213.33
+offset_bottom = -832.333
+scale = Vector2(0.8, 0.8)
+theme_override_fonts/font = ExtResource("14_v8pxh")
+theme_override_font_sizes/font_size = 180
+text = "11"
+
+[node name="Action" type="Label" parent="ItemShop"]
+offset_left = -700.0
+offset_top = 560.0
+offset_right = 843.0
+offset_bottom = 681.0
+theme_override_fonts/font = ExtResource("14_v8pxh")
+theme_override_font_sizes/font_size = 120
+text = "Press Enter to buy"
+
+[node name="Back" type="Label" parent="ItemShop"]
+offset_left = -620.0
+offset_top = 906.667
+offset_right = 687.0
+offset_bottom = 1027.67
+theme_override_fonts/font = ExtResource("14_v8pxh")
+theme_override_font_sizes/font_size = 70
+text = "(press esc/delete to go back)"
+
+[node name="Border" type="Sprite2D" parent="."]
+position = Vector2(307, 566)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("15_lgfgn")
+
+[node name="Marker1" type="Marker2D" parent="."]
+position = Vector2(163, 91)
+scale = Vector2(1.8, 1.8)
+
+[node name="Marker2" type="Marker2D" parent="."]
+position = Vector2(307, 91)
+scale = Vector2(1.8, 1.8)
+
+[node name="Marker3" type="Marker2D" parent="."]
+position = Vector2(163, 250)
+scale = Vector2(1.8, 1.8)
+
+[node name="Marker4" type="Marker2D" parent="."]
+position = Vector2(307, 250)
+scale = Vector2(1.8, 1.8)
+
+[node name="Marker5" type="Marker2D" parent="."]
+position = Vector2(163, 408)
+scale = Vector2(1.8, 1.8)
+
+[node name="Marker6" type="Marker2D" parent="."]
+position = Vector2(307, 408)
+scale = Vector2(1.8, 1.8)
+
+[node name="Marker7" type="Marker2D" parent="."]
+position = Vector2(163, 568)
+scale = Vector2(1.8, 1.8)
+
+[node name="Marker8" type="Marker2D" parent="."]
+position = Vector2(307, 566)
+scale = Vector2(1.8, 1.8)
 
 [connection signal="select" from="VBoxContainer/HBoxContainer/Slot0" to="." method="_on_slot_0_select"]
 [connection signal="select" from="VBoxContainer/HBoxContainer/Slot1" to="." method="_on_slot_1_select"]

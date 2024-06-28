@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://80l42hnronsq"]
+[gd_scene load_steps=12 format=3 uid="uid://80l42hnronsq"]
 
 [ext_resource type="Script" path="res://main-menu/main.gd" id="1_lwrof"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="2_73ey8"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bsxiytx56pjc0" path="res://assets/buttons/credits-pressed.png" id="7_l1t1k"]
 [ext_resource type="Texture2D" uid="uid://cr76rfr8ihm61" path="res://assets/buttons/help.png" id="8_klbfv"]
 [ext_resource type="Texture2D" uid="uid://1prwvn67u1cy" path="res://assets/buttons/help-pressed.png" id="9_qr0ql"]
+[ext_resource type="Texture2D" uid="uid://4f0vccpukupw" path="res://assets/border_lang.png" id="11_mcj18"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_lwrof")
@@ -63,6 +64,27 @@ texture_pressed = ExtResource("7_l1t1k")
 layout_mode = 2
 texture_normal = ExtResource("8_klbfv")
 texture_pressed = ExtResource("9_qr0ql")
+
+[node name="Marker1" type="Marker2D" parent="."]
+position = Vector2(490, 305)
+scale = Vector2(1, 1)
+
+[node name="Marker2" type="Marker2D" parent="."]
+position = Vector2(752, 304)
+scale = Vector2(1, 1)
+
+[node name="Marker3" type="Marker2D" parent="."]
+position = Vector2(488, 408)
+scale = Vector2(1, 1)
+
+[node name="Marker4" type="Marker2D" parent="."]
+position = Vector2(752, 408)
+scale = Vector2(1, 1)
+
+[node name="Border" type="Sprite2D" parent="."]
+position = Vector2(488, 408)
+scale = Vector2(2.1, 2.1)
+texture = ExtResource("11_mcj18")
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Skins" to="." method="_on_skins_pressed"]
