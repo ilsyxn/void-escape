@@ -48,7 +48,7 @@ var move_in_two = false
 
 @onready var new_highscore = $"../Belichtet/NewHighscore"
 @onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
-@onready var high_score = $"../Belichtet/Highscore2"
+@onready var high_score = $"../Belichtet/NewHighscore/VBoxContainer/Highscore2"
 @onready var onscreen_keyboard = $"../Belichtet/OnscreenKeyboard"
 
 var scores = {

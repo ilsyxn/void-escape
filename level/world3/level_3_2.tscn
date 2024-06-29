@@ -226,9 +226,9 @@ offset_bottom = 144.0
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 offset_left = 286.0
-offset_top = 591.0
+offset_top = 12.0
 offset_right = 875.0
-offset_bottom = 896.0
+offset_bottom = 317.0
 script = ExtResource("12_gdbls")
 
 [node name="star_collected" type="Label" parent="Belichtet"]

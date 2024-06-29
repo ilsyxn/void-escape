@@ -52,7 +52,13 @@ func _create_label(text, ratio:=1.0) -> Label:
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.size_flags_stretch_ratio = ratio
+	
+	var custom_font = load("res://assets/ui/gomarice_mix_bit_font.ttf")
+	label.add_theme_font_override("font", custom_font)
+	
 	return label
+
+
 
 func _update_highscore():
 	for label in get_children():
@@ -90,20 +96,23 @@ func _update_shown_scores(level):
 		remove_child(label)
 		label.queue_free()
 		
-	add_child(_create_label(""))
+	add_child(_create_label(" ---- "))
 	add_child(_create_label("Leaderboard"))
-	add_child(_create_label(""))
+	add_child(_create_label("----"))
 
 	var place = 0
 	var shown_scores = 0
 	var latest_data_place = -1
 
-	# Find the place of the latest data
+  # Find the place of the latest data considering the level ID
 	for i in range(len(highscore)):
-		if highscore[i] == latest_data:
-			latest_data_place = i + 1
+		if highscore[i]["level_id"] == level and highscore[i] == latest_data:
+			latest_data_place = place + 1
 			break
+		if highscore[i]["level_id"] == level:
+			place += 1
 
+	place = 0
 	for entry in highscore:
 		if entry["level_id"] == level:
 			place += 1
@@ -119,10 +128,13 @@ func _update_shown_scores(level):
 				add_child(_create_label("..."))
 				add_child(_create_label("..."))
 				
-				if latest_data != {} and latest_data_place > 0:
+				if latest_data != {} and latest_data_place > 10:
 					add_child(_create_label(str(latest_data_place) + ".", 0.1))
 					for col in column_names:
 						add_child(_create_label(latest_data[col]))
 			else:
 				break
+	add_child(_create_label(""))
+	add_child(_create_label(""))
+	add_child(_create_label(""))
 
