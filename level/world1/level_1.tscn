@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_mpqlu"]
 [ext_resource type="Script" path="res://level/world1/level.gd" id="3_g3q71"]
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="4_02ujw"]
-[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/ui/star_locked.png" id="5_1py18"]
+[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="5_1py18"]
 [ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="6_usvsv"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="7_viqtn"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_u803n"]
@@ -235,9 +235,9 @@ offset_bottom = 144.0
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 offset_left = 286.0
-offset_top = 602.0
+offset_top = 850.0
 offset_right = 875.0
-offset_bottom = 907.0
+offset_bottom = 1155.0
 script = ExtResource("12_8t8xq")
 
 [node name="Info" parent="Belichtet" instance=ExtResource("13_8v5sd")]

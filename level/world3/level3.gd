@@ -19,8 +19,9 @@ extends TileMap
 @onready var intro = $"../Intro"
 
 @onready var settings = $"../Belichtet/Settings"
-
-
+@onready var fog = false
+@onready var stern_player = $"../SternPlayer"
+@onready var star_collected_text = $"../Belichtet/star_collected"
 @onready var player_tile_pos : Vector2i = startPos
 @onready var allowed_tile_ids = [1, 10, 19, 31]
 @onready var betreten: Array = []
@@ -68,6 +69,13 @@ func _process(delta):
 			new_name_edit.text = high_score.latest_name
 			do_once = false
 	light.position = to_global(map_to_local(player_tile_pos))
+	if fog and !light.texture_scale > 1.5:
+		var tween = create_tween()
+		tween.tween_property(light, "texture_scale", 1.5, 1.5)
+	elif !fog and !light.texture_scale < 0.5:
+		var tween = create_tween()
+		tween.tween_property(light, "texture_scale", 0.5, 1.5)
+		
 	
 func _ready():
 	info.two_stars = two_stars
@@ -113,7 +121,7 @@ func move_player(target_tile_pos):
 	var _tile_data: TileData = get_cell_tile_data(0,player_tile_pos)
 	print(target_tile_pos, starPos)
 
-	# Wenn wir das Teil betreten d端rfen, dann bewegen
+	# Wenn wir das Teil betreten duerfen, dann bewegen
 	if (allowed_tile_ids.has(target_tile_id)) and !betreten.has(target_tile_pos) and !laser.has(target_tile_pos):
 		erase_cell(1,player_tile_pos)
 		
@@ -123,7 +131,7 @@ func move_player(target_tile_pos):
 		set_cell(1, target_tile_pos, player, Vector2i(0,0),0)
 		player_tile_pos = target_tile_pos
 	
-	# Boden f端llen lol
+	# Boden fuellen 
 	if buttons.has(target_tile_pos) and !used_buttons.has(target_tile_pos):
 		erase_cell(1, laser.pop_front())
 		used_buttons.append(target_tile_pos)
@@ -133,6 +141,8 @@ func move_player(target_tile_pos):
 	if str(target_tile_pos) == str(starPos):
 		if !save_Game.bonusItems.has(id):
 			save_Game.bonusCollected(id)
+			star_clollected()
+			stern_player.play()
 			star.texture = preload("res://assets/buttons/gray/stargray.png")
 		
 	if target_tile_id == 31:
@@ -220,5 +230,18 @@ func set_lvl_records():
 			print(temp_lvl_score)
  
 func _on_light_timer_timeout():
-	$"../Fog".visible = !$"../Fog".visible
-	light.visible = !light.visible
+	fog = !fog
+
+func star_clollected():
+	for i in 5:
+		star_collected_text.visible = !star_collected_text.visible
+		await get_tree().create_timer(0.2).timeout
+	star_collected_text.hide()
+
+func toggle_light():
+	fog.visible = true
+	light.visible = true
+
+
+func _on_timer_timeout():
+	toggle_light()

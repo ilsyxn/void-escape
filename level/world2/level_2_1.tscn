@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_xsegl"]
 [ext_resource type="Script" path="res://level/world2/level2.gd" id="3_od5ri"]
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="4_6s0q6"]
-[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/ui/star_locked.png" id="5_xq2i0"]
+[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="5_xq2i0"]
 [ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="6_22qxv"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="7_8m75s"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_j7uh6"]
@@ -219,10 +219,11 @@ text = "Star collected!"
 metadata/_edit_use_anchors_ = true
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
+visible = false
 offset_left = 286.0
-offset_top = 638.0
+offset_top = 538.0
 offset_right = 875.0
-offset_bottom = 943.0
+offset_bottom = 843.0
 script = ExtResource("14_8x7ee")
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]

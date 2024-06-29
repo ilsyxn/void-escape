@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://dd7vqdq43f8py"]
+[gd_scene load_steps=17 format=3 uid="uid://dd7vqdq43f8py"]
 
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="1_kctda"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="2_clnjs"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="3_ctrp2"]
 [ext_resource type="Script" path="res://level/world2/level2.gd" id="4_1740n"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="6_xx72g"]
-[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/ui/star_locked.png" id="7_71rod"]
+[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="7_71rod"]
 [ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="8_tvxor"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="9_7eohj"]
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="10_ay7js"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="13_82ulj"]
 [ext_resource type="PackedScene" uid="uid://c64ao7qi0weel" path="res://level/info_second.tscn" id="13_ynjdr"]
 [ext_resource type="Script" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="14_wnuxe"]
+[ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="16_0nrwg"]
 
 [node name="Level2-2" type="Node2D"]
 
@@ -42,8 +43,8 @@ script = ExtResource("4_1740n")
 id = 25
 starPos = Vector2(43, 10)
 startPos = Vector2i(31, 0)
-three_stars = 60.0
-two_stars = 75.0
+three_stars = 55.0
+two_stars = 70.0
 
 [node name="Fog" type="CanvasModulate" parent="."]
 visible = false
@@ -202,13 +203,35 @@ text = "(Press H for help)"
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 offset_left = 286.0
-offset_top = 638.0
+offset_top = 850.0
 offset_right = 875.0
-offset_bottom = 943.0
+offset_bottom = 1155.0
 script = ExtResource("14_wnuxe")
+
+[node name="star_collected" type="Label" parent="Belichtet"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 306.0
+offset_top = 266.0
+offset_right = -294.0
+offset_bottom = -301.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("6_xx72g")
+theme_override_font_sizes/font_size = 80
+text = "Star collected!"
+metadata/_edit_use_anchors_ = true
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_dc04p")
+
+[node name="SternPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_0nrwg")
+volume_db = 10.0
 
 [connection signal="text_submitted" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit" to="lvl2_1" method="_on_save_highscore_button_pressed"]
 [connection signal="pressed" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton" to="lvl2_1" method="_on_save_highscore_button_pressed"]
