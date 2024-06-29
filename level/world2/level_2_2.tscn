@@ -157,9 +157,9 @@ position = Vector2(576, -280)
 scale = Vector2(0.3, 0.3)
 
 [node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
-offset_left = 894.0
+offset_left = 891.0
 offset_top = 227.0
-offset_right = 1106.0
+offset_right = 1103.0
 offset_bottom = 285.0
 size_flags_vertical = 8
 
@@ -214,9 +214,9 @@ text = "(Press H for help)"
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 offset_left = 286.0
-offset_top = 638.0
+offset_top = 602.0
 offset_right = 875.0
-offset_bottom = 943.0
+offset_bottom = 907.0
 script = ExtResource("14_n5pd6")
 
 [node name="star_collected" type="Label" parent="Belichtet"]

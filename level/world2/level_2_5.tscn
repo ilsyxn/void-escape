@@ -29,7 +29,7 @@ texture = ExtResource("1_kctda")
 [node name="Background" parent="." instance=ExtResource("2_clnjs")]
 
 [node name="lvl2_1" type="TileMap" parent="."]
-position = Vector2(103, 35)
+position = Vector2(95, 34)
 scale = Vector2(0.56, 0.56)
 tile_set = ExtResource("3_ctrp2")
 rendering_quadrant_size = 32
@@ -156,37 +156,6 @@ scale = Vector2(0.4, 0.365)
 position = Vector2(576, -280)
 scale = Vector2(0.3, 0.3)
 
-[node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
-offset_left = 965.0
-offset_top = 500.0
-offset_right = 1099.0
-offset_bottom = 558.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Belichtet/NewHighscore"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Belichtet/NewHighscore/VBoxContainer"]
-layout_mode = 2
-text = "Enter your name:"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Belichtet/NewHighscore/VBoxContainer"]
-layout_mode = 2
-
-[node name="NewNameEdit" type="LineEdit" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-placeholder_text = "Name"
-
-[node name="SaveHighscoreButton" type="Button" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Submit"
-
-[node name="Highscore2" parent="Belichtet" instance=ExtResource("13_82ulj")]
-texture_filter = 1
-offset_left = 311.0
-offset_top = -193.0
-offset_right = 460.0
-offset_bottom = 144.0
-
 [node name="Info" parent="Belichtet" instance=ExtResource("13_ynjdr")]
 visible = false
 position = Vector2(598, 332)
@@ -203,9 +172,9 @@ text = "(Press H for help)"
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 offset_left = 286.0
-offset_top = 638.0
+offset_top = 850.0
 offset_right = 875.0
-offset_bottom = 943.0
+offset_bottom = 1155.0
 script = ExtResource("14_wnuxe")
 
 [node name="star_collected" type="Label" parent="Belichtet"]
@@ -226,6 +195,48 @@ theme_override_font_sizes/font_size = 80
 text = "Star collected!"
 metadata/_edit_use_anchors_ = true
 
+[node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
+offset_left = 929.0
+offset_top = 227.0
+offset_right = 1141.0
+offset_bottom = 285.0
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Belichtet/NewHighscore"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Highscore2" parent="Belichtet/NewHighscore/VBoxContainer" instance=ExtResource("13_82ulj")]
+texture_filter = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Belichtet/NewHighscore/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("6_xx72g")
+text = "Enter your name:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Belichtet/NewHighscore/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+
+[node name="NewNameEdit" type="LineEdit" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_xx72g")
+placeholder_text = "Name..............."
+alignment = 1
+expand_to_text_length = true
+clear_button_enabled = true
+
+[node name="SaveHighscoreButton" type="Button" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("6_xx72g")
+text = "Submit"
+
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_dc04p")
 
@@ -233,5 +244,5 @@ stream = ExtResource("10_dc04p")
 stream = ExtResource("16_0nrwg")
 volume_db = 10.0
 
-[connection signal="text_submitted" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit" to="lvl2_1" method="_on_save_highscore_button_pressed"]
+[connection signal="text_submitted" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit" to="lvl2_1" method="_on_new_name_edit_text_submitted"]
 [connection signal="pressed" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton" to="lvl2_1" method="_on_save_highscore_button_pressed"]

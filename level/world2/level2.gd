@@ -365,3 +365,7 @@ func star_clollected():
 		star_collected_text.visible = !star_collected_text.visible
 		await get_tree().create_timer(0.2).timeout
 	star_collected_text.hide()
+
+
+func _on_new_name_edit_text_submitted(new_text):
+	pass # Replace with function body.
