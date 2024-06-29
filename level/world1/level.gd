@@ -160,6 +160,8 @@ func move_player(target_tile_pos):
 				if bonus:
 					save_Game.bonusCollected(id)
 				save_Game.unlockedLevels.append(id + 1)
+				if id == 5:
+					save_Game.unlockedLevels.append(21)
 				if not save_Game.time.has(id):
 					save_Game.time[id] = stoppuhr.time
 			else:

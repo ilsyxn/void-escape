@@ -234,6 +234,8 @@ func move_player(target_tile_pos):
 					
 				# Nächstes Level im Menü freischalten
 				save_Game.unlockedLevels.append(id+1)
+				if id == 25:
+					save_Game.unlockedLevels.append(31)
 				if !save_Game.time[id]:
 					save_Game.time[id] = stoppuhr.time
 					highscore_global = save_Game.time[id]
