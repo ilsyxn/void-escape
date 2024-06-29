@@ -37,9 +37,9 @@ texture_normal = ExtResource("3_ljff0")
 texture_pressed = ExtResource("5_5nbw1")
 
 [node name="Required" type="Label" parent="."]
-offset_left = -717.0
+offset_left = -732.0
 offset_top = 78.0
-offset_right = 807.0
+offset_right = 792.0
 offset_bottom = 279.0
 theme_override_fonts/font = ExtResource("6_fd5a6")
 theme_override_font_sizes/font_size = 145
