@@ -34,45 +34,13 @@ extends TileMap
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
 @onready var light = $"../Light"
 
-@onready var new_highscore = $"../Belichtet/NewHighscore"
-@onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
-@onready var high_score = $"../Belichtet/Highscore2"
-var highscore_global
-var do_once = true
-
-var scores = {
-	"res://level/world1/level_1.tscn": {"score": 1.51, "level_id": 1.1},
-	"res://level/world1/level_2.tscn": {"score": 4.26, "level_id": 1.2},
-	"res://level/world1/level_3.tscn": {"score": 5.56, "level_id": 1.3},
-	"res://level/world1/level_4.tscn": {"score": 4.99, "level_id": 1.4},
-	"res://level/world1/level_5.tscn": {"score": 5.01, "level_id": 1.5},
-	"res://level/world2/level_2_1.tscn": {"score": 1.51, "level_id": 2.1},
-	"res://level/world2/level_2_2.tscn": {"score": 4.26, "level_id": 2.2},
-	"res://level/world2/level_2_3.tscn": {"score": 5.56, "level_id": 2.3},
-	"res://level/world2/level_2_4.tscn": {"score": 4.99, "level_id": 2.4},
-	"res://level/world2/level_2_5.tscn": {"score": 5.01, "level_id": 2.5},
-	"res://level/world3/level_3_1.tscn": {"score": 1.51, "level_id": 3.1},
-	"res://level/world3/level_3_2.tscn": {"score": 4.26, "level_id": 3.2},
-	"res://level/world3/level_3_3.tscn": {"score": 5.56, "level_id": 3.3},
-	"res://level/world3/level_3_4.tscn": {"score": 4.99, "level_id": 3.4},
-	"res://level/world3/level_3_5.tscn": {"score": 5.01, "level_id": 3.5}
-}
-var scene_path
-var current_level_id
-var level_data
 
 func _process(delta):
 	light.position = to_global(map_to_local(player_tile_pos))
 func _ready():
-<<<<<<< Updated upstream
 	info.two_stars = two_stars
 	info.three_stars = three_stars
 
-=======
-	new_highscore.hide()
-	high_score.hide()
-	set_lvl_records()
->>>>>>> Stashed changes
 	intro.play()
 	set_cell(1, startPos, player, Vector2i(0,0),0)
 	setup_connectors()
@@ -83,12 +51,6 @@ func _ready():
 		set_cell(1, starPos, 36, Vector2i(0,0), 0)
 	else: 
 		set_cell(1, starPos, 32, Vector2i(0,0), 0)
-		
-func _process(_delta):
-	if do_once:
-		if str(new_name_edit.text) == "":
-			new_name_edit.text = high_score.latest_name
-			do_once = false
 
 
 func _unhandled_input(event):
@@ -190,37 +152,6 @@ func restartLevel():
 	if !save_Game.finishedLevels.has(id) and save_Game.bonusItems.has(id):
 		save_Game.removeBonus(id)
 	get_tree().reload_current_scene()
-
-
-func hide_lvl_ui():
-	$"../Belichtet/light_out_in".hide()
-	$"../Belichtet/gebrauchte_zeit".hide()
-	$"../Belichtet/stoppuhr/label".hide()
-	$"../Belichtet/Highscore".hide()
-	$"../Belichtet/HighScoreTime".hide()
-	$"../visual_timer/time".hide()
-	$"../Belichtet/Star".hide()	
-	new_highscore.show()
-	high_score.show()
-
-func _on_save_highscore_button_pressed(_new_text = ""):
-	var new_name = new_name_edit.text.strip_edges()
-	if high_score.latest_name != new_name:
-		high_score.latest_name = new_name
-	high_score.add_entry({"name": high_score.latest_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
-	high_score._save()  # Add this line to save the highscore
-	$"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton".disabled = true
-	
-func set_lvl_records():
-	if FileAccess.file_exists(high_score.file_name):
-		pass
-	else:
-		for scene_path in scores.keys():
-			var temp_level_data = scores[scene_path]
-			var temp_lvl_score = temp_level_data["score"]
-			var temp_lvl_id = temp_level_data["level_id"]
-			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})
-			print(temp_lvl_score)
  
 
 
