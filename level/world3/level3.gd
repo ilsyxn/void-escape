@@ -36,6 +36,8 @@ extends TileMap
 @onready var new_highscore = $"../Belichtet/NewHighscore"
 @onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
 @onready var high_score = $"../Belichtet/Highscore2"
+@onready var onscreen_keyboard = $"../Belichtet/OnscreenKeyboard"
+
 var highscore_global
 var do_once = true
 
@@ -204,6 +206,7 @@ func _on_save_highscore_button_pressed(_new_text = ""):
 	high_score.add_entry({"name": high_score.latest_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
 	high_score._save()  # Add this line to save the highscore
 	$"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton".disabled = true
+	onscreen_keyboard.hide()
 	
 func set_lvl_records():
 	if FileAccess.file_exists(high_score.file_name):

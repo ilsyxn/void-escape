@@ -235,9 +235,9 @@ offset_bottom = 144.0
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 offset_left = 286.0
-offset_top = 312.0
+offset_top = 602.0
 offset_right = 875.0
-offset_bottom = 617.0
+offset_bottom = 907.0
 script = ExtResource("12_8t8xq")
 
 [node name="Info" parent="Belichtet" instance=ExtResource("13_8v5sd")]

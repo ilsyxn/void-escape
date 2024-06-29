@@ -1,17 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://uku47non0xg6"]
+[gd_scene load_steps=17 format=3 uid="uid://uku47non0xg6"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_llqjm"]
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="1_q54dp"]
 [ext_resource type="TileSet" uid="uid://w5iet3ku1ekm" path="res://level/world3/tilemap-3.tres" id="2_54hdm"]
 [ext_resource type="Script" path="res://level/world3/level3.gd" id="2_x4swm"]
 [ext_resource type="PackedScene" uid="uid://dw4x1v153edrn" path="res://level/world3/portal.tscn" id="3_cpegh"]
-[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="5_sou1u"]
+[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/ui/star_locked.png" id="5_sou1u"]
 [ext_resource type="PackedScene" uid="uid://dvfbtcrchoirw" path="res://level/info_third.tscn" id="6_5osp3"]
 [ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="6_hda3n"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="7_2hd7a"]
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="7_jqc7h"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_4qyog"]
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="8_xewui"]
+[ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="12_p0r5e"]
+[ext_resource type="Script" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="13_hj3bo"]
 
 [sub_resource type="Gradient" id="Gradient_lb2s1"]
 colors = PackedColorArray(0.389011, 0.544955, 0.946826, 1, 1, 0.0745098, 1, 1)
@@ -175,6 +177,44 @@ offset_bottom = 311.0
 scale = Vector2(0.3, 0.3)
 metadata/_edit_use_anchors_ = true
 
+[node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
+offset_left = 938.0
+offset_top = 500.0
+offset_right = 1072.0
+offset_bottom = 558.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Belichtet/NewHighscore"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Belichtet/NewHighscore/VBoxContainer"]
+layout_mode = 2
+text = "Enter your name:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Belichtet/NewHighscore/VBoxContainer"]
+layout_mode = 2
+
+[node name="NewNameEdit" type="LineEdit" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="SaveHighscoreButton" type="Button" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Submit"
+
+[node name="Highscore2" parent="Belichtet" instance=ExtResource("12_p0r5e")]
+texture_filter = 1
+offset_left = 311.0
+offset_top = -193.0
+offset_right = 460.0
+offset_bottom = 144.0
+
+[node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
+offset_left = 286.0
+offset_top = 638.0
+offset_right = 875.0
+offset_bottom = 943.0
+script = ExtResource("13_hj3bo")
+
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_hda3n")
 
@@ -182,4 +222,6 @@ stream = ExtResource("6_hda3n")
 wait_time = 0.8
 autostart = true
 
+[connection signal="text_submitted" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit" to="lvl3-2" method="_on_save_highscore_button_pressed"]
+[connection signal="pressed" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton" to="lvl3-2" method="_on_save_highscore_button_pressed"]
 [connection signal="timeout" from="LightTimer" to="lvl3-2" method="_on_light_timer_timeout"]

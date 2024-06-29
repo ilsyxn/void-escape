@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c7cn7vpc1nwqw"]
+[gd_scene load_steps=17 format=3 uid="uid://c7cn7vpc1nwqw"]
 
 [ext_resource type="TileSet" uid="uid://w5iet3ku1ekm" path="res://level/world3/tilemap-3.tres" id="1_1hmia"]
 [ext_resource type="Script" path="res://level/world3/level3.gd" id="2_3031t"]
@@ -7,11 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="4_3fffs"]
 [ext_resource type="PackedScene" uid="uid://dvfbtcrchoirw" path="res://level/info_third.tscn" id="5_220p4"]
 [ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="5_pxnt3"]
-[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="6_qgpi5"]
+[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/ui/star_locked.png" id="6_qgpi5"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="6_wxpao"]
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="7_04twr"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="7_d8eje"]
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="8_ujxwj"]
+[ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="11_17tnl"]
+[ext_resource type="Script" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="12_u5a6u"]
 
 [sub_resource type="Gradient" id="Gradient_lb2s1"]
 colors = PackedColorArray(0.389011, 0.544955, 0.946826, 1, 1, 0.0745098, 1, 1)
@@ -176,6 +178,44 @@ offset_bottom = 317.0
 scale = Vector2(0.3, 0.3)
 metadata/_edit_use_anchors_ = true
 
+[node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
+offset_left = 938.0
+offset_top = 500.0
+offset_right = 1072.0
+offset_bottom = 558.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Belichtet/NewHighscore"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Belichtet/NewHighscore/VBoxContainer"]
+layout_mode = 2
+text = "Enter your name:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Belichtet/NewHighscore/VBoxContainer"]
+layout_mode = 2
+
+[node name="NewNameEdit" type="LineEdit" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="SaveHighscoreButton" type="Button" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Submit"
+
+[node name="Highscore2" parent="Belichtet" instance=ExtResource("11_17tnl")]
+texture_filter = 1
+offset_left = 311.0
+offset_top = -193.0
+offset_right = 460.0
+offset_bottom = 144.0
+
+[node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
+offset_left = 286.0
+offset_top = 638.0
+offset_right = 875.0
+offset_bottom = 943.0
+script = ExtResource("12_u5a6u")
+
 [node name="Background" parent="." instance=ExtResource("4_3fffs")]
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
@@ -185,4 +225,6 @@ stream = ExtResource("5_pxnt3")
 wait_time = 0.8
 autostart = true
 
+[connection signal="text_submitted" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit" to="lvl3-4" method="_on_save_highscore_button_pressed"]
+[connection signal="pressed" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton" to="lvl3-4" method="_on_save_highscore_button_pressed"]
 [connection signal="timeout" from="LightTimer" to="lvl3-4" method="_on_light_timer_timeout"]

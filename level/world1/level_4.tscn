@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b5vieo0v3kagw"]
+[gd_scene load_steps=17 format=3 uid="uid://b5vieo0v3kagw"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_o54ew"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_0ketm"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="4_vtc7c"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="5_7qowv"]
 [ext_resource type="TileSet" uid="uid://bjrktsba7geda" path="res://assets/border.tres" id="5_wyn15"]
-[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="7_o3tdy"]
+[ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/ui/star_locked.png" id="7_o3tdy"]
 [ext_resource type="Script" path="res://level/visual_timer.gd" id="8_1hvt6"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_5ir8j"]
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="9_x1cp4"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bf60rt160i2ub" path="res://level/info_first.tscn" id="12_dqmq8"]
 [ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="12_qgwwp"]
 [ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="13_07q8u"]
+[ext_resource type="Script" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="13_u1itb"]
 
 [node name="Level4" type="Node2D"]
 
@@ -170,9 +171,9 @@ scale = Vector2(0.3, 0.3)
 
 [node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
 offset_left = 938.0
-offset_top = 459.0
+offset_top = 500.0
 offset_right = 1072.0
-offset_bottom = 517.0
+offset_bottom = 558.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Belichtet/NewHighscore"]
 layout_mode = 2
@@ -230,6 +231,13 @@ theme_override_fonts/font = ExtResource("5_7qowv")
 theme_override_font_sizes/font_size = 80
 text = "Star collected!"
 metadata/_edit_use_anchors_ = true
+
+[node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
+offset_left = 286.0
+offset_top = 638.0
+offset_right = 875.0
+offset_bottom = 943.0
+script = ExtResource("13_u1itb")
 
 [node name="visual_timer" type="Node" parent="."]
 script = ExtResource("8_1hvt6")
