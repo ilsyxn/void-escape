@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=16 format=3 uid="uid://bsf2jbhio0wqj"]
+=======
+[gd_scene load_steps=15 format=3 uid="uid://bsf2jbhio0wqj"]
+>>>>>>> Stashed changes
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_3p66f"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_xsegl"]
@@ -14,7 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="11_x4fed"]
 [ext_resource type="PackedScene" uid="uid://c64ao7qi0weel" path="res://level/info_second.tscn" id="13_ibeui"]
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="13_luqcv"]
+<<<<<<< Updated upstream
 [ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="15_88moy"]
+=======
+[ext_resource type="Script" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="14_lkde5"]
+>>>>>>> Stashed changes
 
 [node name="Level2-1" type="Node2D"]
 
@@ -154,11 +162,18 @@ scale = Vector2(0.4, 0.365)
 position = Vector2(576, -280)
 scale = Vector2(0.3, 0.3)
 
+[node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
+offset_left = 304.0
+offset_top = 638.0
+offset_right = 882.0
+offset_bottom = 914.0
+script = ExtResource("14_lkde5")
+
 [node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
 offset_left = 938.0
-offset_top = 459.0
+offset_top = 500.0
 offset_right = 1072.0
-offset_bottom = 517.0
+offset_bottom = 558.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Belichtet/NewHighscore"]
 layout_mode = 2

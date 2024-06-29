@@ -1,11 +1,19 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=15 format=3 uid="uid://bfxm1ru00pxa5"]
+=======
+[gd_scene load_steps=12 format=3 uid="uid://bfxm1ru00pxa5"]
+>>>>>>> Stashed changes
 
 [ext_resource type="TileSet" uid="uid://w5iet3ku1ekm" path="res://level/world3/tilemap-3.tres" id="1_037cm"]
 [ext_resource type="Script" path="res://level/world3/level3.gd" id="2_jdork"]
 [ext_resource type="PackedScene" uid="uid://dw4x1v153edrn" path="res://level/world3/portal.tscn" id="3_o1srb"]
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="3_pb4ny"]
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="4_v3xa4"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://dvfbtcrchoirw" path="res://level/info_third.tscn" id="5_lqxsv"]
+=======
+[ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="5_emcpt"]
+>>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="5_tbp22"]
 [ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="6_1d2f1"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="6_qr84k"]
@@ -73,10 +81,45 @@ farbe = SubResource("GradientTexture1D_mxtol")
 position = Vector2(576, -280)
 scale = Vector2(0.3, 0.3)
 
+<<<<<<< Updated upstream
 [node name="Info" parent="Belichtet" instance=ExtResource("5_lqxsv")]
 visible = false
 position = Vector2(568, 325)
 scale = Vector2(0.3, 0.3)
+=======
+[node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
+offset_left = 938.0
+offset_top = 500.0
+offset_right = 1072.0
+offset_bottom = 558.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Belichtet/NewHighscore"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Belichtet/NewHighscore/VBoxContainer"]
+layout_mode = 2
+text = "Enter your name:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Belichtet/NewHighscore/VBoxContainer"]
+layout_mode = 2
+
+[node name="NewNameEdit" type="LineEdit" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="SaveHighscoreButton" type="Button" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Submit"
+
+[node name="Highscore2" parent="Belichtet" instance=ExtResource("5_emcpt")]
+texture_filter = 1
+offset_left = 311.0
+offset_top = -193.0
+offset_right = 460.0
+offset_bottom = 144.0
+
+[node name="Background" parent="." instance=ExtResource("5_tbp22")]
+>>>>>>> Stashed changes
 
 [node name="InfoHelp" type="Label" parent="Belichtet"]
 offset_left = 896.0

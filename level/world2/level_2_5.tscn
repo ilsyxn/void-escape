@@ -18,7 +18,7 @@
 [node name="Level2-2" type="Node2D"]
 
 [node name="Light" type="PointLight2D" parent="."]
-position = Vector2(1357.25, 9.45999)
+position = Vector2(1042.25, 22.54)
 scale = Vector2(0.279298, 0.254219)
 energy = 0.28
 shadow_enabled = true
@@ -51,7 +51,7 @@ color = Color(0, 0, 0, 1)
 [node name="Belichtet" type="CanvasLayer" parent="."]
 
 [node name="Star" type="Sprite2D" parent="Belichtet"]
-position = Vector2(1004, 546)
+position = Vector2(1030, 546)
 scale = Vector2(4, 4)
 texture = ExtResource("7_71rod")
 
@@ -68,10 +68,10 @@ layer_0/tile_data = PackedInt32Array(1245191, 0, 1342177280, 1245192, 0, 1342177
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 945.0
-offset_top = 40.0
-offset_right = 230.0
-offset_bottom = -557.0
+offset_left = 921.0
+offset_top = 42.08
+offset_right = 206.0
+offset_bottom = -554.92
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -89,10 +89,10 @@ script = ExtResource("9_7eohj")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 992.0
-offset_top = 64.0
-offset_right = -29.0
-offset_bottom = -542.0
+offset_left = 968.0
+offset_top = 66.08
+offset_right = -53.0
+offset_bottom = -539.92
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -106,10 +106,10 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 952.0
-offset_top = 128.0
-offset_right = 237.0
-offset_bottom = -469.0
+offset_left = 928.0
+offset_top = 130.08
+offset_right = 213.0
+offset_bottom = -466.92
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -124,10 +124,10 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 991.0
-offset_top = 149.0
-offset_right = -27.0
-offset_bottom = -454.0
+offset_left = 967.0
+offset_top = 151.08
+offset_right = -51.0
+offset_bottom = -451.92
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -155,10 +155,10 @@ position = Vector2(576, -280)
 scale = Vector2(0.3, 0.3)
 
 [node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
-offset_left = 938.0
-offset_top = 459.0
-offset_right = 1072.0
-offset_bottom = 517.0
+offset_left = 964.0
+offset_top = 500.0
+offset_right = 1098.0
+offset_bottom = 558.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Belichtet/NewHighscore"]
 layout_mode = 2
@@ -180,9 +180,9 @@ text = "Submit"
 
 [node name="Highscore2" parent="Belichtet" instance=ExtResource("13_82ulj")]
 texture_filter = 1
-offset_left = 311.0
+offset_left = 337.0
 offset_top = -193.0
-offset_right = 460.0
+offset_right = 486.0
 offset_bottom = 144.0
 
 [node name="Info" parent="Belichtet" instance=ExtResource("13_ynjdr")]

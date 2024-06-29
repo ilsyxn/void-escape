@@ -11,7 +11,7 @@ class_name Highscore
 @export var max_shown_scores := 11
 
 var highscore := []
-var latest_name := ""
+@export var latest_name : String
 var latest_data: Dictionary
 
 func _ready():
@@ -89,6 +89,11 @@ func _update_shown_scores(level):
 	for label in get_children():
 		remove_child(label)
 		label.queue_free()
+		
+	add_child(_create_label(""))
+	add_child(_create_label("Leaderboard"))
+	add_child(_create_label(""))
+
 
 	var place = 0
 	var shown_scores = 0

@@ -36,6 +36,7 @@ var early_start = false
 @onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
 @onready var high_score = $"../Belichtet/Highscore2"
 var highscore_global
+var do_once = true
 
 var scores = {
 	"res://level/world1/level_1.tscn": {"score": 1.51, "level_id": 1.1},
@@ -88,6 +89,11 @@ func _ready():
 		break  
 
 func _process(_delta):
+	if do_once:
+		if str(new_name_edit.text) == "":
+			new_name_edit.text = high_score.latest_name
+			do_once = false
+		
 	scene_path = get_tree().current_scene.scene_file_path
 	level_data = scores.get(scene_path, {})
 	current_level_id = level_data.get("level_id", -1)
@@ -208,9 +214,9 @@ func hide_lvl_ui():
 
 func _on_save_highscore_button_pressed(_new_text = ""):
 	var new_name = new_name_edit.text.strip_edges()
-	if not len(new_name):
-		new_name = "Unknown"
-	high_score.add_entry({"name": new_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
+	if high_score.latest_name != new_name:
+		high_score.latest_name = new_name
+	high_score.add_entry({"name": high_score.latest_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
 	high_score._save()  # Add this line to save the highscore
 	$"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton".disabled = true
 	
