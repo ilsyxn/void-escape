@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=73 format=3 uid="uid://w5iet3ku1ekm"]
 
-[ext_resource type="Texture2D" uid="uid://dbd5004a7go25" path="res://assets/world-3/wand-world3.png" id="1_wvlcp"]
+[ext_resource type="Texture2D" uid="uid://b3jvxau326hir" path="res://assets/world-3/wand-world3.png" id="1_wvlcp"]
 [ext_resource type="Texture2D" uid="uid://dieucui0ixeoq" path="res://assets/skins/black.png" id="3_15e7k"]
 [ext_resource type="Texture2D" uid="uid://cuoa4g8bw7kix" path="res://assets/world-3/old_assets/goal.png" id="3_ay4yb"]
 [ext_resource type="Texture2D" uid="uid://c1tf5xvc0wlgi" path="res://assets/skins/character.png" id="4_vi6rj"]

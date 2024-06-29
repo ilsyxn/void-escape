@@ -18,6 +18,7 @@ var controller = false
 var three_stars = []
 var two_stars = []
 var one_star = []
+var equipped_skin = 0
 
 func setSkin(id):
 	world1_player = welt1_skins[id]
@@ -56,6 +57,7 @@ func gameFinished() -> bool:
 	return true
 	
 func equip_skin(id):
+	equipped_skin = id
 	world1_player = welt1_skins[id]
 	world3_player = welt3_skins[id]
 

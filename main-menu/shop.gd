@@ -17,6 +17,8 @@ func _process(delta):
 	else: 
 		action.position = Vector2(-700, 560)
 		action.text = "Press Enter to buy"
+	if save_Game.equipped_skin == slots[marker_index].id:
+		action.text = "     Skin is equipped."
 	owned.text = str(save_Game.collected_stars)
 	border.global_position = marker[marker_index].global_position
 	selected_skin.texture = slots[marker_index].skin.texture
