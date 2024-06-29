@@ -26,6 +26,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/size/initial_position_type.macos=0
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/onscreenkeyboard/plugin.cfg")
+
 [input]
 
 ui_select={
