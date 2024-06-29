@@ -89,6 +89,10 @@ func _update_shown_scores(level):
 	for label in get_children():
 		remove_child(label)
 		label.queue_free()
+		
+	add_child(_create_label(""))
+	add_child(_create_label("Leaderboard"))
+	add_child(_create_label(""))
 
 	var place = 0
 	var shown_scores = 0

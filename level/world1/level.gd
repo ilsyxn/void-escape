@@ -208,9 +208,9 @@ func hide_lvl_ui():
 
 func _on_save_highscore_button_pressed(_new_text = ""):
 	var new_name = new_name_edit.text.strip_edges()
-	if not len(new_name):
-		new_name = "Unknown"
-	high_score.add_entry({"name": new_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
+	if high_score.latest_name != new_name:
+		high_score.latest_name = new_name
+	high_score.add_entry({"name": high_score.latest_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
 	high_score._save()  # Add this line to save the highscore
 	$"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton".disabled = true
 	
