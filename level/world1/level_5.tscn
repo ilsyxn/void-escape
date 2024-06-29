@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cvhvtvy45003y"]
+[gd_scene load_steps=16 format=3 uid="uid://cvhvtvy45003y"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_4hkgn"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_0etw1"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="10_0vdah"]
 [ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="11_yrk0j"]
 [ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="12_8br6p"]
+[ext_resource type="PackedScene" uid="uid://bf60rt160i2ub" path="res://level/info_first.tscn" id="12_cr5ub"]
 [ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="13_8vum2"]
 
 [node name="Level5" type="Node2D"]
@@ -201,6 +202,38 @@ offset_top = -193.0
 offset_right = 460.0
 offset_bottom = 144.0
 
+[node name="Info" parent="Belichtet" instance=ExtResource("12_cr5ub")]
+visible = false
+position = Vector2(578, 333)
+scale = Vector2(0.3, 0.3)
+
+[node name="InfoHelp" type="Label" parent="Belichtet"]
+offset_left = 896.0
+offset_top = 589.0
+offset_right = 1116.0
+offset_bottom = 612.0
+theme_override_fonts/font = ExtResource("4_awddh")
+theme_override_font_sizes/font_size = 20
+text = "(Press H for help)"
+
+[node name="star_collected" type="Label" parent="Belichtet"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 306.0
+offset_top = 266.0
+offset_right = -294.0
+offset_bottom = -301.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("4_awddh")
+theme_override_font_sizes/font_size = 80
+text = "Star collected!"
+metadata/_edit_use_anchors_ = true
+
 [node name="visual_timer" type="Node" parent="."]
 script = ExtResource("8_go7qp")
 
@@ -227,7 +260,7 @@ autostart = true
 
 [node name="SternPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_8br6p")
-volume_db = -10.0
+volume_db = 10.0
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_8vum2")

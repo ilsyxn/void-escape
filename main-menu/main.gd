@@ -7,8 +7,6 @@ func _ready():
 	pass
 func _process(_delta):
 	border.position = buttons[index].position
-	if Input.is_action_just_pressed("controller"): 
-		save_Game.controller = true
 	if Input.is_action_just_pressed("left"):
 		move_border(true)
 	if Input.is_action_just_pressed("right"):

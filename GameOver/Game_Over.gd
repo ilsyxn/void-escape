@@ -1,4 +1,8 @@
 extends Node2D
+@onready var buttons = [$Marker1, $Marker2]
+@onready var index = 0
+@onready var border = $Border
+@onready var active = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -7,10 +11,23 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	border.position = buttons[index].position
 
 
+func _unhandled_input(event):
+	if event.is_action_pressed("up") and active:
+		index = 0
+	elif event.is_action_pressed("down") and active:
+		index = 1
+	elif event.is_action_pressed("enter") and active:
+		press_button(index)
+
+func press_button(i : int):
+	match i:
+		0: _on_restart_pressed()
+		1: _on_menu_pressed()
 func bounce_in() -> void:
+	active = true
 	$".".set_physics_process(false)
 	var tween = create_tween()
 	

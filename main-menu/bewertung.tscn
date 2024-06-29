@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbefcdphgqnaf"]
+[gd_scene load_steps=8 format=3 uid="uid://bbefcdphgqnaf"]
 
 [ext_resource type="Texture2D" uid="uid://d3qioovkcfned" path="res://assets/ui/bewertung.png" id="1_puthg"]
 [ext_resource type="Script" path="res://main-menu/bewertung.gd" id="2_cxjvc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bm2edo6obenhv" path="res://assets/buttons/continue.png" id="3_ljff0"]
 [ext_resource type="Texture2D" uid="uid://rcn4t7cyblx1" path="res://assets/buttons/continue-pressed.png" id="5_5nbw1"]
 [ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="6_fd5a6"]
+[ext_resource type="Texture2D" uid="uid://4f0vccpukupw" path="res://assets/border_lang.png" id="7_jam4g"]
 
 [node name="Bewertung" type="Sprite2D"]
 texture = ExtResource("1_puthg")
@@ -43,5 +44,10 @@ offset_bottom = 279.0
 theme_override_fonts/font = ExtResource("6_fd5a6")
 theme_override_font_sizes/font_size = 145
 text = "clear time:  "
+
+[node name="Border" type="Sprite2D" parent="."]
+position = Vector2(5.99998, 567)
+scale = Vector2(7, 7)
+texture = ExtResource("7_jam4g")
 
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]

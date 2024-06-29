@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bggqe8pqxjkea"]
+[gd_scene load_steps=15 format=3 uid="uid://bggqe8pqxjkea"]
 
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="1_uvgur"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="2_i8dl4"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dj4emyeeic6bl" path="res://GameOver/Game_Over.tscn" id="11_tb1no"]
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="12_b8nl5"]
 [ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="12_m1307"]
+[ext_resource type="PackedScene" uid="uid://c64ao7qi0weel" path="res://level/info_second.tscn" id="13_5uw4n"]
 
 [node name="Level2-2" type="Node2D"]
 
@@ -40,6 +41,8 @@ script = ExtResource("4_cq4ac")
 id = 22
 starPos = Vector2(23, 2)
 startPos = Vector2i(13, 2)
+three_stars = 25.0
+two_stars = 30.0
 
 [node name="Fog" type="CanvasModulate" parent="."]
 visible = false
@@ -181,6 +184,20 @@ offset_left = 311.0
 offset_top = -193.0
 offset_right = 460.0
 offset_bottom = 144.0
+
+[node name="Info" parent="Belichtet" instance=ExtResource("13_5uw4n")]
+visible = false
+position = Vector2(598, 332)
+scale = Vector2(0.3, 0.3)
+
+[node name="InfoHelp" type="Label" parent="Belichtet"]
+offset_left = 896.0
+offset_top = 589.0
+offset_right = 1116.0
+offset_bottom = 612.0
+theme_override_fonts/font = ExtResource("6_s7q7b")
+theme_override_font_sizes/font_size = 20
+text = "(Press H for help)"
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_lfuph")

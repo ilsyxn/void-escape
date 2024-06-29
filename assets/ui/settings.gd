@@ -3,14 +3,54 @@ extends Control
 @onready var quit = $VBoxContainer/Quit
 
 @onready var enabled = false
+@onready var buttons = [$VBoxContainer/Resume, $VBoxContainer/Quit]
+@onready var index = 0
+@onready var border = $Border
+@onready var marker = [$Marker1, $Marker2]
+@onready var slider = $VBoxContainer/HSlider
+@onready var sphere = $Sphere
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	border.position = $Marker1.position
 
+func _unhandled_input(event):
+	if event.is_action_pressed("up") and enabled:
+		move_index(true)
+	elif event.is_action_pressed("down") and enabled:
+		move_index(false)
+	elif event.is_action_pressed("enter") and enabled:
+		press_button(index)
+	elif event.is_action_pressed("right") and [2,3].has(index) and enabled:
+		move_slider(false)
+	elif event.is_action_pressed("left") and [2,3].has(index) and enabled:
+		move_slider(true)
 
+func move_slider(left : bool):
+	if index == 2:
+		if left: 
+			slider.value -= 0.1
+		if !left:
+			slider.value += 0.1
+func move_index(up : bool):
+	if up and index != 0:
+		index -=1
+	if !up and index != 2:
+		index += 1
+
+func press_button(i : int):
+	match i:
+		0: _on_resume_pressed()
+		1: _on_quit_pressed()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if index == 0 or index == 1:
+		border.visible = true
+		sphere.visible = false
+		border.position = marker[index].position
+	if index == 2 or index == 3:
+		sphere.visible = true
+		border.hide()
 	if enabled:
 		resume.disabled = false
 		quit.disabled = false

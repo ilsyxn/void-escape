@@ -10,7 +10,7 @@ var tween : Tween
 @onready var bounced = false
 
 func _process(_delta):
-	if bounced and Input.is_action_just_pressed("controller_accept"):
+	if bounced and Input.is_action_just_pressed("enter"):
 		get_tree().change_scene_to_file("res://main-menu/level_selector.tscn")
 
 func three_stars(id):

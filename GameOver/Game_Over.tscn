@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj4emyeeic6bl"]
+[gd_scene load_steps=6 format=3 uid="uid://dj4emyeeic6bl"]
 
 [ext_resource type="Script" path="res://GameOver/Game_Over.gd" id="1_1y0l5"]
 [ext_resource type="Texture2D" uid="uid://blnqbgi6vn3j5" path="res://assets/game_over.png" id="1_qqer5"]
 [ext_resource type="Texture2D" uid="uid://23g8cgreey28" path="res://assets/buttons/restart.png" id="3_jpvee"]
 [ext_resource type="Texture2D" uid="uid://5kj1du7ak3n5" path="res://assets/buttons/menu.png" id="4_1xqwk"]
+[ext_resource type="Texture2D" uid="uid://4f0vccpukupw" path="res://assets/border_lang.png" id="5_wpyxl"]
 
 [node name="GameOver" type="Sprite2D"]
 texture = ExtResource("1_qqer5")
@@ -24,6 +25,19 @@ offset_right = -367.0
 offset_bottom = 65.0
 scale = Vector2(8, 8)
 texture_normal = ExtResource("4_1xqwk")
+
+[node name="Marker1" type="Marker2D" parent="."]
+position = Vector2(-4, -211)
+scale = Vector2(8, 8)
+
+[node name="Marker2" type="Marker2D" parent="."]
+position = Vector2(-3, 200)
+scale = Vector2(8, 8)
+
+[node name="Border" type="Sprite2D" parent="."]
+position = Vector2(-3, 200)
+scale = Vector2(8, 8)
+texture = ExtResource("5_wpyxl")
 
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

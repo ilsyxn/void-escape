@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dlvd0bsb51vlg"]
+[gd_scene load_steps=16 format=3 uid="uid://dlvd0bsb51vlg"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_pda38"]
 [ext_resource type="TileSet" uid="uid://ofabqlexnqyd" path="res://assets/tilemap.tres" id="2_mpqlu"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="11_mueow"]
 [ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="12_7esyw"]
 [ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="12_n7lpi"]
+[ext_resource type="PackedScene" uid="uid://bf60rt160i2ub" path="res://level/info_first.tscn" id="13_8v5sd"]
 
 [node name="Level1" type="Node2D"]
 
@@ -76,6 +77,24 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("7_viqtn")
 theme_override_font_sizes/font_size = 80
 text = "Lights out!"
+metadata/_edit_use_anchors_ = true
+
+[node name="star_collected" type="Label" parent="Belichtet"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 306.0
+offset_top = 266.0
+offset_right = -294.0
+offset_bottom = -301.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_viqtn")
+theme_override_font_sizes/font_size = 80
+text = "Star collected!"
 metadata/_edit_use_anchors_ = true
 
 [node name="light_out_in" type="Label" parent="Belichtet"]
@@ -213,6 +232,20 @@ offset_top = -193.0
 offset_right = 460.0
 offset_bottom = 144.0
 
+[node name="Info" parent="Belichtet" instance=ExtResource("13_8v5sd")]
+visible = false
+position = Vector2(578, 333)
+scale = Vector2(0.3, 0.3)
+
+[node name="InfoHelp" type="Label" parent="Belichtet"]
+offset_left = 896.0
+offset_top = 589.0
+offset_right = 1116.0
+offset_bottom = 612.0
+theme_override_fonts/font = ExtResource("7_viqtn")
+theme_override_font_sizes/font_size = 20
+text = "(Press H for help)"
+
 [node name="visual_timer" type="Node" parent="."]
 script = ExtResource("10_216da")
 
@@ -243,7 +276,7 @@ stream = ExtResource("12_n7lpi")
 
 [node name="SternPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_7esyw")
-volume_db = -10.0
+volume_db = 10.0
 
 [connection signal="text_submitted" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit" to="lvl1" method="_on_save_highscore_button_pressed"]
 [connection signal="pressed" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton" to="lvl1" method="_on_save_highscore_button_pressed"]

@@ -6,6 +6,8 @@ extends TileMap
 @onready var light_timer = $"../visual_timer/Timer"
 @onready var settings = $"../Belichtet/Settings"
 @onready var stern_player = $"../SternPlayer"
+@onready var info = $"../Belichtet/Info"
+@onready var star_collected_text = $"../Belichtet/star_collected"
 
 var tile_size = 32
 var allowed_tile_ids = [30, 2, 3, 4, 8, 9, 34, 37]
@@ -57,6 +59,8 @@ var current_level_id
 var level_data
 
 func _ready():
+	info.two_stars = two_stars
+	info.three_stars = three_stars
 	new_highscore.hide()
 	high_score.hide()
 	set_lvl_records()
@@ -95,21 +99,21 @@ func _process(_delta):
 		light_timer.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _unhandled_input(event):
-	if event.is_action_pressed("right") and not settings.enabled:
+	if event.is_action_pressed("right") and not settings.enabled and !info.visible:
 		move_player(player_tile_pos + Vector2.RIGHT)
 		execute_timeout_actions()
-	elif event.is_action_pressed("left") and not settings.enabled:
+	elif event.is_action_pressed("left") and not settings.enabled and !info.visible:
 		move_player(player_tile_pos + Vector2.LEFT)
 		execute_timeout_actions()
-	elif event.is_action_pressed("up") and not settings.enabled:
+	elif event.is_action_pressed("up") and not settings.enabled and !info.visible:
 		move_player(player_tile_pos + Vector2.UP)
 		execute_timeout_actions()
-	elif event.is_action_pressed("down") and not settings.enabled:
+	elif event.is_action_pressed("down") and not settings.enabled and !info.visible:
 		move_player(player_tile_pos + Vector2.DOWN)
 		execute_timeout_actions()
-	elif event.is_action_pressed("reset") and not settings.enabled:  
+	elif event.is_action_pressed("reset") and not settings.enabled and !info.visible:  
 		restartLevel()
-	elif event.is_action_pressed("settings"):  
+	elif event.is_action_pressed("settings") and !info.visible:  
 		if not settings.enabled:
 			settings.enabled = true
 			stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED
@@ -133,6 +137,8 @@ func move_player(target_tile_pos):
 		player_tile_pos = target_tile_pos
 
 		if target_tile_pos == starPos:
+			star_clollected()
+			
 			stern_player.play()
 			bonus = true
 			star.texture = load("res://assets/star.png")
@@ -218,4 +224,10 @@ func set_lvl_records():
 			var temp_lvl_id = temp_level_data["level_id"]
 			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})
 			print(temp_lvl_score)
+func star_clollected():
+	for i in 5:
+		star_collected_text.visible = !star_collected_text.visible
+		await get_tree().create_timer(0.2).timeout
+	star_collected_text.hide()
+	
 

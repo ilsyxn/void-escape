@@ -26,11 +26,13 @@ var move_in_two = false
 @onready var fog = $"../Fog"
 @onready var star = $"../Belichtet/Star"
 @onready var save_Game = preload("res://save/saveGame.tres")
-@onready var player = 1
+@onready var player = save_Game.getWorld1Player()
 @onready var particles = 0
 @onready var intro = $"../Intro"
 @onready var game_over = false
 @onready var bewertung = $"../Belichtet/Bewertung"
+@onready var stern_player = $"../SternPlayer"
+@onready var star_collected_text = $"../Belichtet/star_collected"
 
 @export var id : int
 @export var starPos : Vector2
@@ -68,8 +70,13 @@ var scores = {
 var scene_path
 var current_level_id
 var level_data
+@onready var info = $"../Belichtet/Info"
 
 func _ready():
+	set_cell(1, startPos, player, Vector2i(0, 0), 0)
+	player_tile_pos = startPos
+	info.two_stars = two_stars
+	info.three_stars = three_stars
 	new_highscore.hide()
 	high_score.hide()
 	set_lvl_records()
@@ -135,21 +142,34 @@ func _process(_delta):
 	
 
 func _unhandled_input(event):
-		if event.is_action_pressed("right"):
-			move_player(player_tile_pos + Vector2.RIGHT)
+		if event.is_action_pressed("right") and !settings.enabled and !info.visible:
+			if typeof(player_tile_pos) == TYPE_VECTOR2I:
+				move_player(player_tile_pos + Vector2i.RIGHT)
+			else: 
+				move_player(player_tile_pos + Vector2.RIGHT)
 			execute_timeout_actions()
-		elif event.is_action_pressed("left"):
-			move_player(player_tile_pos + Vector2.LEFT)
+		elif event.is_action_pressed("left") and !settings.enabled and !info.visible:
+			if typeof(player_tile_pos) == TYPE_VECTOR2I:
+				move_player(player_tile_pos + Vector2i.LEFT)
+			else:
+				move_player(player_tile_pos + Vector2.LEFT)
 			execute_timeout_actions()
-		elif event.is_action_pressed("up"):
-			move_player(player_tile_pos + Vector2.UP)
+		elif event.is_action_pressed("up") and !settings.enabled and !info.visible:
+			if typeof(player_tile_pos) == TYPE_VECTOR2I:
+				move_player(player_tile_pos + Vector2i.UP)
+			else:
+				move_player(player_tile_pos + Vector2.UP)
 			execute_timeout_actions()
-		elif event.is_action_pressed("down"):
-			move_player(player_tile_pos + Vector2.DOWN)
+			
+		elif event.is_action_pressed("down") and !settings.enabled and !info.visible:
+			if typeof(player_tile_pos) == TYPE_VECTOR2I:
+				move_player(player_tile_pos + Vector2i.DOWN)
+			else:
+				move_player(player_tile_pos + Vector2.DOWN)
 			execute_timeout_actions()
-		elif event.is_action_pressed("reset"):  
+		elif event.is_action_pressed("reset") and !settings.enabled and !info.visible:  
 			restartLevel()
-		elif event.is_action_pressed("settings"):  
+		elif event.is_action_pressed("settings") and !info.visible:  
 			if settings.enabled == false:
 				settings.enabled = true
 				stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED
@@ -191,9 +211,11 @@ func move_player(target_tile_pos):
 			move_in_two = true
 			
 		# Stern einsammeln
-		if target_tile_pos == starPos:
+		if str(target_tile_pos) == str(starPos):
 			bonus = true
 			star.texture = load("res://assets/buttons/orange/starorgange.png")
+			stern_player.play()
+			star_clollected()
 		
 		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
 		if target_tile_id == 41:
@@ -329,3 +351,8 @@ func set_lvl_records():
 			var temp_lvl_id = temp_level_data["level_id"]
 			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})
 			print(temp_lvl_score)
+func star_clollected():
+	for i in 5:
+		star_collected_text.visible = !star_collected_text.visible
+		await get_tree().create_timer(0.2).timeout
+	star_collected_text.hide()

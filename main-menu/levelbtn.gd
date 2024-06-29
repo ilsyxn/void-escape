@@ -2,6 +2,7 @@ extends TextureButton
 @onready var star = $Star
 @onready var save_Game = preload("res://save/saveGame.tres")
 var star_texture
+@onready var border = $BorderLvl
 
 
 @export var id : int

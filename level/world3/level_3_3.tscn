@@ -1,13 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://h2hnd2gw3n0j"]
+[gd_scene load_steps=17 format=3 uid="uid://h2hnd2gw3n0j"]
 
 [ext_resource type="TileSet" uid="uid://w5iet3ku1ekm" path="res://level/world3/tilemap-3.tres" id="1_4a3ky"]
 [ext_resource type="Script" path="res://level/world3/level3.gd" id="2_3d0dd"]
 [ext_resource type="PackedScene" uid="uid://dw4x1v153edrn" path="res://level/world3/portal.tscn" id="3_lfk0w"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="4_1w763"]
+[ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="4_8pcas"]
 [ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="5_46v2i"]
 [ext_resource type="Texture2D" uid="uid://byoqcw8nvyldr" path="res://assets/star_locked.png" id="6_lmqpr"]
+[ext_resource type="PackedScene" uid="uid://dvfbtcrchoirw" path="res://level/info_third.tscn" id="6_x25bb"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="7_4wje3"]
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="7_c73kn"]
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="8_12y58"]
+[ext_resource type="Script" path="res://level/stoppuhr.gd" id="8_osop2"]
 
 [sub_resource type="Gradient" id="Gradient_mf48b"]
 colors = PackedColorArray(0.193797, 0.428603, 0.965235, 1, 0.634824, 0.184314, 0.908838, 1)
@@ -25,7 +29,7 @@ gradient = SubResource("Gradient_8mleg")
 
 [node name="Background" parent="." instance=ExtResource("4_1w763")]
 
-[node name="lvl3-3" type="TileMap" parent="."]
+[node name="lvl3-3" type="TileMap" parent="." node_paths=PackedStringArray("portal_nodesA", "portal_nodesB")]
 position = Vector2(259, 13)
 scale = Vector2(0.78, 0.78)
 tile_set = ExtResource("1_4a3ky")
@@ -37,13 +41,26 @@ layer_1/tile_data = PackedInt32Array(524309, 25, 0, 524307, 25, 0, 655383, 25, 0
 layer_2/name = "player"
 layer_2/tile_data = PackedInt32Array()
 script = ExtResource("2_3d0dd")
-id = 31
+id = 33
 starPos = Vector2(9, 7)
 startPos = Vector2i(0, 15)
 portalsA = Array[Vector2i]([Vector2i(7, 4), Vector2i(23, 23)])
 portalsB = Array[Vector2i]([Vector2i(13, 19), Vector2i(23, 7)])
 laser = Array[Vector2i]([Vector2i(5, 8), Vector2i(23, 10), Vector2i(21, 22), Vector2i(21, 8), Vector2i(19, 8)])
+portal_nodesA = [NodePath("../Portal"), NodePath("../Portal3")]
+portal_nodesB = [NodePath("../Portal2"), NodePath("../Portal4")]
 buttons = Array[Vector2i]([Vector2i(3, 12), Vector2i(19, 16), Vector2i(21, 16), Vector2i(17, 0), Vector2i(13, 10)])
+three_stars = 70.0
+two_stars = 80.0
+
+[node name="Fog" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(475, 113)
+scale = Vector2(0.8, 0.759)
+shadow_enabled = true
+texture = ExtResource("4_8pcas")
 
 [node name="Portal" parent="." instance=ExtResource("3_lfk0w")]
 position = Vector2(445, 124)
@@ -65,24 +82,16 @@ scale = Vector2(0.3, 0.3)
 
 [node name="Belichtet" type="CanvasLayer" parent="."]
 
-[node name="Bewertung" parent="Belichtet" instance=ExtResource("7_c73kn")]
-position = Vector2(576, -280)
-scale = Vector2(0.3, 0.3)
-
-[node name="Intro" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-152, 348)
-stream = ExtResource("5_46v2i")
-
-[node name="Star" type="Sprite2D" parent="."]
+[node name="Star" type="Sprite2D" parent="Belichtet"]
 position = Vector2(1004, 546)
 scale = Vector2(4, 4)
 texture = ExtResource("6_lmqpr")
 
-[node name="Bewertung" parent="." instance=ExtResource("7_c73kn")]
+[node name="Bewertung2" parent="Belichtet" instance=ExtResource("7_c73kn")]
 position = Vector2(576, -280)
 scale = Vector2(0.3, 0.3)
 
-[node name="Settings" parent="." instance=ExtResource("8_12y58")]
+[node name="Settings" parent="Belichtet" instance=ExtResource("8_12y58")]
 visible = false
 offset_left = 131.0
 offset_top = 311.0
@@ -90,3 +99,102 @@ offset_right = 131.0
 offset_bottom = 311.0
 scale = Vector2(0.3, 0.3)
 metadata/_edit_use_anchors_ = true
+
+[node name="Bewertung" parent="Belichtet" instance=ExtResource("7_c73kn")]
+position = Vector2(576, -280)
+scale = Vector2(0.3, 0.3)
+
+[node name="Info" parent="Belichtet" instance=ExtResource("6_x25bb")]
+visible = false
+position = Vector2(568, 325)
+scale = Vector2(0.3, 0.3)
+
+[node name="InfoHelp" type="Label" parent="Belichtet"]
+offset_left = 896.0
+offset_top = 589.0
+offset_right = 1116.0
+offset_bottom = 612.0
+theme_override_fonts/font = ExtResource("7_4wje3")
+theme_override_font_sizes/font_size = 20
+text = "(Press H for help)"
+
+[node name="gebrauchte_zeit" type="Label" parent="Belichtet"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 897.0
+offset_top = 35.0
+offset_right = 182.0
+offset_bottom = -562.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_4wje3")
+theme_override_font_sizes/font_size = 50
+text = "required Time:"
+
+[node name="stoppuhr" type="Node" parent="Belichtet"]
+script = ExtResource("8_osop2")
+
+[node name="label" type="Label" parent="Belichtet/stoppuhr"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 942.5
+offset_top = 64.5
+offset_right = -78.5
+offset_bottom = -541.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_4wje3")
+theme_override_font_sizes/font_size = 41
+text = "00:00"
+
+[node name="Highscore" type="Label" parent="Belichtet"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 896.0
+offset_top = 121.0
+offset_right = 181.0
+offset_bottom = -476.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_4wje3")
+theme_override_font_sizes/font_size = 50
+text = "    Highscore"
+metadata/_edit_use_anchors_ = true
+
+[node name="HighScoreTime" type="Label" parent="Belichtet"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 943.0
+offset_top = 144.0
+offset_right = -75.0
+offset_bottom = -459.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_4wje3")
+theme_override_font_sizes/font_size = 41
+text = "00:00"
+metadata/_edit_use_anchors_ = true
+
+[node name="Intro" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-152, 348)
+stream = ExtResource("5_46v2i")
+
+[node name="LightTimer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[connection signal="timeout" from="LightTimer" to="lvl3-3" method="_on_light_timer_timeout"]

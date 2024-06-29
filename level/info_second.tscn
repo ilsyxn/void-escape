@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://c64ao7qi0weel"]
+
+[ext_resource type="Texture2D" uid="uid://bl2lv4eybyjws" path="res://assets/ui/help.png" id="1_quuei"]
+[ext_resource type="Script" path="res://level/info_first.gd" id="2_2bpww"]
+[ext_resource type="FontFile" uid="uid://btk6lr8r58ga0" path="res://assets/ui/gomarice_mix_bit_font.ttf" id="2_dtmg1"]
+[ext_resource type="Texture2D" uid="uid://54hy54xe0ver" path="res://main-menu/star_gelb_big.png" id="3_021oc"]
+
+[node name="Info" type="Sprite2D"]
+texture = ExtResource("1_quuei")
+script = ExtResource("2_2bpww")
+
+[node name="Text" type="Label" parent="."]
+offset_left = -753.0
+offset_top = -578.0
+offset_right = 803.0
+offset_bottom = -61.0
+theme_override_fonts/font = ExtResource("2_dtmg1")
+theme_override_font_sizes/font_size = 100
+text = "Make your way to the end 
+      of the maze. But this
+   time you have to avoid
+the monsters! Dont touch
+  them or they'll eat you."
+
+[node name="One_Star" type="Sprite2D" parent="."]
+position = Vector2(-101, 115)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_021oc")
+
+[node name="Time" type="Label" parent="One_Star"]
+offset_left = 203.333
+offset_top = -111.667
+offset_right = 783.333
+offset_bottom = 89.3334
+theme_override_fonts/font = ExtResource("2_dtmg1")
+theme_override_font_sizes/font_size = 200
+text = "finish"
+metadata/_edit_use_anchors_ = true
+
+[node name="Two_Stars" type="Sprite2D" parent="."]
+position = Vector2(-106, 312)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_021oc")
+
+[node name="Star2" type="Sprite2D" parent="Two_Stars"]
+position = Vector2(-293.333, 0)
+texture = ExtResource("3_021oc")
+
+[node name="Time" type="Label" parent="Two_Stars"]
+offset_left = 203.333
+offset_top = -111.667
+offset_right = 783.333
+offset_bottom = 89.3334
+theme_override_fonts/font = ExtResource("2_dtmg1")
+theme_override_font_sizes/font_size = 200
+text = "test"
+metadata/_edit_use_anchors_ = true
+
+[node name="Three_Stars" type="Sprite2D" parent="."]
+position = Vector2(-106, 494)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_021oc")
+
+[node name="Star2" type="Sprite2D" parent="Three_Stars"]
+position = Vector2(-293.333, 0)
+texture = ExtResource("3_021oc")
+
+[node name="Star3" type="Sprite2D" parent="Three_Stars"]
+position = Vector2(-615, 2.00272e-05)
+texture = ExtResource("3_021oc")
+
+[node name="Time" type="Label" parent="Three_Stars"]
+offset_left = 203.333
+offset_top = -111.667
+offset_right = 783.333
+offset_bottom = 89.3334
+theme_override_fonts/font = ExtResource("2_dtmg1")
+theme_override_font_sizes/font_size = 200
+text = "test"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -494.0
+offset_top = 641.0
+offset_right = 482.0
+offset_bottom = 712.0
+theme_override_fonts/font = ExtResource("2_dtmg1")
+theme_override_font_sizes/font_size = 70
+text = "    (Press H to return)"

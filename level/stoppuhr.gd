@@ -1,5 +1,6 @@
 extends Node
 @onready var label = $label
+@onready var active = true
 
 var speedrun_time
 var time
@@ -9,8 +10,9 @@ func _ready():
 	time = speedrun_time
 
 func _physics_process(delta):
-	time = float(time) + delta
-	update_ui()
+	if active:
+		time = float(time) + delta
+		update_ui()
 
 func update_ui():
 	var formatted_time = format_time(time)

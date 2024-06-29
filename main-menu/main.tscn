@@ -67,19 +67,15 @@ texture_pressed = ExtResource("9_qr0ql")
 
 [node name="Marker1" type="Marker2D" parent="."]
 position = Vector2(490, 305)
-scale = Vector2(1, 1)
 
 [node name="Marker2" type="Marker2D" parent="."]
 position = Vector2(752, 304)
-scale = Vector2(1, 1)
 
 [node name="Marker3" type="Marker2D" parent="."]
 position = Vector2(488, 408)
-scale = Vector2(1, 1)
 
 [node name="Marker4" type="Marker2D" parent="."]
 position = Vector2(752, 408)
-scale = Vector2(1, 1)
 
 [node name="Border" type="Sprite2D" parent="."]
 position = Vector2(488, 408)
