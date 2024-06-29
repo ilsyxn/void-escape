@@ -36,6 +36,7 @@ var early_start = false
 @onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
 @onready var high_score = $"../Belichtet/Highscore2"
 var highscore_global
+var do_once = true
 
 var scores = {
 	"res://level/world1/level_1.tscn": {"score": 1.51, "level_id": 1.1},
@@ -88,6 +89,11 @@ func _ready():
 		break  
 
 func _process(_delta):
+	if do_once:
+		if str(new_name_edit.text) == "":
+			new_name_edit.text = high_score.latest_name
+			do_once = false
+		
 	scene_path = get_tree().current_scene.scene_file_path
 	level_data = scores.get(scene_path, {})
 	current_level_id = level_data.get("level_id", -1)
@@ -224,10 +230,9 @@ func set_lvl_records():
 			var temp_lvl_id = temp_level_data["level_id"]
 			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})
 			print(temp_lvl_score)
+			
 func star_clollected():
 	for i in 5:
 		star_collected_text.visible = !star_collected_text.visible
 		await get_tree().create_timer(0.2).timeout
 	star_collected_text.hide()
-	
-

@@ -1,6 +1,5 @@
 extends TileMap
 
-
 @export var id : int
 @export var starPos : Vector2
 @export var startPos : Vector2i
@@ -34,13 +33,46 @@ extends TileMap
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
 @onready var light = $"../Light"
 
+@onready var new_highscore = $"../Belichtet/NewHighscore"
+@onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
+@onready var high_score = $"../Belichtet/Highscore2"
+var highscore_global
+var do_once = true
+
+var scores = {
+	"res://level/world1/level_1.tscn": {"score": 1.51, "level_id": 1.1},
+	"res://level/world1/level_2.tscn": {"score": 4.26, "level_id": 1.2},
+	"res://level/world1/level_3.tscn": {"score": 5.56, "level_id": 1.3},
+	"res://level/world1/level_4.tscn": {"score": 4.99, "level_id": 1.4},
+	"res://level/world1/level_5.tscn": {"score": 5.01, "level_id": 1.5},
+	"res://level/world2/level_2_1.tscn": {"score": 1.51, "level_id": 2.1},
+	"res://level/world2/level_2_2.tscn": {"score": 4.26, "level_id": 2.2},
+	"res://level/world2/level_2_3.tscn": {"score": 5.56, "level_id": 2.3},
+	"res://level/world2/level_2_4.tscn": {"score": 4.99, "level_id": 2.4},
+	"res://level/world2/level_2_5.tscn": {"score": 5.01, "level_id": 2.5},
+	"res://level/world3/level_3_1.tscn": {"score": 1.51, "level_id": 3.1},
+	"res://level/world3/level_3_2.tscn": {"score": 4.26, "level_id": 3.2},
+	"res://level/world3/level_3_3.tscn": {"score": 5.56, "level_id": 3.3},
+	"res://level/world3/level_3_4.tscn": {"score": 4.99, "level_id": 3.4},
+	"res://level/world3/level_3_5.tscn": {"score": 5.01, "level_id": 3.5}
+}
+var scene_path
+var current_level_id
+var level_data
 
 func _process(delta):
+	if do_once:
+		if str(new_name_edit.text) == "":
+			new_name_edit.text = high_score.latest_name
+			do_once = false
 	light.position = to_global(map_to_local(player_tile_pos))
+	
 func _ready():
 	info.two_stars = two_stars
 	info.three_stars = three_stars
-
+	new_highscore.hide()
+	high_score.hide()
+	set_lvl_records()
 	intro.play()
 	set_cell(1, startPos, player, Vector2i(0,0),0)
 	setup_connectors()
@@ -74,12 +106,12 @@ func _unhandled_input(event):
 
 func move_player(target_tile_pos):
 	
-	# Infos über das Target Tile bekommen
+	# Infos 端ber das Target Tile bekommen
 	var target_tile_id = get_cell_source_id(0, target_tile_pos)
 	var _tile_data: TileData = get_cell_tile_data(0,player_tile_pos)
 	print(target_tile_pos, starPos)
 
-	# Wenn wir das Teil betreten dürfen, dann bewegen
+	# Wenn wir das Teil betreten d端rfen, dann bewegen
 	if (allowed_tile_ids.has(target_tile_id)) and !betreten.has(target_tile_pos) and !laser.has(target_tile_pos):
 		erase_cell(1,player_tile_pos)
 		
@@ -89,7 +121,7 @@ func move_player(target_tile_pos):
 		set_cell(1, target_tile_pos, player, Vector2i(0,0),0)
 		player_tile_pos = target_tile_pos
 	
-	# Boden füllen lol
+	# Boden f端llen lol
 	if buttons.has(target_tile_pos) and !used_buttons.has(target_tile_pos):
 		erase_cell(1, laser.pop_front())
 		used_buttons.append(target_tile_pos)
@@ -123,7 +155,7 @@ func move_player(target_tile_pos):
 		bewertung.bounce_in()
 		print(save_Game.collected_stars)
 
-# Benutzt das Portal und sorgt dafür, dass es nicht ein zweites mal benutzt werden kann.
+# Benutzt das Portal und sorgt daf端r, dass es nicht ein zweites mal benutzt werden kann.
 func use_portal(coord : Vector2i):
 	if portalsA.has(coord):
 		for i in portalsA.size():
@@ -152,11 +184,38 @@ func restartLevel():
 	if !save_Game.finishedLevels.has(id) and save_Game.bonusItems.has(id):
 		save_Game.removeBonus(id)
 	get_tree().reload_current_scene()
+
+
+func hide_lvl_ui():
+	$"../Belichtet/light_out_in".hide()
+	$"../Belichtet/gebrauchte_zeit".hide()
+	$"../Belichtet/stoppuhr/label".hide()
+	$"../Belichtet/Highscore".hide()
+	$"../Belichtet/HighScoreTime".hide()
+	$"../visual_timer/time".hide()
+	$"../Belichtet/Star".hide()	
+	new_highscore.show()
+	high_score.show()
+
+func _on_save_highscore_button_pressed(_new_text = ""):
+	var new_name = new_name_edit.text.strip_edges()
+	if high_score.latest_name != new_name:
+		high_score.latest_name = new_name
+	high_score.add_entry({"name": high_score.latest_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
+	high_score._save()  # Add this line to save the highscore
+	$"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton".disabled = true
+	
+func set_lvl_records():
+	if FileAccess.file_exists(high_score.file_name):
+		pass
+	else:
+		for scene_path in scores.keys():
+			var temp_level_data = scores[scene_path]
+			var temp_lvl_score = temp_level_data["score"]
+			var temp_lvl_id = temp_level_data["level_id"]
+			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})
+			print(temp_lvl_score)
  
-
-
-
-
 func _on_light_timer_timeout():
 	$"../Fog".visible = !$"../Fog".visible
 	light.visible = !light.visible
