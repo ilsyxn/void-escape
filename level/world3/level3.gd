@@ -84,7 +84,7 @@ func _ready():
 	new_highscore.hide()
 	high_score.hide()
 	set_lvl_records()
-	intro.play()
+	IntroPlayer.play()
 	set_cell(1, startPos, player, Vector2i(0,0),0)
 	setup_connectors()
 	if save_Game.time[id]:
@@ -143,7 +143,7 @@ func move_player(target_tile_pos):
 		if !save_Game.bonusItems.has(id):
 			save_Game.bonusCollected(id)
 			star_clollected()
-			stern_player.play()
+			SternPlayer.play()
 			star.texture = preload("res://assets/buttons/gray/stargray.png")
 		
 	if target_tile_id == 31:

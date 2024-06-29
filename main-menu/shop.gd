@@ -29,7 +29,7 @@ func _process(delta):
 		preis.text = str(slots[marker_index].preis)
 
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func _unhandled_input(event):
 	if event.is_action_pressed("back"):

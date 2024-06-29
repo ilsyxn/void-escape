@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioStreamPlayer2d="*res://assets/audio_stream_player_2d.tscn"
+SternPlayer="*res://main-menu/stern_player.tscn"
+IntroPlayer="*res://main-menu/intro_player.tscn"
 
 [display]
 

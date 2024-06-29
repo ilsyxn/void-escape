@@ -6,9 +6,10 @@ extends Control
 @onready var buttons = [$VBoxContainer/Resume, $VBoxContainer/Quit]
 @onready var index = 0
 @onready var border = $Border
-@onready var marker = [$Marker1, $Marker2]
-@onready var slider = $VBoxContainer/HSlider
+@onready var marker = [$Marker1, $Marker2, $Marker3, $Marker4]
+@onready var slider = $HSlider
 @onready var sphere = $Sphere
+@onready var slider2 = $HSlider2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,10 +33,15 @@ func move_slider(left : bool):
 			slider.value -= 0.1
 		if !left:
 			slider.value += 0.1
+	if index == 3:
+		if left: 
+			slider2.value -= 0.1
+		if !left:
+			slider2.value += 0.1
 func move_index(up : bool):
 	if up and index != 0:
 		index -=1
-	if !up and index != 2:
+	if !up and index != 3:
 		index += 1
 
 func press_button(i : int):
@@ -51,6 +57,8 @@ func _process(_delta):
 	if index == 2 or index == 3:
 		sphere.visible = true
 		border.hide()
+	if index == 2 or index == 3:
+		sphere.position = marker[index].position
 	if enabled:
 		resume.disabled = false
 		quit.disabled = false

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ruo03tichfct"]
+
+[ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="1_prdy8"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_prdy8")
+volume_db = 10.0
+bus = &"Sound"

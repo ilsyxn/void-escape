@@ -1,6 +1,6 @@
 extends AudioStreamPlayer2D
 
-var muted = true
+var muted = false
 @onready var staerke = volume_db
 # Called when the node enters the scene tree for the first time.
 func _ready():

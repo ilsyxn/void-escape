@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckdjh83myl3g8"]
+
+[ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="1_8lgql"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_8lgql")
+volume_db = 5.0
+bus = &"Sound"

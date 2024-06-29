@@ -66,7 +66,7 @@ func _ready():
 	new_highscore.hide()
 	high_score.hide()
 	set_lvl_records()
-	intro.play()
+	IntroPlayer.play()
 	fog.visible = false
 	light.visible = false
 	light_out.visible = false
@@ -146,7 +146,7 @@ func move_player(target_tile_pos):
 		if target_tile_pos == starPos:
 			star_clollected()
 			
-			stern_player.play()
+			SternPlayer.play()
 			bonus = true
 			star.texture = load("res://assets/star.png")
 

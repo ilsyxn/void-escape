@@ -82,7 +82,7 @@ func _ready():
 	new_highscore.hide()
 	high_score.hide()
 	set_lvl_records()
-	intro.play()
+	IntroPlayer.play()
 	# Damit sich die gegner bewegen können
 	randomize()
 	execute_timeout_actions()
@@ -220,7 +220,7 @@ func move_player(target_tile_pos):
 		if str(target_tile_pos) == str(starPos):
 			bonus = true
 			star.texture = load("res://assets/buttons/orange/starorgange.png")
-			stern_player.play()
+			SternPlayer.play()
 			star_clollected()
 		
 		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
