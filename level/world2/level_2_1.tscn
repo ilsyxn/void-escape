@@ -221,9 +221,9 @@ metadata/_edit_use_anchors_ = true
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 visible = false
 offset_left = 286.0
-offset_top = 538.0
+offset_top = 638.0
 offset_right = 875.0
-offset_bottom = 843.0
+offset_bottom = 943.0
 script = ExtResource("14_8x7ee")
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
