@@ -273,9 +273,9 @@ offset_bottom = 144.0
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 visible = false
 offset_left = 286.0
-offset_top = 538.0
+offset_top = 850.0
 offset_right = 875.0
-offset_bottom = 843.0
+offset_bottom = 1155.0
 script = ExtResource("13_cbl87")
 
 [node name="star_collected" type="Label" parent="Belichtet"]

@@ -17,9 +17,10 @@ extends TileMap
 
 @onready var star = $"../Belichtet/Star"
 @onready var intro = $"../Intro"
+@onready var fog = $"../Fog"
 
 @onready var settings = $"../Belichtet/Settings"
-@onready var fog = false
+@onready var fog_active = false
 @onready var stern_player = $"../SternPlayer"
 @onready var star_collected_text = $"../Belichtet/star_collected"
 @onready var player_tile_pos : Vector2i = startPos
@@ -69,10 +70,10 @@ func _process(delta):
 			new_name_edit.text = high_score.latest_name
 			do_once = false
 	light.position = to_global(map_to_local(player_tile_pos))
-	if fog and !light.texture_scale > 1.5:
+	if fog_active and !light.texture_scale > 1.5:
 		var tween = create_tween()
 		tween.tween_property(light, "texture_scale", 1.5, 1.5)
-	elif !fog and !light.texture_scale < 0.5:
+	elif !fog_active and !light.texture_scale < 0.5:
 		var tween = create_tween()
 		tween.tween_property(light, "texture_scale", 0.5, 1.5)
 		
@@ -230,7 +231,7 @@ func set_lvl_records():
 			print(temp_lvl_score)
  
 func _on_light_timer_timeout():
-	fog = !fog
+	fog_active = !fog_active
 
 func star_clollected():
 	for i in 5:
