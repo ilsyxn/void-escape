@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://8ux8w7nca844"]
+[gd_scene load_steps=21 format=3 uid="uid://8ux8w7nca844"]
 
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="1_llqjm"]
 [ext_resource type="TileSet" uid="uid://w5iet3ku1ekm" path="res://level/world3/tilemap-3.tres" id="2_54hdm"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="11_01lr0"]
 [ext_resource type="Script" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="12_gdbls"]
 [ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="15_tnaqb"]
+[ext_resource type="Script" path="res://level/visual_timer.gd" id="16_2oab4"]
 
 [sub_resource type="Gradient" id="Gradient_20r6u"]
 colors = PackedColorArray(0.810848, 0.224108, 0.660801, 1, 0.144355, 0.479858, 0.811381, 1)
@@ -56,9 +57,11 @@ three_stars = 45.0
 two_stars = 55.0
 
 [node name="Fog" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Light" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(475, 113)
 scale = Vector2(0.8, 0.759)
 shadow_enabled = true
@@ -226,9 +229,9 @@ offset_bottom = 144.0
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 offset_left = 286.0
-offset_top = 638.0
+offset_top = 591.0
 offset_right = 875.0
-offset_bottom = 943.0
+offset_bottom = 896.0
 script = ExtResource("12_gdbls")
 
 [node name="star_collected" type="Label" parent="Belichtet"]
@@ -249,6 +252,42 @@ theme_override_font_sizes/font_size = 80
 text = "Star collected!"
 metadata/_edit_use_anchors_ = true
 
+[node name="light_out_in" type="Label" parent="Belichtet"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 902.0
+offset_top = 206.0
+offset_right = 173.0
+offset_bottom = -391.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("6_46ec7")
+theme_override_font_sizes/font_size = 50
+text = "Lights out in :"
+metadata/_edit_use_anchors_ = true
+
+[node name="light_out" type="Label" parent="Belichtet"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 287.0
+offset_top = 266.0
+offset_right = -313.0
+offset_bottom = -301.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("6_46ec7")
+theme_override_font_sizes/font_size = 80
+text = "Lights out!"
+metadata/_edit_use_anchors_ = true
+
 [node name="Background" parent="." instance=ExtResource("1_llqjm")]
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
@@ -261,6 +300,31 @@ autostart = true
 [node name="SternPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_tnaqb")
 volume_db = 10.0
+
+[node name="visual_timer" type="Node" parent="."]
+script = ExtResource("16_2oab4")
+
+[node name="time" type="Label" parent="visual_timer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 939.0
+offset_top = 234.5
+offset_right = -82.0
+offset_bottom = -371.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("6_46ec7")
+theme_override_font_sizes/font_size = 41
+text = "00:00"
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="visual_timer"]
+wait_time = 10.0
+one_shot = true
+autostart = true
 
 [connection signal="text_submitted" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit" to="lvl3-2" method="_on_save_highscore_button_pressed"]
 [connection signal="pressed" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton" to="lvl3-2" method="_on_save_highscore_button_pressed"]

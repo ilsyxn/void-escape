@@ -218,10 +218,11 @@ func move_player(target_tile_pos):
 			
 		# Stern einsammeln
 		if str(target_tile_pos) == str(starPos):
-			bonus = true
 			star.texture = load("res://assets/buttons/orange/starorgange.png")
-			SternPlayer.play()
-			star_clollected()
+			if !bonus:
+				SternPlayer.play()
+				star_clollected()
+			bonus = true
 		
 		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
 		if target_tile_id == 41:

@@ -12,8 +12,9 @@ extends TileMap
 @export var three_stars: float
 @export var two_stars: float
 @onready var bewertung = $"../Belichtet/Bewertung"
-
+@onready var bonus = false
 @onready var stoppuhr = $"../Belichtet/stoppuhr"
+@onready var light_out = $Belichtet/light_out
 
 @onready var star = $"../Belichtet/Star"
 @onready var intro = $"../Intro"
@@ -34,11 +35,12 @@ extends TileMap
 @onready var highscore = $"../Belichtet/Highscore"
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
 @onready var light = $"../Light"
-
+@onready var timeout = false
 @onready var new_highscore = $"../Belichtet/NewHighscore"
 @onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
 @onready var high_score = $"../Belichtet/Highscore2"
 @onready var onscreen_keyboard = $"../Belichtet/OnscreenKeyboard"
+@onready var lights_closed = false
 
 var highscore_global
 var do_once = true
@@ -76,6 +78,8 @@ func _process(delta):
 	elif !fog_active and !light.texture_scale < 0.5:
 		var tween = create_tween()
 		tween.tween_property(light, "texture_scale", 0.5, 1.5)
+	if timeout and !lights_closed:
+		toggle_light()
 		
 	
 func _ready():
@@ -98,12 +102,16 @@ func _ready():
 
 func _unhandled_input(event):
 		if event.is_action_pressed("right"):
+			timeout = true
 			move_player(player_tile_pos + Vector2i.RIGHT)
 		elif event.is_action_pressed("left"):
+			timeout = true
 			move_player(player_tile_pos + Vector2i.LEFT)	
 		elif event.is_action_pressed("up"):
+			timeout = true
 			move_player(player_tile_pos + Vector2i.UP)
 		elif event.is_action_pressed("down"):
+			timeout = true
 			move_player(player_tile_pos + Vector2i.DOWN)
 		elif event.is_action_pressed("reset"):  
 			restartLevel()
@@ -142,8 +150,10 @@ func move_player(target_tile_pos):
 	if str(target_tile_pos) == str(starPos):
 		if !save_Game.bonusItems.has(id):
 			save_Game.bonusCollected(id)
-			star_clollected()
-			SternPlayer.play()
+			if !bonus:
+				SternPlayer.play()
+				star_clollected()
+			bonus = true
 			star.texture = preload("res://assets/buttons/gray/stargray.png")
 		
 	if target_tile_id == 31:
@@ -240,9 +250,14 @@ func star_clollected():
 	star_collected_text.hide()
 
 func toggle_light():
+	lights_closed = true
 	fog.visible = true
 	light.visible = true
-
+	$"../Belichtet/light_out".visible = true
+	$"../Belichtet/light_out_in".visible = false
+	await get_tree().create_timer(0.8).timeout
+	$"../Belichtet/light_out".visible = false
 
 func _on_timer_timeout():
-	toggle_light()
+	timeout = true
+	

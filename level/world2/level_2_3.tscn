@@ -43,8 +43,8 @@ script = ExtResource("4_6a04k")
 id = 23
 starPos = Vector2(14, 5)
 startPos = Vector2i(7, 0)
-three_stars = 35.0
-two_stars = 40.0
+three_stars = 40.0
+two_stars = 45.0
 
 [node name="Fog" type="CanvasModulate" parent="."]
 visible = false
@@ -173,9 +173,9 @@ text = "(Press H for help)"
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 visible = false
 offset_left = 286.0
-offset_top = 602.0
+offset_top = 591.0
 offset_right = 875.0
-offset_bottom = 907.0
+offset_bottom = 896.0
 script = ExtResource("14_nn5du")
 
 [node name="star_collected" type="Label" parent="Belichtet"]

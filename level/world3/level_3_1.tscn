@@ -57,8 +57,8 @@ laser = Array[Vector2i]([Vector2i(11, 10), Vector2i(13, 10), Vector2i(13, 2)])
 portal_nodesA = [NodePath("Portal")]
 portal_nodesB = [NodePath("Portal2")]
 buttons = Array[Vector2i]([Vector2i(1, 0), Vector2i(8, 10), Vector2i(1, 10)])
-three_stars = 35.0
-two_stars = 45.0
+three_stars = 45.0
+two_stars = 60.0
 
 [node name="Portal" parent="lvl3-2" instance=ExtResource("3_cpegh")]
 position = Vector2(369.091, 433.636)
@@ -132,6 +132,7 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("7_2hd7a")
 theme_override_font_sizes/font_size = 41
 text = "00:00"
+metadata/_edit_use_anchors_ = true
 
 [node name="Highscore" type="Label" parent="Belichtet"]
 anchors_preset = 15
@@ -215,9 +216,9 @@ offset_bottom = 144.0
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 visible = false
 offset_left = 286.0
-offset_top = 638.0
+offset_top = 591.0
 offset_right = 875.0
-offset_bottom = 943.0
+offset_bottom = 896.0
 script = ExtResource("13_hj3bo")
 
 [node name="star_collected" type="Label" parent="Belichtet"]
@@ -236,6 +237,42 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("7_2hd7a")
 theme_override_font_sizes/font_size = 80
 text = "Star collected!"
+metadata/_edit_use_anchors_ = true
+
+[node name="light_out_in" type="Label" parent="Belichtet"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 902.0
+offset_top = 206.0
+offset_right = 173.0
+offset_bottom = -391.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_2hd7a")
+theme_override_font_sizes/font_size = 50
+text = "Lights out in :"
+metadata/_edit_use_anchors_ = true
+
+[node name="light_out" type="Label" parent="Belichtet"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 306.0
+offset_top = 266.0
+offset_right = -294.0
+offset_bottom = -301.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_2hd7a")
+theme_override_font_sizes/font_size = 80
+text = "Lights out!"
 metadata/_edit_use_anchors_ = true
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
