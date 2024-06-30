@@ -57,8 +57,8 @@ laser = Array[Vector2i]([Vector2i(11, 10), Vector2i(13, 10), Vector2i(13, 2)])
 portal_nodesA = [NodePath("Portal")]
 portal_nodesB = [NodePath("Portal2")]
 buttons = Array[Vector2i]([Vector2i(1, 0), Vector2i(8, 10), Vector2i(1, 10)])
-three_stars = 45.0
-two_stars = 60.0
+three_stars = 13.0
+two_stars = 20.0
 
 [node name="Portal" parent="lvl3-2" instance=ExtResource("3_cpegh")]
 position = Vector2(369.091, 433.636)

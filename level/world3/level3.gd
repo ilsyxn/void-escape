@@ -153,10 +153,10 @@ func move_player(target_tile_pos):
 		highscore_global = stoppuhr.time
 		highscore_global = round(highscore_global * 100) / 100
 		if not save_Game.time.has(id):
-			save_Game.time[id] = stoppuhr.time
+			save_Game.time[id] = highscore_global
 		if save_Game.time.has(id):
 			if save_Game.time[id] > stoppuhr.time:
-				save_Game.time[id] = stoppuhr.time
+				save_Game.time[id] = highscore_global
 		stoppuhr.active = false
 		if !save_Game.finishedLevels.has(id):
 			save_Game.levelFinished(id)	

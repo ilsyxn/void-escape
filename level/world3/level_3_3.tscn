@@ -65,8 +65,8 @@ laser = Array[Vector2i]([Vector2i(15, 14), Vector2i(4, 15), Vector2i(8, 12), Vec
 portal_nodesA = [NodePath("../Portal"), NodePath("../Portal3"), NodePath("../Portal5"), NodePath("../Portal7")]
 portal_nodesB = [NodePath("../Portal2"), NodePath("../Portal4"), NodePath("../Portal6"), NodePath("../Portal8")]
 buttons = Array[Vector2i]([Vector2i(5, 2), Vector2i(12, 4), Vector2i(15, 6), Vector2i(14, 9), Vector2i(19, 14), Vector2i(8, 16)])
-three_stars = 60.0
-two_stars = 75.0
+three_stars = 30.0
+two_stars = 40.0
 
 [node name="Fog" type="CanvasModulate" parent="."]
 visible = false

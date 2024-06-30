@@ -43,8 +43,8 @@ script = ExtResource("4_6a04k")
 id = 23
 starPos = Vector2(14, 5)
 startPos = Vector2i(7, 0)
-three_stars = 40.0
-two_stars = 45.0
+three_stars = 22.0
+two_stars = 30.0
 
 [node name="Fog" type="CanvasModulate" parent="."]
 visible = false
