@@ -190,10 +190,11 @@ metadata/_edit_use_anchors_ = true
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 visible = false
 offset_left = 286.0
-offset_top = 12.0
+offset_top = 638.0
 offset_right = 875.0
-offset_bottom = 317.0
+offset_bottom = 943.0
 script = ExtResource("14_8x7ee")
+autoShow = true
 
 [node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
 offset_left = 891.0
@@ -228,6 +229,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("7_8m75s")
 placeholder_text = "Name..............."
 alignment = 1
+max_length = 9
 expand_to_text_length = true
 clear_button_enabled = true
 

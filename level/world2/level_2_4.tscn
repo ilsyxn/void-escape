@@ -171,11 +171,13 @@ theme_override_font_sizes/font_size = 20
 text = "(Press H for help)"
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
-offset_left = 286.0
-offset_top = 850.0
-offset_right = 875.0
-offset_bottom = 1155.0
+visible = false
+offset_left = 227.0
+offset_top = 733.0
+offset_right = 816.0
+offset_bottom = 1038.0
 script = ExtResource("14_y4xvu")
+autoShow = true
 
 [node name="star_collected" type="Label" parent="Belichtet"]
 visible = false
@@ -228,6 +230,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_1pa80")
 placeholder_text = "Name..............."
 alignment = 1
+max_length = 9
 expand_to_text_length = true
 clear_button_enabled = true
 

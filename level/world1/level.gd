@@ -97,7 +97,9 @@ func _process(_delta):
 		if str(new_name_edit.text) == "":
 			new_name_edit.text = high_score.latest_name
 			do_once = false
-		
+		if high_score.latest_name == "Luviar":
+			new_name_edit.text = ""
+			
 	scene_path = get_tree().current_scene.scene_file_path
 	level_data = scores.get(scene_path, {})
 	current_level_id = level_data.get("level_id", -1)

@@ -71,6 +71,8 @@ func _process(delta):
 		if str(new_name_edit.text) == "":
 			new_name_edit.text = high_score.latest_name
 			do_once = false
+		if high_score.latest_name == "Luviar":
+			new_name_edit.text = ""
 	light.position = to_global(map_to_local(player_tile_pos))
 	if fog_active and !light.texture_scale > 1.5:
 		var tween = create_tween()

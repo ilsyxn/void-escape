@@ -280,6 +280,7 @@ offset_top = 12.0
 offset_right = 875.0
 offset_bottom = 317.0
 script = ExtResource("13_cbl87")
+autoShow = true
 
 [node name="star_collected" type="Label" parent="Belichtet"]
 visible = false
