@@ -59,8 +59,11 @@ var scores = {
 var scene_path
 var current_level_id
 var level_data
+var cursor_speed = 200  
+var cursor_position = Vector2()
 
 func _ready():
+	cursor_position = get_viewport().size / 2
 	info.two_stars = two_stars
 	info.three_stars = three_stars
 	new_highscore.hide()
@@ -106,6 +109,29 @@ func _process(_delta):
 		light_timer.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _unhandled_input(event):
+	if event is InputEventKey:
+		onscreen_keyboard.autoShow = false
+	elif event is InputEventJoypadButton:
+		onscreen_keyboard.autoShow = true
+		
+	 # Bewegung des Cursors mit dem Joystick
+	if event is InputEventJoypadMotion:
+		var axis = event.axis
+		var value = event.axis_value
+		
+		# Linker Joystick (Achsen 0 und 1)
+		if axis == JOY_AXIS_RIGHT_X:  # X-Achse
+			cursor_position.x += value * cursor_speed * get_process_delta_time()
+		elif axis == JOY_AXIS_RIGHT_Y:  # Y-Achse
+			cursor_position.y += value * cursor_speed * get_process_delta_time()
+		
+		# Grenzen überprüfen
+		cursor_position.x = clamp(cursor_position.x, 0, get_viewport().size.x)
+		cursor_position.y = clamp(cursor_position.y, 0, get_viewport().size.y)
+		
+		# Position des Cursors aktualisieren
+		$Cursor.position = cursor_position
+
 	if event.is_action_pressed("right") and not settings.enabled and !info.visible:
 		move_player(player_tile_pos + Vector2.RIGHT)
 		execute_timeout_actions()

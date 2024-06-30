@@ -214,9 +214,9 @@ text = "(Press H for help)"
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 offset_left = 286.0
-offset_top = 850.0
+offset_top = 12.0
 offset_right = 875.0
-offset_bottom = 1155.0
+offset_bottom = 317.0
 script = ExtResource("14_n5pd6")
 
 [node name="star_collected" type="Label" parent="Belichtet"]

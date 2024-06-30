@@ -6,7 +6,7 @@ extends PanelContainer
 ## SETTINGS
 ###########################
 
-@export var autoShow:bool = true
+@export var autoShow:bool = false
 @export_file var customLayoutFile
 @export var setToolTip := true
 @export_group("Style")

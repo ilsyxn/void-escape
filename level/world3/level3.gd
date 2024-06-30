@@ -101,6 +101,10 @@ func _ready():
 
 
 func _unhandled_input(event):
+		if event is InputEventKey:
+			onscreen_keyboard.autoShow = false
+		elif event is InputEventJoypadButton:
+			onscreen_keyboard.autoShow = true
 		if event.is_action_pressed("right"):
 			timeout = true
 			move_player(player_tile_pos + Vector2i.RIGHT)

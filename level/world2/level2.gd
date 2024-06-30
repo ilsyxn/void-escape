@@ -145,43 +145,45 @@ func _process(_delta):
 	# Licht soll Spieler verfolgen
 	light.position = to_global(map_to_local(player_tile_pos))
 	
-	
-
 func _unhandled_input(event):
-		if event.is_action_pressed("right") and !settings.enabled and !info.visible:
-			if typeof(player_tile_pos) == TYPE_VECTOR2I:
-				move_player(player_tile_pos + Vector2i.RIGHT)
-			else: 
-				move_player(player_tile_pos + Vector2.RIGHT)
-			execute_timeout_actions()
-		elif event.is_action_pressed("left") and !settings.enabled and !info.visible:
-			if typeof(player_tile_pos) == TYPE_VECTOR2I:
-				move_player(player_tile_pos + Vector2i.LEFT)
-			else:
-				move_player(player_tile_pos + Vector2.LEFT)
-			execute_timeout_actions()
-		elif event.is_action_pressed("up") and !settings.enabled and !info.visible:
-			if typeof(player_tile_pos) == TYPE_VECTOR2I:
-				move_player(player_tile_pos + Vector2i.UP)
-			else:
-				move_player(player_tile_pos + Vector2.UP)
-			execute_timeout_actions()
+	if event is InputEventKey:
+		onscreen_keyboard.autoShow = false
+	elif event is InputEventJoypadButton:
+		onscreen_keyboard.autoShow = true
+	if event.is_action_pressed("right") and !settings.enabled and !info.visible:
+		if typeof(player_tile_pos) == TYPE_VECTOR2I:
+			move_player(player_tile_pos + Vector2i.RIGHT)
+		else: 
+			move_player(player_tile_pos + Vector2.RIGHT)
+		execute_timeout_actions()
+	elif event.is_action_pressed("left") and !settings.enabled and !info.visible:
+		if typeof(player_tile_pos) == TYPE_VECTOR2I:
+			move_player(player_tile_pos + Vector2i.LEFT)
+		else:
+			move_player(player_tile_pos + Vector2.LEFT)
+		execute_timeout_actions()
+	elif event.is_action_pressed("up") and !settings.enabled and !info.visible:
+		if typeof(player_tile_pos) == TYPE_VECTOR2I:
+			move_player(player_tile_pos + Vector2i.UP)
+		else:
+			move_player(player_tile_pos + Vector2.UP)
+		execute_timeout_actions()
 			
-		elif event.is_action_pressed("down") and !settings.enabled and !info.visible:
-			if typeof(player_tile_pos) == TYPE_VECTOR2I:
+	elif event.is_action_pressed("down") and !settings.enabled and !info.visible:
+		if typeof(player_tile_pos) == TYPE_VECTOR2I:
 				move_player(player_tile_pos + Vector2i.DOWN)
-			else:
-				move_player(player_tile_pos + Vector2.DOWN)
-			execute_timeout_actions()
-		elif event.is_action_pressed("reset") and !settings.enabled and !info.visible:  
-			restartLevel()
-		elif event.is_action_pressed("settings") and !info.visible:  
-			if settings.enabled == false:
-				settings.enabled = true
-				stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED
-			elif settings.enabled:
-				settings.enabled = false
-				stoppuhr.process_mode = Node.PROCESS_MODE_ALWAYS
+		else:
+			move_player(player_tile_pos + Vector2.DOWN)
+		execute_timeout_actions()
+	elif event.is_action_pressed("reset") and !settings.enabled and !info.visible:  
+		restartLevel()
+	elif event.is_action_pressed("settings") and !info.visible:  
+		if settings.enabled == false:
+			settings.enabled = true
+			stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED
+		elif settings.enabled:
+			settings.enabled = false
+			stoppuhr.process_mode = Node.PROCESS_MODE_ALWAYS
 		
 
 
