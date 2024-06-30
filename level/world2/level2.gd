@@ -51,23 +51,6 @@ var move_in_two = false
 @onready var high_score = $"../Belichtet/NewHighscore/VBoxContainer/Highscore2"
 @onready var onscreen_keyboard = $"../Belichtet/OnscreenKeyboard"
 
-var scores = {
-	"res://level/world1/level_1.tscn": {"score": 1.51, "level_id": 1.1},
-	"res://level/world1/level_2.tscn": {"score": 4.26, "level_id": 1.2},
-	"res://level/world1/level_3.tscn": {"score": 5.56, "level_id": 1.3},
-	"res://level/world1/level_4.tscn": {"score": 4.99, "level_id": 1.4},
-	"res://level/world1/level_5.tscn": {"score": 5.01, "level_id": 1.5},
-	"res://level/world2/level_2_1.tscn": {"score": 1.51, "level_id": 2.1},
-	"res://level/world2/level_2_2.tscn": {"score": 4.26, "level_id": 2.2},
-	"res://level/world2/level_2_3.tscn": {"score": 5.56, "level_id": 2.3},
-	"res://level/world2/level_2_4.tscn": {"score": 4.99, "level_id": 2.4},
-	"res://level/world2/level_2_5.tscn": {"score": 5.01, "level_id": 2.5},
-	"res://level/world3/level_3_1.tscn": {"score": 1.51, "level_id": 3.1},
-	"res://level/world3/level_3_2.tscn": {"score": 4.26, "level_id": 3.2},
-	"res://level/world3/level_3_3.tscn": {"score": 5.56, "level_id": 3.3},
-	"res://level/world3/level_3_4.tscn": {"score": 4.99, "level_id": 3.4},
-	"res://level/world3/level_3_5.tscn": {"score": 5.01, "level_id": 3.5}
-}
 var scene_path
 var current_level_id
 var level_data
@@ -139,7 +122,7 @@ func _process(_delta):
 			new_name_edit.text = ""
 			
 	scene_path = get_tree().current_scene.scene_file_path
-	level_data = scores.get(scene_path, {})
+	level_data = high_score.scores.get(scene_path, {})
 	# Access the level_id (with a default if it doesn't exist)
 	current_level_id = level_data.get("level_id", -1)
 	high_score._update_shown_scores(current_level_id)
@@ -305,16 +288,15 @@ func move_monster_towards_player():
 	for i in range(4):
 		if enemy_positions[i] != null and !game_over:
 			var path_taken = astagrid.get_id_path(enemy_positions[i], player_tile_pos)
-			if get_cell_source_id(1,path_taken[1]) == -1 or player:
-				erase_cell(1, enemy_positions[i])
-				set_cell(1, path_taken[1], enemy_ids[i], Vector2i(0,0), 0)
-				enemy_positions[i] = path_taken[1]
-				# Wenn vom Monster gefressen, dann Game Over	
-				if path_taken[1] == Vector2i(player_tile_pos):
-					await get_tree().create_timer(0.5).timeout
-					hide_lvl_ui()
-					$"../Belichtet/GameOver".bounce_in()
-					game_over = true
+			erase_cell(1, enemy_positions[i])
+			set_cell(1, path_taken[1], enemy_ids[i], Vector2i(0,0), 0)
+			enemy_positions[i] = path_taken[1]
+			# Wenn vom Monster gefressen, dann Game Over	
+			if path_taken[1] == Vector2i(player_tile_pos):
+				await get_tree().create_timer(0.5).timeout
+				hide_lvl_ui()
+				$"../Belichtet/GameOver".bounce_in()
+				game_over = true
 					
 
 func setup_grid():
@@ -360,18 +342,15 @@ func set_lvl_records():
 	if FileAccess.file_exists(high_score.file_name):
 		pass
 	else:
-		for scene_path in scores.keys():
-			var temp_level_data = scores[scene_path]
+		for scene_path in high_score.scores.keys():
+			var temp_level_data = high_score.scores[scene_path]
 			var temp_lvl_score = temp_level_data["score"]
 			var temp_lvl_id = temp_level_data["level_id"]
 			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})
 			print(temp_lvl_score)
+			
 func star_clollected():
 	for i in 5:
 		star_collected_text.visible = !star_collected_text.visible
 		await get_tree().create_timer(0.2).timeout
 	star_collected_text.hide()
-
-
-func _on_new_name_edit_text_submitted(new_text):
-	pass # Replace with function body.

@@ -188,7 +188,6 @@ text = "Star collected!"
 metadata/_edit_use_anchors_ = true
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
-visible = false
 offset_left = 286.0
 offset_top = 638.0
 offset_right = 875.0

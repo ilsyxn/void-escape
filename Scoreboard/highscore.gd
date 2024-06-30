@@ -9,6 +9,23 @@ class_name Highscore
 @export var column_names := ["name", "score"]
 @export var show_place_numbers := true
 @export var max_shown_scores := 11
+@export var scores = {
+	"res://level/world1/level_1.tscn": {"score": 1.51, "level_id": 1.1},
+	"res://level/world1/level_2.tscn": {"score": 4.26, "level_id": 1.2},
+	"res://level/world1/level_3.tscn": {"score": 5.56, "level_id": 1.3},
+	"res://level/world1/level_4.tscn": {"score": 4.99, "level_id": 1.4},
+	"res://level/world1/level_5.tscn": {"score": 5.01, "level_id": 1.5},
+	"res://level/world2/level_2_1.tscn": {"score": 1.51, "level_id": 2.1},
+	"res://level/world2/level_2_2.tscn": {"score": 4.26, "level_id": 2.2},
+	"res://level/world2/level_2_3.tscn": {"score": 5.56, "level_id": 2.3},
+	"res://level/world2/level_2_4.tscn": {"score": 4.99, "level_id": 2.4},
+	"res://level/world2/level_2_5.tscn": {"score": 5.01, "level_id": 2.5},
+	"res://level/world3/level_3_1.tscn": {"score": 1.51, "level_id": 3.1},
+	"res://level/world3/level_3_2.tscn": {"score": 4.26, "level_id": 3.2},
+	"res://level/world3/level_3_3.tscn": {"score": 5.56, "level_id": 3.3},
+	"res://level/world3/level_3_4.tscn": {"score": 4.99, "level_id": 3.4},
+	"res://level/world3/level_3_5.tscn": {"score": 5.01, "level_id": 3.5}
+}
 
 var highscore := []
 var latest_name := ""

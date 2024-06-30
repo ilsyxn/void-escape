@@ -171,7 +171,6 @@ theme_override_font_sizes/font_size = 20
 text = "(Press H for help)"
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
-visible = false
 offset_left = 286.0
 offset_top = 638.0
 offset_right = 875.0

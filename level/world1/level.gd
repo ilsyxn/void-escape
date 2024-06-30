@@ -35,35 +35,18 @@ var early_start = false
 @onready var intro = $"../Intro"
 @onready var new_highscore = $"../Belichtet/NewHighscore"
 @onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
-@onready var high_score = $"../Belichtet/Highscore2"
+@onready var high_score = $"../Belichtet/NewHighscore/VBoxContainer/Highscore2"
 var highscore_global
 var do_once = true
 
-var scores = {
-	"res://level/world1/level_1.tscn": {"score": 1.51, "level_id": 1.1},
-	"res://level/world1/level_2.tscn": {"score": 4.26, "level_id": 1.2},
-	"res://level/world1/level_3.tscn": {"score": 5.56, "level_id": 1.3},
-	"res://level/world1/level_4.tscn": {"score": 4.99, "level_id": 1.4},
-	"res://level/world1/level_5.tscn": {"score": 5.01, "level_id": 1.5},
-	"res://level/world2/level_2_1.tscn": {"score": 1.51, "level_id": 2.1},
-	"res://level/world2/level_2_2.tscn": {"score": 4.26, "level_id": 2.2},
-	"res://level/world2/level_2_3.tscn": {"score": 5.56, "level_id": 2.3},
-	"res://level/world2/level_2_4.tscn": {"score": 4.99, "level_id": 2.4},
-	"res://level/world2/level_2_5.tscn": {"score": 5.01, "level_id": 2.5},
-	"res://level/world3/level_3_1.tscn": {"score": 1.51, "level_id": 3.1},
-	"res://level/world3/level_3_2.tscn": {"score": 4.26, "level_id": 3.2},
-	"res://level/world3/level_3_3.tscn": {"score": 5.56, "level_id": 3.3},
-	"res://level/world3/level_3_4.tscn": {"score": 4.99, "level_id": 3.4},
-	"res://level/world3/level_3_5.tscn": {"score": 5.01, "level_id": 3.5}
-}
 var scene_path
 var current_level_id
 var level_data
-var cursor_speed = 200  
-var cursor_position = Vector2()
+
+var joystick_sensitivity = 15.0  
+var joystick_deadzone = 0
 
 func _ready():
-	cursor_position = get_viewport().size / 2
 	info.two_stars = two_stars
 	info.three_stars = three_stars
 	new_highscore.hide()
@@ -101,7 +84,7 @@ func _process(_delta):
 			new_name_edit.text = ""
 			
 	scene_path = get_tree().current_scene.scene_file_path
-	level_data = scores.get(scene_path, {})
+	level_data = high_score.scores.get(scene_path, {})
 	current_level_id = level_data.get("level_id", -1)
 	high_score._update_shown_scores(current_level_id)
 	light.position = to_global(map_to_local(player_tile_pos))
@@ -115,24 +98,6 @@ func _unhandled_input(event):
 		onscreen_keyboard.autoShow = false
 	elif event is InputEventJoypadButton:
 		onscreen_keyboard.autoShow = true
-		
-	 # Bewegung des Cursors mit dem Joystick
-	if event is InputEventJoypadMotion:
-		var axis = event.axis
-		var value = event.axis_value
-		
-		# Linker Joystick (Achsen 0 und 1)
-		if axis == JOY_AXIS_RIGHT_X:  # X-Achse
-			cursor_position.x += value * cursor_speed * get_process_delta_time()
-		elif axis == JOY_AXIS_RIGHT_Y:  # Y-Achse
-			cursor_position.y += value * cursor_speed * get_process_delta_time()
-		
-		# Grenzen überprüfen
-		cursor_position.x = clamp(cursor_position.x, 0, get_viewport().size.x)
-		cursor_position.y = clamp(cursor_position.y, 0, get_viewport().size.y)
-		
-		# Position des Cursors aktualisieren
-		$Cursor.position = cursor_position
 
 	if event.is_action_pressed("right") and not settings.enabled and !info.visible:
 		move_player(player_tile_pos + Vector2.RIGHT)
@@ -155,6 +120,29 @@ func _unhandled_input(event):
 			light_timer.process_mode = Node.PROCESS_MODE_DISABLED
 		else:
 			settings.enabled = false
+
+func _input(event):
+	if event is InputEventJoypadMotion:
+		var mouse_movement = Vector2()
+		if event.axis == JOY_AXIS_RIGHT_X:
+			mouse_movement.x = event.axis_value
+		elif event.axis == JOY_AXIS_RIGHT_Y:
+			mouse_movement.y = event.axis_value
+		
+		# Apply deadzone
+		if abs(mouse_movement.x) < joystick_deadzone:
+			mouse_movement.x = 0
+		if abs(mouse_movement.y) < joystick_deadzone:
+			mouse_movement.y = 0
+
+		# Only move the mouse if there's significant input
+		if mouse_movement != Vector2.ZERO:
+			move_mouse(mouse_movement * joystick_sensitivity)
+
+func move_mouse(delta: Vector2):
+	var current_mouse_pos = get_viewport().get_mouse_position()
+	var new_mouse_pos = current_mouse_pos + delta
+	get_viewport().warp_mouse(new_mouse_pos)
 
 func restartLevel():
 	if not save_Game.finishedLevels.has(id) and save_Game.bonusItems.has(id):
@@ -256,8 +244,8 @@ func set_lvl_records():
 	if FileAccess.file_exists(high_score.file_name):
 		pass
 	else:
-		for scene_path in scores.keys():
-			var temp_level_data = scores[scene_path]
+		for scene_path in high_score.scores.keys():
+			var temp_level_data = high_score.scores[scene_path]
 			var temp_lvl_score = temp_level_data["score"]
 			var temp_lvl_id = temp_level_data["level_id"]
 			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})

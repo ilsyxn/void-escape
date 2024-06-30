@@ -33,6 +33,7 @@ offset_top = 405.0
 offset_right = -295.0
 offset_bottom = 451.0
 scale = Vector2(7, 7)
+action_mode = 0
 texture_normal = ExtResource("3_ljff0")
 texture_pressed = ExtResource("5_5nbw1")
 

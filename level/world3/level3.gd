@@ -38,30 +38,12 @@ extends TileMap
 @onready var timeout = false
 @onready var new_highscore = $"../Belichtet/NewHighscore"
 @onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
-@onready var high_score = $"../Belichtet/Highscore2"
+@onready var high_score = $"../Belichtet/NewHighscore/VBoxContainer/Highscore2"
 @onready var onscreen_keyboard = $"../Belichtet/OnscreenKeyboard"
 @onready var lights_closed = false
 
 var highscore_global
 var do_once = true
-
-var scores = {
-	"res://level/world1/level_1.tscn": {"score": 1.51, "level_id": 1.1},
-	"res://level/world1/level_2.tscn": {"score": 4.26, "level_id": 1.2},
-	"res://level/world1/level_3.tscn": {"score": 5.56, "level_id": 1.3},
-	"res://level/world1/level_4.tscn": {"score": 4.99, "level_id": 1.4},
-	"res://level/world1/level_5.tscn": {"score": 5.01, "level_id": 1.5},
-	"res://level/world2/level_2_1.tscn": {"score": 1.51, "level_id": 2.1},
-	"res://level/world2/level_2_2.tscn": {"score": 4.26, "level_id": 2.2},
-	"res://level/world2/level_2_3.tscn": {"score": 5.56, "level_id": 2.3},
-	"res://level/world2/level_2_4.tscn": {"score": 4.99, "level_id": 2.4},
-	"res://level/world2/level_2_5.tscn": {"score": 5.01, "level_id": 2.5},
-	"res://level/world3/level_3_1.tscn": {"score": 1.51, "level_id": 3.1},
-	"res://level/world3/level_3_2.tscn": {"score": 4.26, "level_id": 3.2},
-	"res://level/world3/level_3_3.tscn": {"score": 5.56, "level_id": 3.3},
-	"res://level/world3/level_3_4.tscn": {"score": 4.99, "level_id": 3.4},
-	"res://level/world3/level_3_5.tscn": {"score": 5.01, "level_id": 3.5}
-}
 var scene_path
 var current_level_id
 var level_data
@@ -73,6 +55,11 @@ func _process(delta):
 			do_once = false
 		if high_score.latest_name == "Luviar":
 			new_name_edit.text = ""
+	scene_path = get_tree().current_scene.scene_file_path
+	level_data = high_score.scores.get(scene_path, {})
+	# Access the level_id (with a default if it doesn't exist)
+	current_level_id = level_data.get("level_id", -1)
+	high_score._update_shown_scores(current_level_id)
 	light.position = to_global(map_to_local(player_tile_pos))
 	if fog_active and !light.texture_scale > 1.5:
 		var tween = create_tween()
@@ -163,6 +150,8 @@ func move_player(target_tile_pos):
 			star.texture = preload("res://assets/buttons/gray/stargray.png")
 		
 	if target_tile_id == 31:
+		highscore_global = stoppuhr.time
+		highscore_global = round(highscore_global * 100) / 100
 		if not save_Game.time.has(id):
 			save_Game.time[id] = stoppuhr.time
 		if save_Game.time.has(id):
@@ -182,7 +171,7 @@ func move_player(target_tile_pos):
 			#hide_lvl_ui()
 		bewertung.set_times(stoppuhr.time,save_Game.time[id])
 		bewertung.bounce_in()
-		print(save_Game.collected_stars)
+		hide_lvl_ui()
 
 # Benutzt das Portal und sorgt daf端r, dass es nicht ein zweites mal benutzt werden kann.
 func use_portal(coord : Vector2i):
@@ -230,7 +219,7 @@ func _on_save_highscore_button_pressed(_new_text = ""):
 	var new_name = new_name_edit.text.strip_edges()
 	if high_score.latest_name != new_name:
 		high_score.latest_name = new_name
-	high_score.add_entry({"name": high_score.latest_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
+	high_score.add_entry({"name": high_score.latest_name, "score": highscore_global, "level_id": current_level_id})
 	high_score._save()  # Add this line to save the highscore
 	$"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton".disabled = true
 	onscreen_keyboard.hide()
@@ -239,8 +228,8 @@ func set_lvl_records():
 	if FileAccess.file_exists(high_score.file_name):
 		pass
 	else:
-		for scene_path in scores.keys():
-			var temp_level_data = scores[scene_path]
+		for scene_path in high_score.scores.keys():
+			var temp_level_data = high_score.scores[scene_path]
 			var temp_lvl_score = temp_level_data["score"]
 			var temp_lvl_id = temp_level_data["level_id"]
 			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})

@@ -203,6 +203,7 @@ position = Vector2(576, -280)
 scale = Vector2(0.3, 0.3)
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
+visible = false
 offset_left = 283.0
 offset_top = 638.0
 offset_right = 872.0
@@ -264,9 +265,7 @@ clear_button_enabled = true
 [node name="SaveHighscoreButton" type="Button" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_neighbor_left = NodePath("../NewNameEdit")
 theme_override_fonts/font = ExtResource("7_viqtn")
-action_mode = 0
 text = "Submit"
 
 [node name="visual_timer" type="Node" parent="."]
