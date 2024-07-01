@@ -35,8 +35,8 @@ script = ExtResource("3_g3q71")
 id = 1
 starPos = Vector2(5, 4)
 startPos = Vector2i(5, 1)
-three_stars = 4.0
-two_stars = 10.0
+three_stars = 6.0
+two_stars = 12.0
 
 [node name="Fog" type="CanvasModulate" parent="."]
 visible = false
@@ -204,9 +204,9 @@ scale = Vector2(0.3, 0.3)
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
 offset_left = 283.0
-offset_top = 638.0
+offset_top = 12.0
 offset_right = 872.0
-offset_bottom = 943.0
+offset_bottom = 317.0
 script = ExtResource("12_8t8xq")
 autoShow = true
 
