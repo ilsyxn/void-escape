@@ -85,6 +85,7 @@ preis = 15
 position = Vector2(232, 484)
 id = 7
 bild = ExtResource("10_ykmxs")
+preis = 80
 
 [node name="ItemShop" type="Sprite2D" parent="."]
 position = Vector2(778, 328)

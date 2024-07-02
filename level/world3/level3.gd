@@ -94,21 +94,21 @@ func _unhandled_input(event):
 			onscreen_keyboard.autoShow = false
 		elif event is InputEventJoypadButton:
 			onscreen_keyboard.autoShow = true
-		if event.is_action_pressed("right"):
+		if event.is_action_pressed("right") and !settings.enabled and !info.visible:
 			timeout = true
 			move_player(player_tile_pos + Vector2i.RIGHT)
-		elif event.is_action_pressed("left"):
+		elif event.is_action_pressed("left") and !settings.enabled and !info.visible:
 			timeout = true
 			move_player(player_tile_pos + Vector2i.LEFT)	
-		elif event.is_action_pressed("up"):
+		elif event.is_action_pressed("up") and !settings.enabled and !info.visible:
 			timeout = true
 			move_player(player_tile_pos + Vector2i.UP)
-		elif event.is_action_pressed("down"):
+		elif event.is_action_pressed("down") and !settings.enabled and !info.visible:
 			timeout = true
 			move_player(player_tile_pos + Vector2i.DOWN)
 		elif event.is_action_pressed("reset"):  
 			restartLevel()
-		elif event.is_action_pressed("settings"):  
+		elif event.is_action_pressed("settings") and !info.visible:  
 			if settings.enabled == false:
 				settings.enabled = true
 				# stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED

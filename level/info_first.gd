@@ -5,6 +5,7 @@ extends Sprite2D
 
 @onready var time2 = $Two_Stars/Time
 @onready var time3 = $Three_Stars/Time
+@onready var settings = $"../Settings"
 
 func _ready():
 	
@@ -15,5 +16,5 @@ func toggle():
 	visible = !visible
 
 func _unhandled_input(event):
-	if event.is_action_pressed("help"):
+	if event.is_action_pressed("help") and !settings.enabled:
 		toggle()
