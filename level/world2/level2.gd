@@ -136,26 +136,26 @@ func _unhandled_input(event):
 		onscreen_keyboard.autoShow = false
 	elif event is InputEventJoypadButton:
 		onscreen_keyboard.autoShow = true
-	if event.is_action_pressed("right") and !settings.enabled and !info.visible:
+	if event.is_action_pressed("right") and !settings.enabled and !info.visible and !game_over:
 		if typeof(player_tile_pos) == TYPE_VECTOR2I:
 			move_player(player_tile_pos + Vector2i.RIGHT)
 		else: 
 			move_player(player_tile_pos + Vector2.RIGHT)
 		execute_timeout_actions()
-	elif event.is_action_pressed("left") and !settings.enabled and !info.visible:
+	elif event.is_action_pressed("left") and !settings.enabled and !info.visible and !game_over:
 		if typeof(player_tile_pos) == TYPE_VECTOR2I:
 			move_player(player_tile_pos + Vector2i.LEFT)
 		else:
 			move_player(player_tile_pos + Vector2.LEFT)
 		execute_timeout_actions()
-	elif event.is_action_pressed("up") and !settings.enabled and !info.visible:
+	elif event.is_action_pressed("up") and !settings.enabled and !info.visible and !game_over:
 		if typeof(player_tile_pos) == TYPE_VECTOR2I:
 			move_player(player_tile_pos + Vector2i.UP)
 		else:
 			move_player(player_tile_pos + Vector2.UP)
 		execute_timeout_actions()
 			
-	elif event.is_action_pressed("down") and !settings.enabled and !info.visible:
+	elif event.is_action_pressed("down") and !settings.enabled and !info.visible and !game_over:
 		if typeof(player_tile_pos) == TYPE_VECTOR2I:
 				move_player(player_tile_pos + Vector2i.DOWN)
 		else:
@@ -163,7 +163,7 @@ func _unhandled_input(event):
 		execute_timeout_actions()
 	elif event.is_action_pressed("reset") and !settings.enabled and !info.visible:  
 		restartLevel()
-	elif event.is_action_pressed("settings") and !info.visible:  
+	elif event.is_action_pressed("settings") and !info.visible and !game_over:  
 		if settings.enabled == false:
 			settings.enabled = true
 			stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED
@@ -289,14 +289,16 @@ func move_monster_towards_player():
 		if enemy_positions[i] != null and !game_over:
 			var path_taken = astagrid.get_id_path(enemy_positions[i], player_tile_pos)
 			erase_cell(1, enemy_positions[i])
-			set_cell(1, path_taken[1], enemy_ids[i], Vector2i(0,0), 0)
-			enemy_positions[i] = path_taken[1]
+			if !game_over:
+				set_cell(1, path_taken[1], enemy_ids[i], Vector2i(0,0), 0)
+				enemy_positions[i] = path_taken[1]
 			# Wenn vom Monster gefressen, dann Game Over	
 			if path_taken[1] == Vector2i(player_tile_pos):
+				game_over = true
 				await get_tree().create_timer(0.5).timeout
 				hide_lvl_ui()
 				$"../Belichtet/GameOver".bounce_in()
-				game_over = true
+				
 					
 
 func setup_grid():

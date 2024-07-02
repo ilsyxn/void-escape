@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6dd0e8u1ityu"]
+
+[ext_resource type="AudioStream" uid="uid://bqxvkc7c3jh8i" path="res://assets/sounds/einfachclick.mp3" id="1_ai6kc"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_ai6kc")
+bus = &"Sound"

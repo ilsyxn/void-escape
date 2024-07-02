@@ -198,9 +198,9 @@ text = "Star collected!"
 metadata/_edit_use_anchors_ = true
 
 [node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
-offset_left = 891.0
+offset_left = 935.0
 offset_top = 227.0
-offset_right = 1103.0
+offset_right = 1147.0
 offset_bottom = 285.0
 size_flags_vertical = 8
 

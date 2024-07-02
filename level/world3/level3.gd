@@ -86,7 +86,7 @@ func _ready():
 	if !save_Game.bonusItems.has(id):
 		set_cell(1, starPos, 36, Vector2i(0,0), 0)
 	else: 
-		set_cell(1, starPos, 32, Vector2i(0,0), 0)
+		set_cell(1, starPos, 33, Vector2i(0,0), 0)
 
 
 func _unhandled_input(event):
@@ -135,6 +135,7 @@ func move_player(target_tile_pos):
 	
 	# Boden fuellen 
 	if buttons.has(target_tile_pos) and !used_buttons.has(target_tile_pos):
+		klicker.play()
 		erase_cell(1, laser.pop_front())
 		used_buttons.append(target_tile_pos)
 		erase_cell(1, target_tile_pos)
