@@ -58,9 +58,6 @@ func _ready():
 	if save_Game.time.has(id):
 		high_score_time.text = stoppuhr.format_time(save_Game.time[id])
 
-	if save_Game.bonusUnlocked():
-		player = 12
-
 	set_cell(1, startPos, player, Vector2i(0, 0), 0)
 
 	if not save_Game.bonusItems.has(id):

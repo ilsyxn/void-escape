@@ -19,7 +19,7 @@ extends TileMap
 @onready var star = $"../Belichtet/Star"
 @onready var intro = $"../Intro"
 @onready var fog = $"../Fog"
-
+@onready var lights_timer = $"../visual_timer/time"
 @onready var settings = $"../Belichtet/Settings"
 @onready var fog_active = false
 @onready var stern_player = $"../SternPlayer"
@@ -201,10 +201,10 @@ func toggle_light():
 	fog.visible = true
 	light.visible = true
 	$"../Belichtet/light_out".visible = true
-	$"../Belichtet/light_out_in".visible = false
+	$"../Belichtet/light_out_in".hide()
 	await get_tree().create_timer(0.8).timeout
 	$"../Belichtet/light_out".visible = false
-
+	lights_timer.hide()
 func _on_timer_timeout():
 	timeout = true
 	

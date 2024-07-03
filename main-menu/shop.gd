@@ -22,16 +22,23 @@ func _process(delta):
 	owned.text = str(save_Game.collected_stars)
 	border.global_position = marker[marker_index].global_position
 	selected_skin.texture = slots[marker_index].skin.texture
-	if marker_index == 7 or slots[marker_index].isOwned:
+	if slots[marker_index].isOwned:
 		preis.visible = false
 		star.visible = false
+	if marker_index == 7:
+		preis.visible = false
+		star.visible = false
+		if !slots[marker_index].isOwned:
+			action.text = "collect all stars\n          in world 1"
 	else:
 		preis.visible = true
 		star.visible = true
 		preis.text = str(slots[marker_index].preis)
 
 func _ready():
-	pass
+	if save_Game.bonusUnlocked() and !save_Game.owned_skins.has(7):
+		save_Game.owned_skins.append(7)
+		slots[7].isOwned = true
 
 func _unhandled_input(event):
 	if event.is_action_pressed("back"):

@@ -282,3 +282,4 @@ one_shot = true
 autostart = true
 
 [connection signal="timeout" from="LightTimer" to="lvl3-3" method="_on_light_timer_timeout"]
+[connection signal="timeout" from="visual_timer/Timer" to="lvl3-3" method="_on_timer_timeout"]
