@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpusls4i3alg8"]
+
+[ext_resource type="AudioStream" uid="uid://b5xm20y6b75lj" path="res://assets/sound/einfachclick.mp3" id="1_ehk1o"]
+
+[node name="Klicker" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_ehk1o")
+volume_db = 10.0

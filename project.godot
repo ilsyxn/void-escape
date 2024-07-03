@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 AudioStreamPlayer2d="*res://assets/audio_stream_player_2d.tscn"
 SternPlayer="*res://main-menu/stern_player.tscn"
 IntroPlayer="*res://main-menu/intro_player.tscn"
+Klicker="*res://assets/sound/klicker.tscn"
 
 [display]
 

@@ -95,7 +95,6 @@ func move_player(target_tile_pos):
 	# Infos 端ber das Target Tile bekommen
 	var target_tile_id = get_cell_source_id(0, target_tile_pos)
 	var _tile_data: TileData = get_cell_tile_data(0,player_tile_pos)
-	print(target_tile_pos, starPos)
 
 	# Wenn wir das Teil betreten duerfen, dann bewegen
 	if (allowed_tile_ids.has(target_tile_id)) and !betreten.has(target_tile_pos) and !laser.has(target_tile_pos):
@@ -109,6 +108,7 @@ func move_player(target_tile_pos):
 	
 	# Boden fuellen 
 	if buttons.has(target_tile_pos) and !used_buttons.has(target_tile_pos):
+		Klicker.play()
 		erase_cell(1, laser.pop_front())
 		used_buttons.append(target_tile_pos)
 		erase_cell(1, target_tile_pos)
