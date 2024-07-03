@@ -56,12 +56,9 @@ func _ready():
 	fog.visible = false
 	light.visible = false
 	light_out.visible = false
-
+	
 	if save_Game.time.has(id):
 		high_score_time.text = stoppuhr.format_time(save_Game.time[id])
-
-	if save_Game.bonusUnlocked():
-		player = 12
 
 	set_cell(1, startPos, player, Vector2i(0, 0), 0)
 
@@ -172,6 +169,7 @@ func move_player(target_tile_pos):
 		if target_tile_id == 4 or target_tile_id == 37:
 			highscore_global = stoppuhr.time
 			if not save_Game.finishedLevels.has(id):
+				save_Game.time[id] = stoppuhr.time
 				save_Game.levelFinished(id)
 				if bonus:
 					save_Game.bonusCollected(id)
@@ -194,7 +192,7 @@ func move_player(target_tile_pos):
 			bewertung.set_times(stoppuhr.time, save_Game.time[id])
 			hide_lvl_ui()
 			bewertung.bounce_in()
-			print(save_Game.collected_stars)
+	
 
 func add_particle(pos: Vector2i):
 	var particle = preload("res://level/void.tscn").instantiate()

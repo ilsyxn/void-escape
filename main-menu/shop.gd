@@ -25,13 +25,17 @@ func _process(delta):
 	if marker_index == 7 or slots[marker_index].isOwned:
 		preis.visible = false
 		star.visible = false
+	if marker_index == 7 and !slots[marker_index].isOwned:
+		action.text = "collect all stars\n          in world 1"
 	else:
 		preis.visible = true
 		star.visible = true
 		preis.text = str(slots[marker_index].preis)
 
 func _ready():
-	pass
+	if save_Game.bonusUnlocked() and !save_Game.owned_skins.has(7):
+		save_Game.owned_skins.append(7)
+		slots[7].isOwned = true
 
 func _unhandled_input(event):
 	if event.is_action_pressed("back"):
