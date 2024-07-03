@@ -43,8 +43,6 @@ var move_in_two = false
 @onready var stoppuhr = $"../Belichtet/stoppuhr"
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
 
-@export var highscore_input_scene = "res://Scoreboard/HighscoreInput.tscn"
-@export var highscore_global: float
 
 @onready var new_highscore = $"../Belichtet/NewHighscore"
 @onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
@@ -62,9 +60,10 @@ func _ready():
 	player_tile_pos = startPos
 	info.two_stars = two_stars
 	info.three_stars = three_stars
-	new_highscore.hide()
-	high_score.hide()
-	set_lvl_records()
+	if save_Game.time[id]:
+		high_score_time.text = stoppuhr.format_time(save_Game.time[id])
+		
+	
 	IntroPlayer.play()
 	# Damit sich die gegner bewegen können
 	randomize()
@@ -114,56 +113,40 @@ func _ready():
 		await get_tree().create_timer(0.8).timeout
 
 func _process(_delta):
-	if do_once:
-		if str(new_name_edit.text) == "":
-			new_name_edit.text = high_score.latest_name
-			do_once = false
-		if high_score.latest_name == "Luviar":
-			new_name_edit.text = ""
-			
-	scene_path = get_tree().current_scene.scene_file_path
-	level_data = high_score.scores.get(scene_path, {})
-	# Access the level_id (with a default if it doesn't exist)
-	current_level_id = level_data.get("level_id", -1)
-	high_score._update_shown_scores(current_level_id)
 	if not fog_red:
 		fade_fog()
 	# Licht soll Spieler verfolgen
 	light.position = to_global(map_to_local(player_tile_pos))
 	
 func _unhandled_input(event):
-	if event is InputEventKey:
-		onscreen_keyboard.autoShow = false
-	elif event is InputEventJoypadButton:
-		onscreen_keyboard.autoShow = true
-	if event.is_action_pressed("right") and !settings.enabled and !info.visible:
+	if event.is_action_pressed("right") and !settings.enabled and !info.visible and !game_over:
 		if typeof(player_tile_pos) == TYPE_VECTOR2I:
 			move_player(player_tile_pos + Vector2i.RIGHT)
 		else: 
 			move_player(player_tile_pos + Vector2.RIGHT)
 		execute_timeout_actions()
-	elif event.is_action_pressed("left") and !settings.enabled and !info.visible:
+	elif event.is_action_pressed("left") and !settings.enabled and !info.visible and !game_over:
 		if typeof(player_tile_pos) == TYPE_VECTOR2I:
 			move_player(player_tile_pos + Vector2i.LEFT)
 		else:
 			move_player(player_tile_pos + Vector2.LEFT)
 		execute_timeout_actions()
-	elif event.is_action_pressed("up") and !settings.enabled and !info.visible:
+	elif event.is_action_pressed("up") and !settings.enabled and !info.visible and !game_over:
 		if typeof(player_tile_pos) == TYPE_VECTOR2I:
 			move_player(player_tile_pos + Vector2i.UP)
 		else:
 			move_player(player_tile_pos + Vector2.UP)
 		execute_timeout_actions()
 			
-	elif event.is_action_pressed("down") and !settings.enabled and !info.visible:
+	elif event.is_action_pressed("down") and !settings.enabled and !info.visible and !game_over:
 		if typeof(player_tile_pos) == TYPE_VECTOR2I:
 				move_player(player_tile_pos + Vector2i.DOWN)
 		else:
 			move_player(player_tile_pos + Vector2.DOWN)
 		execute_timeout_actions()
-	elif event.is_action_pressed("reset") and !settings.enabled and !info.visible:  
+	elif event.is_action_pressed("reset") and !settings.enabled and !info.visible and !game_over:  
 		restartLevel()
-	elif event.is_action_pressed("settings") and !info.visible:  
+	elif event.is_action_pressed("settings") and !info.visible and !game_over:  
 		if settings.enabled == false:
 			settings.enabled = true
 			stoppuhr.process_mode = Node.PROCESS_MODE_DISABLED
@@ -214,7 +197,7 @@ func move_player(target_tile_pos):
 		
 		# Wenn das Ziel erreicht wird die ganzen Infos im SaveGame speichern 
 		if target_tile_id == 41:
-			highscore_global = stoppuhr.time
+			
 			if !save_Game.finishedLevels.has(id):
 				save_Game.levelFinished(id)
 				if bonus: 
@@ -227,7 +210,8 @@ func move_player(target_tile_pos):
 					save_Game.unlockedLevels.append(31)
 				if !save_Game.time[id]:
 					save_Game.time[id] = stoppuhr.time
-					highscore_global = save_Game.time[id]
+			if save_Game.time[id] > stoppuhr.time:
+					save_Game.time[id] = stoppuhr.time
 			if stoppuhr.time < three_stars:
 				bewertung.three_stars(id)
 			elif stoppuhr.time < two_stars:
@@ -289,14 +273,15 @@ func move_monster_towards_player():
 		if enemy_positions[i] != null and !game_over:
 			var path_taken = astagrid.get_id_path(enemy_positions[i], player_tile_pos)
 			erase_cell(1, enemy_positions[i])
-			set_cell(1, path_taken[1], enemy_ids[i], Vector2i(0,0), 0)
-			enemy_positions[i] = path_taken[1]
+			if !game_over:
+				set_cell(1, path_taken[1], enemy_ids[i], Vector2i(0,0), 0)
+				enemy_positions[i] = path_taken[1]
 			# Wenn vom Monster gefressen, dann Game Over	
 			if path_taken[1] == Vector2i(player_tile_pos):
+				game_over = true
 				await get_tree().create_timer(0.5).timeout
 				hide_lvl_ui()
 				$"../Belichtet/GameOver".bounce_in()
-				game_over = true
 					
 
 func setup_grid():
@@ -326,28 +311,6 @@ func hide_lvl_ui():
 	$"../Belichtet/Border".hide()
 	$"../Belichtet/Star".hide()
 	$"../Belichtet/HighScoreTime".hide()
-	new_highscore.show()
-	high_score.show()
-
-func _on_save_highscore_button_pressed(_new_text = ""):
-	var new_name = new_name_edit.text.strip_edges()
-	if high_score.latest_name != new_name:
-		high_score.latest_name = new_name
-	high_score.add_entry({"name": high_score.latest_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
-	high_score._save()  # Add this line to save the highscore
-	$"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton".disabled = true
-	onscreen_keyboard.hide()
-	
-func set_lvl_records():
-	if FileAccess.file_exists(high_score.file_name):
-		pass
-	else:
-		for scene_path in high_score.scores.keys():
-			var temp_level_data = high_score.scores[scene_path]
-			var temp_lvl_score = temp_level_data["score"]
-			var temp_lvl_id = temp_level_data["level_id"]
-			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})
-			print(temp_lvl_score)
 			
 func star_clollected():
 	for i in 5:

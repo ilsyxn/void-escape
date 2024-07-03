@@ -8,7 +8,7 @@ extends TileMap
 @onready var stern_player = $"../SternPlayer"
 @onready var info = $"../Belichtet/Info"
 @onready var star_collected_text = $"../Belichtet/star_collected"
-@onready var onscreen_keyboard = $"../Belichtet/OnscreenKeyboard"
+
 
 var tile_size = 32
 var allowed_tile_ids = [30, 2, 3, 4, 8, 9, 34, 37]
@@ -32,26 +32,24 @@ var early_start = false
 @onready var high_score_time = $"../Belichtet/HighScoreTime"
 @export var three_stars: float
 @export var two_stars: float
-@onready var intro = $"../Intro"
-@onready var new_highscore = $"../Belichtet/NewHighscore"
-@onready var new_name_edit = $"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit"
-@onready var high_score = $"../Belichtet/NewHighscore/VBoxContainer/Highscore2"
-var highscore_global
-var do_once = true
+
+
 
 var scene_path
 var current_level_id
 var level_data
 
-var joystick_sensitivity = 15.0  
-var joystick_deadzone = 0
+
 
 func _ready():
+	
+	# Falls ein Highscore besteht, anzeigen
+	if save_Game.time[id]:
+		high_score_time.text = stoppuhr.format_time(save_Game.time[id])
+	
 	info.two_stars = two_stars
 	info.three_stars = three_stars
-	new_highscore.hide()
-	high_score.hide()
-	set_lvl_records()
+	
 	IntroPlayer.play()
 	fog.visible = false
 	light.visible = false
@@ -76,17 +74,9 @@ func _ready():
 		break  
 
 func _process(_delta):
-	if do_once:
-		if str(new_name_edit.text) == "":
-			new_name_edit.text = high_score.latest_name
-			do_once = false
-		if high_score.latest_name == "Luviar":
-			new_name_edit.text = ""
 			
-	scene_path = get_tree().current_scene.scene_file_path
-	level_data = high_score.scores.get(scene_path, {})
-	current_level_id = level_data.get("level_id", -1)
-	high_score._update_shown_scores(current_level_id)
+	
+	
 	light.position = to_global(map_to_local(player_tile_pos))
 
 	if not settings.enabled:
@@ -94,11 +84,6 @@ func _process(_delta):
 		light_timer.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _unhandled_input(event):
-	if event is InputEventKey:
-		onscreen_keyboard.autoShow = false
-	elif event is InputEventJoypadButton:
-		onscreen_keyboard.autoShow = true
-
 	if event.is_action_pressed("right") and not settings.enabled and !info.visible:
 		move_player(player_tile_pos + Vector2.RIGHT)
 		execute_timeout_actions()
@@ -120,29 +105,6 @@ func _unhandled_input(event):
 			light_timer.process_mode = Node.PROCESS_MODE_DISABLED
 		else:
 			settings.enabled = false
-
-func _input(event):
-	if event is InputEventJoypadMotion:
-		var mouse_movement = Vector2()
-		if event.axis == JOY_AXIS_RIGHT_X:
-			mouse_movement.x = event.axis_value
-		elif event.axis == JOY_AXIS_RIGHT_Y:
-			mouse_movement.y = event.axis_value
-		
-		# Apply deadzone
-		if abs(mouse_movement.x) < joystick_deadzone:
-			mouse_movement.x = 0
-		if abs(mouse_movement.y) < joystick_deadzone:
-			mouse_movement.y = 0
-
-		# Only move the mouse if there's significant input
-		if mouse_movement != Vector2.ZERO:
-			move_mouse(mouse_movement * joystick_sensitivity)
-
-func move_mouse(delta: Vector2):
-	var current_mouse_pos = get_viewport().get_mouse_position()
-	var new_mouse_pos = current_mouse_pos + delta
-	get_viewport().warp_mouse(new_mouse_pos)
 
 func restartLevel():
 	if not save_Game.finishedLevels.has(id) and save_Game.bonusItems.has(id):
@@ -170,7 +132,6 @@ func move_player(target_tile_pos):
 			get_tree().change_scene_to_file("res://level/world1/shortCutLvl.tscn")
 
 		if target_tile_id == 4 or target_tile_id == 37:
-			highscore_global = stoppuhr.time
 			if not save_Game.finishedLevels.has(id):
 				save_Game.levelFinished(id)
 				if bonus:
@@ -228,28 +189,9 @@ func hide_lvl_ui():
 	$"../visual_timer/time".hide()
 	$"../Belichtet/Border".hide()
 	$"../Belichtet/Star".hide()
-	new_highscore.show()
-	high_score.show()
 
-func _on_save_highscore_button_pressed(_new_text = ""):
-	var new_name = new_name_edit.text.strip_edges()
-	if high_score.latest_name != new_name:
-		high_score.latest_name = new_name
-	high_score.add_entry({"name": high_score.latest_name, "score": (round(highscore_global * 100) / 100), "level_id": current_level_id})
-	high_score._save()  # Add this line to save the highscore
-	$"../Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton".disabled = true
-	onscreen_keyboard.hide()
 	
-func set_lvl_records():
-	if FileAccess.file_exists(high_score.file_name):
-		pass
-	else:
-		for scene_path in high_score.scores.keys():
-			var temp_level_data = high_score.scores[scene_path]
-			var temp_lvl_score = temp_level_data["score"]
-			var temp_lvl_id = temp_level_data["level_id"]
-			high_score.add_entry({"name": "Luviar", "score": temp_lvl_score, "level_id": temp_lvl_id})
-			print(temp_lvl_score)
+
 			
 func star_clollected():
 	for i in 5:

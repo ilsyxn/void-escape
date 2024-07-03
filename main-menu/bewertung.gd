@@ -6,6 +6,8 @@ extends Sprite2D
 @onready var cont = $Continue
 var tween : Tween
 @onready var required = $Required
+@onready var highscore = $Highscore
+
 @onready var save_Game = preload("res://save/saveGame.tres")
 @onready var bounced = false
 
@@ -44,6 +46,7 @@ func _on_continue_pressed():
 
 func set_times(req, high):
 	required.text += str(round_place(req, 2)) 
+	highscore.text += str(round_place(high, 2)) 
 	
 
 func bounce_in() -> void:

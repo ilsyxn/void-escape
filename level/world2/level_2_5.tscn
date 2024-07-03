@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dd7vqdq43f8py"]
+[gd_scene load_steps=15 format=3 uid="uid://dd7vqdq43f8py"]
 
 [ext_resource type="Texture2D" uid="uid://c6dvqhkaoxfrd" path="res://assets/light.webp" id="1_kctda"]
 [ext_resource type="PackedScene" uid="uid://c2g1xhq21x1mf" path="res://main-menu/background.tscn" id="2_clnjs"]
@@ -12,9 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://br12bidggrfii" path="res://assets/sounds/intro.wav" id="10_dc04p"]
 [ext_resource type="PackedScene" uid="uid://dj4emyeeic6bl" path="res://GameOver/Game_Over.tscn" id="10_mwj13"]
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="12_xbowd"]
-[ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="13_82ulj"]
 [ext_resource type="PackedScene" uid="uid://c64ao7qi0weel" path="res://level/info_second.tscn" id="13_ynjdr"]
-[ext_resource type="Script" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="14_wnuxe"]
 [ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="16_0nrwg"]
 
 [node name="Level2-2" type="Node2D"]
@@ -171,15 +169,6 @@ theme_override_fonts/font = ExtResource("6_xx72g")
 theme_override_font_sizes/font_size = 20
 text = "(Press H for help)"
 
-[node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
-visible = false
-offset_left = 238.0
-offset_top = 12.0
-offset_right = 827.0
-offset_bottom = 317.0
-script = ExtResource("14_wnuxe")
-autoShow = true
-
 [node name="star_collected" type="Label" parent="Belichtet"]
 visible = false
 anchors_preset = 15
@@ -198,56 +187,9 @@ theme_override_font_sizes/font_size = 80
 text = "Star collected!"
 metadata/_edit_use_anchors_ = true
 
-[node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
-offset_left = 952.0
-offset_top = 227.0
-offset_right = 1164.0
-offset_bottom = 285.0
-size_flags_vertical = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Belichtet/NewHighscore"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Highscore2" parent="Belichtet/NewHighscore/VBoxContainer" instance=ExtResource("13_82ulj")]
-texture_filter = 1
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Belichtet/NewHighscore/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("6_xx72g")
-text = "Enter your name:"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Belichtet/NewHighscore/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 6
-
-[node name="NewNameEdit" type="LineEdit" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-theme_override_fonts/font = ExtResource("6_xx72g")
-placeholder_text = "Name..............."
-alignment = 1
-max_length = 9
-expand_to_text_length = true
-virtual_keyboard_enabled = false
-clear_button_enabled = true
-
-[node name="SaveHighscoreButton" type="Button" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource("6_xx72g")
-text = "Submit"
-
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_dc04p")
 
 [node name="SternPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_0nrwg")
 volume_db = 10.0
-
-[connection signal="text_submitted" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit" to="lvl2_1" method="_on_new_name_edit_text_submitted"]
-[connection signal="pressed" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton" to="lvl2_1" method="_on_save_highscore_button_pressed"]

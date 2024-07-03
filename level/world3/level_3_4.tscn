@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c7cn7vpc1nwqw"]
+[gd_scene load_steps=23 format=3 uid="uid://c7cn7vpc1nwqw"]
 
 [ext_resource type="TileSet" uid="uid://w5iet3ku1ekm" path="res://level/world3/tilemap-3.tres" id="1_1hmia"]
 [ext_resource type="Script" path="res://level/world3/level3.gd" id="2_3031t"]
@@ -12,8 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bbefcdphgqnaf" path="res://main-menu/bewertung.tscn" id="7_04twr"]
 [ext_resource type="Script" path="res://level/stoppuhr.gd" id="7_d8eje"]
 [ext_resource type="PackedScene" uid="uid://h2dqw4dt0jx3" path="res://assets/ui/settings.tscn" id="8_ujxwj"]
-[ext_resource type="PackedScene" uid="uid://c86hlmvh0v03h" path="res://Scoreboard/highscore.tscn" id="11_17tnl"]
-[ext_resource type="Script" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="12_u5a6u"]
 [ext_resource type="AudioStream" uid="uid://b7eqxxa8bvx6r" path="res://assets/world-1/sternsound.mp3" id="15_bbcp5"]
 [ext_resource type="Script" path="res://level/visual_timer.gd" id="16_6y7ej"]
 
@@ -241,15 +239,6 @@ offset_bottom = 311.0
 scale = Vector2(0.3, 0.3)
 metadata/_edit_use_anchors_ = true
 
-[node name="OnscreenKeyboard" type="PanelContainer" parent="Belichtet"]
-visible = false
-offset_left = 286.0
-offset_top = 638.0
-offset_right = 875.0
-offset_bottom = 943.0
-script = ExtResource("12_u5a6u")
-autoShow = true
-
 [node name="star_collected" type="Label" parent="Belichtet"]
 visible = false
 anchors_preset = 15
@@ -304,49 +293,6 @@ theme_override_font_sizes/font_size = 80
 text = "Lights out!"
 metadata/_edit_use_anchors_ = true
 
-[node name="NewHighscore" type="PanelContainer" parent="Belichtet"]
-offset_left = 899.0
-offset_top = 227.0
-offset_right = 1111.0
-offset_bottom = 285.0
-size_flags_vertical = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Belichtet/NewHighscore"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Highscore2" parent="Belichtet/NewHighscore/VBoxContainer" instance=ExtResource("11_17tnl")]
-texture_filter = 1
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Belichtet/NewHighscore/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("6_wxpao")
-text = "Enter your name:"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Belichtet/NewHighscore/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 6
-
-[node name="NewNameEdit" type="LineEdit" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-theme_override_fonts/font = ExtResource("6_wxpao")
-placeholder_text = "Name..............."
-alignment = 1
-max_length = 9
-expand_to_text_length = true
-clear_button_enabled = true
-
-[node name="SaveHighscoreButton" type="Button" parent="Belichtet/NewHighscore/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource("6_wxpao")
-text = "Submit"
-
 [node name="Background" parent="." instance=ExtResource("4_3fffs")]
 
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
@@ -387,6 +333,4 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
-[connection signal="text_submitted" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/NewNameEdit" to="lvl3-4" method="_on_save_highscore_button_pressed"]
-[connection signal="pressed" from="Belichtet/NewHighscore/VBoxContainer/HBoxContainer/SaveHighscoreButton" to="lvl3-4" method="_on_save_highscore_button_pressed"]
 [connection signal="timeout" from="LightTimer" to="lvl3-4" method="_on_light_timer_timeout"]
